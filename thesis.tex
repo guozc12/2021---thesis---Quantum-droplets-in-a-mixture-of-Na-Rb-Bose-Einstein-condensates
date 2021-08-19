@@ -1,0 +1,124 @@
+%! Please Check before compile this tex file:
+%! TEX program=xelatex
+%=======================================================
+% -----------   Template from   --------------
+% Revised by ZHENG Fan (fzheng@link.cuhk.edu.hk) according to
+% CUHK Grad. School's requirements on thesis format. Check:
+%   https://www.gradsch.cuhk.edu.hk/pgstudent/gsinfo/research/Chapte206.html
+% 
+% 2021.03.29
+% Modified by GUO Zhichao (guozc12@gmail.com)
+%
+%=======================================================
+
+
+
+%% Document Start
+\documentclass[12pt,a4paper,twoside]{report}
+
+%=======================================================
+% handle Chinese and fonts
+% CUHK has no limitations on font-types
+\usepackage{fontspec}
+\usepackage[scheme=plain]{ctex}
+\setCJKmainfont{BabelStone Han}
+%\setCJKmainfont{kai} 
+%\setCJKmainfont{song} %可自行更改为系统中文字体；SimSun即Windows宋体。
+%=======================================================
+
+%=======================================================
+% Style and symbol setting
+\input{format/style}
+\input{format/symbols}
+%=======================================================
+
+%=======================================================
+% margins and spacing required by CUHK Grad-School
+% 4 cm margin for binding edge, 2.5 cm for outer edge:
+\usepackage[inner=4cm,outer=2.5cm]{geometry}
+\usepackage{setspace}
+% 1.5 line spacing for normal texts:
+\setstretch{1.5}
+% avoid too much space automatically padded between paragraphs to fill a page:
+\raggedbottom
+%=======================================================
+
+%=======================================================
+% personally imported packages and customization
+\usepackage{amsmath, amssymb, graphics, setspace}
+\usepackage[mono=false]{libertine} % I personally favour this font
+\usepackage{subfig}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\graphicspath{{figures/}}
+\usepackage[authoryear,square]{natbib} % citation style management
+\def\cite{\citep}
+% CUHK has no limitations on bibliography style, use your favor.
+%\bibliographystyle{ieeetr} % for 'nubmers' citation style
+\bibliographystyle{apalike} % for 'authoryear' citation style
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=magenta]{hyperref}
+%=======================================================
+
+
+
+\begin{document}
+%=======================================================
+% Make cover-page
+\thesistitle{Quantum droplets in a mixture of $^{23}$Na and $^{87}$Rb Bose-Einstein condensates}
+\thesistitlezh{鈉銣超冷混合量子液滴的實驗研究} % CUHK 对简繁体不作要求
+\authorname{GUO, Zhichao}
+\degree{Doctor of Philosophy}
+\programme{Physics}
+\institution{The Chinese University of Hong Kong}
+\submitdate{August 2021}
+\committee{
+	Professor XU, Lei (Chair)\\
+	Professor Wang, Dajun (Thesis Supervisor)\\
+	Associate Professor Yang, Seng (Committee Member)\\
+	Professor Yu, Zhenhua (External Examiner)
+}
+\coverpage
+%=======================================================
+
+%=======================================================
+% contents and others
+\pagenumbering{roman}
+\abstractpage
+\acknowledgementpage
+\dedicationpage
+\tableofcontents
+\listoffigures
+\listoftables
+%=======================================================
+
+%=======================================================
+% Main Text
+\newpage
+\setcounter{page}{0}
+\pagenumbering{arabic}
+\pagestyle{headings}
+
+%insert the chapters
+% note that: for fast compile, one can only include the chapter is ongoing.
+
+\input{sections/Ch1_Introduction}
+\input{sections/Ch2_Theory}
+\input{sections/Ch3_Apparatus}
+\input{sections/Ch4_Feshbach}
+\input{sections/Ch5_Droplet}
+\input{sections/Ch6_Low dimension droplet}
+\input{sections/Ch7_Conclusion}
+
+%=======================================================
+
+
+%=======================================================
+% Appendix and bibliography
+\appendix
+\input{sections/S1_Camima}
+\input{sections/S2_eGPELAB}
+\newpage
+\setstretch{1}
+\bibliography{database}
+%=======================================================
+\end{document}

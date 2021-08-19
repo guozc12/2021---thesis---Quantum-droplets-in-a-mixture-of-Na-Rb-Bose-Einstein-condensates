@@ -1,0 +1,682 @@
+\chapter{Quantum droplet of hetero-nuclear Bose mixture}
+\label{Chap_droplet}
+
+% epigraph
+\setlength{\unitlength}{1pt}
+\setlength{\epigraphwidth}{10cm}
+\epigraph{Law of physicists I: \\ Without experimentalists, theorists tend to drift.}{--- T.D. Lee\\ \textit{History of the weak
+interactions (1987)}}
+
+In this Chapter, we discuss the hetero-nuclear droplet formed from the Bose-Einstein condensate mixture of Na and Rb. 
+
+\section{Bose-Bose mixture condensates}
+\subsection{Mean-field description and Gross-Pitaevski equation}
+\subsection{LHY correction in Bose-Bose mixture}
+\subsection{extended Gross-Pitaevski equation}
+
+\section{Bose mixture quantum droplet}
+
+\subsection{Quantum droplet vs. quantum gases}
+\subsection{Energy scale analysis}
+
+\section{temp}
+
+\subsection{Mean-field collapse of Bose condensate mixture}
+\subsection{LHY correction and stabilization mechanism}
+\subsection{Variational solution}
+In this note, we try to calculate two things by variational method: 1. LHY gas in a harmonic trap and the released energy when expansion in freespace. 2. Droplet  with magnetic field gradient and how the critical number shifting. 
+We start from Single BEC in a harmonic trap and review the variational method with Gaussian Ansatz. Noted that, we get the $\chi $= - 0.67 there is a collapse point, which offers no solution. Then, we plot the release energy curve. The release energy is just the sum of kinetic energy in trap plus the interaction energy. 
+For the Double BEC near MF = 0 point, the behavior of the sample is very similar to a single BEC, as the $\lambda _+$ branch require minimum density, leaving only the $\lambda _-$ branch. So, with the assumption that Na and Rb share the same wave-function, we can just use the result from the Single BEC part. By choosing { }correct characteristic value, we can make comparison for experiment data.
+We also use the GPELAB to calculate the release energy, due to Gaussian Ansatz does not fit for large interaction case. We find amazing overlap of our experiment and the GPELAB simulation. The comparison between only MF case and LHY case, we can say that we really measured the LHY energy @zero-MF with a shift from 0.75$\hbar \omega $ to about 1.3$\hbar \omega $. This quite large shift is definite beyond MF theory.
+The GPELAB simulation cannot give out physics explanation. However, the variational method can. So, we plot all kinds of energy as a function of the variational parameter $w$. This plot can explain several questions we meet before. 1. How these different energy compete to each other? and what is the meaning of metastable state of droplet? 2. what parameter we need for characterize the LHY term? and how large is this term compare to MF term and others? 3. what will happen if the initial state not match the droplet state? will the expansion over the local maximum and miss the droplet formation?
+Finally, we try to add one more variational parameter to the Gaussian Ansatz to explain the shift of critical number when the magnetic field gradient existing. The main idea is Na and Rb wavefunction will surfer a tiny center shifting $\delta $, which actually decrease the absolute value of Mean-Field energy between Na and Rb. Because the $E_{\text{MF$\_$Rb}-\text{Na}}$ is the product of their density. So the overlap will dramatically it. However, The rest part of MF and LHY energy will keep. So, when we are in the droplet region, this gradient will decrease the binding term, which shift the critical number above.
+
+\subsection{Single BEC in harmonic trap}
+When we put N Bosons in a harmonic trap with trap frequency of $\omega _0$, we have ground state energy of
+\begin{equation}
+\begin{split}
+E_{\text{kin}}=N \frac{\hbar ^2}{2m}\int \left| \nabla \phi (\pmb{r})\right| ^2 \, dr^3\\
+E_{\text{trap}}=N\int \left| \phi (\pmb{r})\right| ^2V_{\text{trap}}(\pmb{r})dr^3,\text{   }V_{\text{trap}}(\pmb{r})=\frac{1}{2}m \omega _0^2\pmb{r}^2\\
+E_{\text{MF}}=\frac{g}{2}N^2\int \left| \phi (\pmb{r})\right| ^4 \, dr^3,\text{    }g=\frac{2\pi  \hbar ^2a_S}{m/2}
+\end{split}
+\end{equation}
+For convenience we define the harmonic length $a_{\text{ho}}=\sqrt{\frac{\hbar }{m \omega _0}}$.
+Now, we use variational method to calculate the wave-function in trap.Typical method is the Gaussian ansatz
+\begin{equation}
+\phi (\pmb{r})=\frac{1}{\pi^{3/4}\left(w^3a_{\text{ho}}^3\right){}^{1/2}}e^{-\frac{\pmb{r}^2}{2w^2a_{\text{ho}}^2}}
+\end{equation}
+where the $w$ is the variational parameter. Then, we have
+\begin{equation}
+E_{\text{MF}}=\frac{g}{2}N^2\int\left|\phi(\pmb{r})\right| ^4 \, dr^3=N \hbar\omega_0\left(\frac{1}{\sqrt{2\pi}}\frac{a_SN}{a_{\text{ho}}}\frac{1}{w^3}\right)
+\end{equation}
+i.e. total energy 
+\begin{equation}
+E_{\text{tot}}[w]=N\hbar\omega_0\left(\frac{3}{4}\frac{1}{w^2}+\frac{3}{4}w^2+\frac{1}{\sqrt{2\pi}}\frac{a_SN}{a_{\text{ho}}}\frac{1}{w^3}\right)
+\end{equation}
+The method to find ground state is to Minimize the $E_{\text{tot} }$ with the constrain of $\int \phi \phi ^* \, dr^3=N$
+\begin{equation}
+E_{\text{tot}}[w]-\mu  N=N \hbar  \omega _0\left(\frac{3}{4}\frac{1}{w^2}+\frac{3}{4}w^2+\frac{1}{\sqrt{2\pi }}\frac{a_SN}{a_{\text{ho}}}\frac{1}{w^3}\right)
+-\mu  N
+\end{equation}
+To get the $w$ of ground state, we take the derivative of $E_{\text{tot}}$
+\begin{doublespace}
+\noindent
+\begin{equation}
+{\partial _w\left(\frac{3}{4}\frac{1}{w^2}+\frac{3}{4}w^2+\frac{1}{\sqrt{2\pi }}\frac{\chi }{w^3}\right)}
+\end{equation}
+\end{doublespace}
+\begin{doublespace}
+\noindent
+\begin{equation}
+-\frac{3}{2 w^3}+\frac{3 w}{2}-\frac{3 \chi }{\sqrt{2 \pi } w^4}
+\end{equation}
+\end{doublespace}
+where we use $\chi $ represent the dimensionless quantity $\frac{a_SN}{a_{\text{ho}}}$.
+With numerical method, we solve out $w$
+\begin{doublespace}
+\noindent
+\begin{equation}
+{\text{f1}[\chi \_]\text{:=}\text{NSolve}\left[-\frac{3}{2 w^3}+\frac{3 w}{2}-\frac{3 \chi }{\sqrt{2 \pi } w^4}==0,w\right];}
+\end{equation}
+\end{doublespace}
+From the figure above, we find that for $g=0 \text{case}$, i.e. the non-interacting case, we back to the single particle picture. The wavefunction is a gaussian with size of harmonic length, i.e. $w=1$ With increasing $\chi $, we have larger size (larger $w$), and finally, when reach $\chi >>1$ limit, we turn to the Thomas-Fermi limit.
+For $\chi <0$, we have attractive Bose gas, with collapse point at $\chi =-0.671$
+
+\subsection{Release energy}
+When we using TOF measurement on condensate from a harmonic trap, we lose the trap energy suddenly and the kinetic energy (quantum pressure) and the interaction energy converts to kinetic energy of motion after long-time evolution.
+So, we have the release energy 
+\begin{equation}
+E_{\text{release}}=E_{\text{kin}}+E_{\text{MF}}=N \hbar  \omega _0\left(\frac{3}{4}\frac{1}{w^2}+\frac{1}{\sqrt{2\pi }}\frac{a_SN}{a_{\text{ho}}}\frac{1}{w^3}\right)
+\end{equation}
+put the numerical solution of $w$ into the release energy, we have for $g=0 \text{case}$, we have $E_{\text{release}}=\frac{3}{4}\hbar  \omega _0$
+With increasing $\chi $, we have larger size (larger $w$), and finally, when reach $\chi >>1$ limit, we turn to the Thomas-Fermi limit.
+
+\subsection{Double BEC in harmonic trap with near zero-MF interaction}
+When we put 
+$N_{\text{Rb}}$ Rb and $N_{\text{Na}}$ Na in a harmonic trap with trap frequency of $\omega_{\text{Rb}} and \omega _{\text{Na}}$, we have ground state energy of
+\begin{equation}
+E_{\text{kin}}=N_{\text{Na}} \frac{\hbar ^2}{2m_{\text{Na}}}\int \left\left| \nabla \phi _{\text{Na}}(\pmb{r})\right\right| {}^2 \, dr^3+N_{\text{Rb}}
+\frac{\hbar ^2}{2m_{\text{Rb}}}\int \left\left| \nabla \phi _{\text{Rb}}(\pmb{r})\right\right| {}^2 \, dr^3\\
+E_{\text{trap}}=N_{\text{Na}}\int \left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^2V_{\text{trap}-\text{Na}}(\pmb{r})dr^3+N_{\text{Rb}}\int\left\left| \phi _{\text{Rb}}(\pmb{r})\right\right| {}^2V_{\text{trap}-\text{Rb}}(\pmb{r})dr^3,\text{   }V_{\text{trap}-\text{Rb}}(\pmb{r})=\frac{1}{2}m_{\text{Rb}}\omega _{\text{Rb}}^2\pmb{r}^2\text{  }\text{and}\text{}V_{\text{trap}-\text{Na}}(\pmb{r})=\frac{1}{2}m_{\text{Na}} \omega _{\text{Na}}^2\pmb{r}^2\\
+E_{\text{MF}}=\frac{g_{\text{Na}}}{2}N_{\text{Na}}^2\int \left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^4 \, dr^3+\frac{g_{\text{Rb}}}{2}N_{\text{Rb}}^2\int
+\left\left| \phi _{\text{Rb}}(\pmb{r})\right\right| {}^4 \, dr^3+g_{\text{Rb},\text{Na}}N_{\text{Na}}N_{\text{Rb}}\int \left\left| \phi _{\text{Rb}}(\pmb{r})\right\right|
+{}^2\left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^2dr^3,\text{    }g_{\text{Rb}}=\frac{2\pi  \hbar ^2a_{\text{Rb}}}{\left.m_{\text{Rb}}\right/2},\text{
+    }g_{\text{Na}}=\frac{2\pi  \hbar ^2a_{\text{Na}}}{\left.m_{\text{Na}}\right/2},\text{     }g_{\text{Rb},\text{Na}}=\frac{2\pi  \hbar ^2a_{\text{Rb},\text{Na}}}{m_{\text{Rb}}m_{\text{Na}}/\left(m_{\text{Rb}}+m_{\text{Na}}\right)}\\
+E_{\text{LHY}}=\int \frac{256\sqrt{\pi }\hbar ^2}{15}\left(m_{\text{Na}}^{-2/5}a_{\text{Na}}\left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^2+m_{\text{Rb}}^{-2/5}a_{\text{Rb}}\left\left|
+\phi _{\text{Rb}}(\pmb{r})\right\right| {}^2\right){}^{5/2}dr^3
+\end{equation}
+As we are dealing with the case of $\text{MF} \text{energy}\to 0$, we can make several approximation:
+Two BECs share the same wavefunction $\phi (\pmb{r})$
+Gaussian Ansatz as usual.
+With the first approximation, we can rewrite the Hamiltonian as
+\begin{equation}
+\begin{split}
+E_{\text{kin}}=\left(\frac{N_{\text{Na}}}{m_{\text{Na}}} +\frac{N_{\text{Rb}}}{m_{\text{Rb}}}\right)\frac{\hbar ^2}{2}\int \left| \nabla \phi (\pmb{r})\right|
+^2 \, dr^3=\frac{N}{m} \frac{\hbar ^2}{2}\int \left| \nabla \phi (\pmb{r})\right| ^2 \, dr^3\\
+E_{\text{trap}}=\frac{1}{2}\left(m_{\text{Rb}} \omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}} \omega _{\text{Na}}^2N_{\text{Na}}\right)\int \left|
+\phi (\pmb{r})\right| ^2\pmb{r}^2dr^3=\frac{1}{2}m \omega ^2N\int \left| \phi (\pmb{r})\right| ^2\pmb{r}^2dr^3\\
+E_{\text{MF}}=\frac{g_{\text{Na}}N_{\text{Na}}^2+g_{\text{Rb}}N_{\text{Rb}}^2+2g_{\text{Rb},\text{Na}}N_{\text{Na}}N_{\text{Rb}}}{2}\int \left| \phi
+(\pmb{r})\right| ^4 \, dr^3=\frac{g}{2}N^2\int \left| \phi (\pmb{r})\right| ^4 \, dr^3\\
+E_{\text{LHY}}=\frac{8}{15\pi ^2\hbar ^3}\left(m_{\text{Na}}^{3/5}g_{\text{Na}}N_{\text{Na}}+m_{\text{Rb}}^{3/5}g_{\text{Rb}}N_{\text{Rb}}\right){}^{5/2}\int
+\left| \phi (\pmb{r})\right| ^5 \, dr^3=\frac{8}{15\pi ^2\hbar ^3}m^{3/2}\Gamma ^{5/2}N^{5/2}\int \left| \phi (r)\right| ^5 \, dr^3
+\end{split}
+\end{equation}
+where, we back to the single component case, with new mass, number, trap frequency and interaction following \pmb{ the negative branch} in \textit{Petrov 2015, i.e.}
+\begin{equation}
+E_{\text{MF}-}=\lambda _-n_-^2, \text{with} \lambda _-=\frac{\text{$\delta$g}\sqrt{g_{\text{Rb}}g_{\text{Na}}}}{\left(g_{\text{Na}}+g_{\text{Rb}}\right)}\text{and} n_-=\frac{n_{\text{Rb}}\sqrt{g_{\text{Na}}}+n_{\text{Na}}\sqrt{g_{\text{Rb}}}}{\sqrt{g_{\text{Na}}+g_{\text{Rb}}}}
+\end{equation}
+Thus, we can define the new number and interaction strength as
+\begin{equation}
+N=N_-=\frac{N_{\text{Rb}}\sqrt{g_{\text{Na}}}+N_{\text{Na}}\sqrt{g_{\text{Rb}}}}{\sqrt{g_{\text{Na}}+g_{\text{Rb}}}}\\
+g=2\lambda _-=\frac{2\text{$\delta $g}\sqrt{g_{\text{Rb}}g_{\text{Na}}}}{\left(g_{\text{Na}}+g_{\text{Rb}}\right)},\text{  }\text{$\delta $g}=g_{\text{Rb},\text{Na}}+\sqrt{g_{\text{Rb}}g_{\text{Na}}}\\
+g=\frac{4\pi  \hbar ^2a_S}{m}
+\end{equation}
+Then, we have
+\begin{equation}
+m=\frac{N m_{\text{Na}}m_{\text{Rb}}}{N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}}\\
+\omega =\sqrt{\frac{\left(N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}\right)\left(m_{\text{Rb}} \omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}}
+\omega _{\text{Na}}^2N_{\text{Na}}\right)}{N^2m_{\text{Na}}m_{\text{Rb}}}}\\
+\Gamma =\frac{m_{\text{Na}}^{3/5}g_{\text{Na}}N_{\text{Na}}+m_{\text{Rb}}^{3/5}g_{\text{Rb}}N_{\text{Rb}}}{m^{3/5}N}=\frac{4\pi  \hbar ^2A}{m}
+\end{equation}
+For convenience we define the harmonic length
+\begin{equation}
+a_{\text{ho}}=\sqrt{\frac{\hbar }{m \omega }}=\sqrt{\hbar \sqrt{\frac{N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}}{\left(m_{\text{Rb}}
+\omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}} \omega _{\text{Na}}^2N_{\text{Na}}\right)m_{\text{Na}}m_{\text{Rb}}}}}
+\end{equation}
+
+With Gaussian Ansatz
+
+\begin{equation}\phi (\pmb{r})=\frac{1}{\pi ^{3/4}\left(w^3a_{\text{ho}}^3\right){}^{1/2}}e^{-\frac{\pmb{r}^2}{2w^2a_{\text{ho}}^2}}\end{equation}
+
+Finally, we get the same formula as the single BEC near MF zero point, and its total energy is
+
+\begin{equation}E_{\text{tot}}[w]=N \hbar  \omega  \left(\frac{3}{4}\frac{1}{w^2}+\frac{3}{4}w^2+\frac{1}{\sqrt{2\pi }}\frac{a_SN}{a_{\text{ho}}}\frac{1}{w^3}+\frac{512
+}{75 \pi ^{7/4}}\sqrt{\frac{2}{5}}\left(\frac{A}{a_{\text{ho}}}\right){}^{5/2}N^{3/2}\frac{1}{ w^{9/2}}\right)\end{equation}
+
+i.e.
+
+\begin{equation}\text{}\\
+\text{where}\text{    }\chi =\frac{a_SN}{a_{\text{ho}}}, \xi =\left(\frac{A}{a_{\text{ho}}}\right){}^{5/2}N^{3/2}\end{equation}
+
+Released energy is
+
+\begin{equation}E_{\text{release}}=\frac{\left(\frac{3}{2}m_{\text{Rb}}N_{\text{Rb}}v_{\text{Rb}}^2+\frac{3}{2}m_{\text{Na}}N_{\text{Na}}v_{\text{Na}}^2\right)}{N}\end{equation}
+
+\begin{equation}\frac{E_{\text{release}}}{\hbar  \omega _{\text{ho}}}=\\
+\frac{\left(\frac{3}{2}m_{\text{Rb}}N_{\text{Rb}}v_{\text{Rb}}^2+\frac{3}{2}m_{\text{Na}}N_{\text{Na}}v_{\text{Na}}^2\right)}{N}\frac{1}{\hbar \sqrt{\frac{\left(N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}\right)\left(m_{\text{Rb}}
+\omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}} \omega _{\text{Na}}^2N_{\text{Na}}\right)}{N^2m_{\text{Na}}m_{\text{Rb}}}}}=\frac{\left(m_{\text{Rb}}N_{\text{Rb}}v_{\text{Rb}}^2+m_{\text{Na}}N_{\text{Na}}v_{\text{Na}}^2\right)}{2\hbar
+}\frac{3\sqrt{m_{\text{Na}}m_{\text{Rb}}}}{\sqrt{\left(N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}\right)\left(m_{\text{Rb}} \omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}}
+\omega _{\text{Na}}^2N_{\text{Na}}\right)}}\end{equation}
+
+about the $\chi $
+
+\begin{equation}\chi =\frac{a_SN}{a_{\text{ho}}}=\frac{g \frac{m_{\text{Na}}m_{\text{Rb}}}{N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}}}{4\pi  \hbar
+^2}\frac{\left(\frac{N_{\text{Rb}}\sqrt{g_{\text{Na}}}+N_{\text{Na}}\sqrt{g_{\text{Rb}}}}{\sqrt{g_{\text{Na}}+g_{\text{Rb}}}}\right){}^2}{\sqrt{\hbar
+\sqrt{\frac{N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}}{\left(m_{\text{Rb}} \omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}} \omega _{\text{Na}}^2N_{\text{Na}}\right)m_{\text{Na}}m_{\text{Rb}}}}}}\end{equation}
+
+about the $\xi $
+
+\begin{equation}\xi =\left(\frac{A}{a_{\text{ho}}}\right){}^{5/2}N^{3/2}=\left(\frac{\left(\frac{ m_{\text{Na}}m_{\text{Rb}}}{N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}}\right){}^{2/5}}{4\pi
+ \hbar ^2}\frac{m_{\text{Na}}^{3/5}g_{\text{Na}}N_{\text{Na}}+m_{\text{Rb}}^{3/5}g_{\text{Rb}}N_{\text{Rb}}}{\sqrt{\hbar \sqrt{\frac{N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}}{\left(m_{\text{Rb}}
+\omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}} \omega _{\text{Na}}^2N_{\text{Na}}\right)m_{\text{Na}}m_{\text{Rb}}}}}}\right){}^{5/2}\end{equation}
+
+\begin{equation}\text{}\end{equation}
+
+\subsection*{Double BEC in harmonic trap with near zero-MF interaction }
+
+When we put $N_{\text{Rb}}$ Rb and $N_{\text{Na}}$ Na in a harmonic trap with trap frequency of $\omega _{\text{Rb}}$ and $\omega _{\text{Na}}$,
+we have ground state energy of
+\begin{equation}
+E_{\text{kin}}=N_{\text{Na}} \frac{\hbar ^2}{2m_{\text{Na}}}\int \left\left| \nabla \phi _{\text{Na}}(\pmb{r})\right\right| {}^2 \, dr^3+N_{\text{Rb}}
+\frac{\hbar ^2}{2m_{\text{Rb}}}\int \left\left| \nabla \phi _{\text{Rb}}(\pmb{r})\right\right| {}^2 \, dr^3\\
+E_{\text{trap}}=N_{\text{Na}}\int \left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^2V_{\text{trap}-\text{Na}}(\pmb{r})dr^3+N_{\text{Rb}}\int
+\left\left| \phi _{\text{Rb}}(\pmb{r})\right\right| {}^2V_{\text{trap}-\text{Rb}}(\pmb{r})dr^3,\text{   }V_{\text{trap}-\text{Rb}}(\pmb{r})=\frac{1}{2}m_{\text{Rb}}
+\omega _{\text{Rb}}^2\pmb{r}^2\text{  }\text{and}\text{    }V_{\text{trap}-\text{Na}}(\pmb{r})=\frac{1}{2}m_{\text{Na}} \omega _{\text{Na}}^2\pmb{r}^2\\
+E_{\text{MF}}=\frac{g_{\text{Na}}}{2}N_{\text{Na}}^2\int \left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^4 \, dr^3+\frac{g_{\text{Rb}}}{2}N_{\text{Rb}}^2\int
+\left\left| \phi _{\text{Rb}}(\pmb{r})\right\right| {}^4 \, dr^3+g_{\text{Rb},\text{Na}}N_{\text{Na}}N_{\text{Rb}}\int \left\left| \phi _{\text{Rb}}(\pmb{r})\right\right|
+{}^2\left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^2dr^3,\text{    }g_{\text{Rb}}=\frac{2\pi  \hbar ^2a_{\text{Rb}}}{\left.m_{\text{Rb}}\right/2},\text{
+    }g_{\text{Na}}=\frac{2\pi  \hbar ^2a_{\text{Na}}}{\left.m_{\text{Na}}\right/2},\text{     }g_{\text{Rb},\text{Na}}=\frac{2\pi  \hbar ^2a_{\text{Rb},\text{Na}}}{m_{\text{Rb}}m_{\text{Na}}/\left(m_{\text{Rb}}+m_{\text{Na}}\right)}\\
+E_{\text{LHY}}=\int \frac{256\sqrt{\pi }\hbar ^2}{15}\left(m_{\text{Na}}^{-2/5}a_{\text{Na}}\left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^2+m_{\text{Rb}}^{-2/5}a_{\text{Rb}}\left\left|
+\phi _{\text{Rb}}(\pmb{r})\right\right| {}^2\right){}^{5/2}dr^3
+\end{equation}
+With Gaussian Ansatz
+\begin{equation}
+\phi _{\text{Rb}}(\pmb{r})=\frac{1}{\pi ^{3/4}\left(w_{\text{Rb}}^3a_{\text{ho}}^3\right){}^{1/2}}e^{-\frac{\pmb{r}^2}{2w_{\text{Rb}}^2a_{\text{ho}}^2}}\\
+\phi _{\text{Na}}(\pmb{r})=\frac{1}{\pi ^{3/4}\left(w_{\text{Na}}^3a_{\text{ho}}^3\right){}^{1/2}}e^{-\frac{\pmb{r}^2}{2w_{\text{Na}}^2a_{\text{ho}}^2}}
+\end{equation}
+Finally, we get the same formula as the single BEC near MF zero point, and its total energy is
+\begin{equation}
+E_{\text{tot}}[w]=N \hbar  \omega  \left(\frac{3}{4}\frac{1}{w^2}+\frac{3}{4}w^2+\frac{1}{\sqrt{2\pi }}\frac{a_SN}{a_{\text{ho}}}\frac{1}{w^3}+\frac{512}{75 \pi^{7/4}}\sqrt{\frac{2}{5}}\left(\frac{A}{a_{\text{ho}}}\right){}^{5/2}N^{3/2}\frac{1}{ w^{9/2}}\right)
+\end{equation}
+i.e. where
+\begin{equation}
+\chi =\frac{a_SN}{a_{\text{ho}}}, \xi =\left(\frac{A}{a_{\text{ho}}}\right){}^{5/2}N^{3/2}
+\end{equation}
+Released energy is
+\begin{equation}
+E_{\text{release}}=\frac{\left(\frac{3}{2}m_{\text{Rb}}N_{\text{Rb}}v_{\text{Rb}}^2+\frac{3}{2}m_{\text{Na}}N_{\text{Na}}v_{\text{Na}}^2\right)}{N}
+\end{equation}
+\begin{equation}
+\frac{E_{\text{release}}}{\hbar  \omega _{\text{ho}}}=\\
+\frac{\left(\frac{3}{2}m_{\text{Rb}}N_{\text{Rb}}v_{\text{Rb}}^2+\frac{3}{2}m_{\text{Na}}N_{\text{Na}}v_{\text{Na}}^2\right)}{N}\frac{1}{\hbar \sqrt{\frac{\left(N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}\right)\left(m_{\text{Rb}}
+\omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}} \omega _{\text{Na}}^2N_{\text{Na}}\right)}{N^2m_{\text{Na}}m_{\text{Rb}}}}}=\frac{\left(m_{\text{Rb}}N_{\text{Rb}}v_{\text{Rb}}^2+m_{\text{Na}}N_{\text{Na}}v_{\text{Na}}^2\right)}{2\hbar
+}\frac{3\sqrt{m_{\text{Na}}m_{\text{Rb}}}}{\sqrt{\left(N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}\right)\left(m_{\text{Rb}} \omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}}
+\omega _{\text{Na}}^2N_{\text{Na}}\right)}}
+\end{equation}
+about the $\chi$
+\begin{equation}\chi =\frac{a_SN}{a_{\text{ho}}}=\frac{g \frac{m_{\text{Na}}m_{\text{Rb}}}{N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}}}{4\pi  \hbar
+^2}\frac{\left(\frac{N_{\text{Rb}}\sqrt{g_{\text{Na}}}+N_{\text{Na}}\sqrt{g_{\text{Rb}}}}{\sqrt{g_{\text{Na}}+g_{\text{Rb}}}}\right){}^2}{\sqrt{\hbar
+\sqrt{\frac{N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}}{\left(m_{\text{Rb}} \omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}} \omega _{\text{Na}}^2N_{\text{Na}}\right)m_{\text{Na}}m_{\text{Rb}}}}}}
+\end{equation}
+
+\subsection*{How magnetic field gradient affect droplet}
+
+When we put $N_{\text{Rb}}$ Rb and $N_{\text{Na}}$ Na in free space, with magnetic gradient $\nabla $B, we take the center-of-mass as original point.
+Consider gradient force
+\begin{equation}
+F=N_{\text{Rb}}\mu _{\text{Rb}}\nabla B+N_{\text{Na}}\mu _{\text{Na}}\nabla B
+\end{equation}
+\begin{equation}
+\mathcal{A}_{\text{center} \text{of} \text{mass}}=F/m=\frac{N_{\text{Rb}}\mu _{\text{Rb}}+N_{\text{Na}}\mu _{\text{Na}}}{N_{\text{Rb}}m_{\text{Rb}}+N_{\text{Na}}m_{\text{Na}}}\nabla B
+\end{equation}
+So, in the coordinate of center of mass, we have
+\begin{equation}
+\mathcal{A}_{\text{Rb}}=\frac{\mu _{\text{Rb}}\nabla B}{m_{\text{Rb}}}-\frac{N_{\text{Rb}}\mu _{\text{Rb}}\nabla B+N_{\text{Na}}\mu _{\text{Na}}\nabla
+B}{N_{\text{Rb}}m_{\text{Rb}}+N_{\text{Na}}m_{\text{Na}}}
+\end{equation}
+\begin{equation}
+\mathcal{A}_{\text{Na}}=\frac{\mu _{\text{Na}}\nabla B}{m_{\text{Na}}}-\frac{N_{\text{Rb}}\mu _{\text{Rb}}\nabla B+N_{\text{Na}}\mu _{\text{Na}}\nabla
+B}{N_{\text{Rb}}m_{\text{Rb}}+N_{\text{Na}}m_{\text{Na}}}
+\end{equation}
+\begin{equation}
+m_{\text{Rb}}\mathcal{A}_{\text{Rb}}N_{\text{Rb}}=-m_{\text{Na}}\mathcal{A}_{\text{Na}}N_{\text{Na}}
+\end{equation}
+\begin{equation}
+E_{\text{gradient}}=N_{\text{Na}}m_{\text{Na}}\mathcal{A}_{\text{Na}}\int \left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^2 \, dr^3+N_{\text{Rb}}m_{\text{Rb}}\mathcal{A}_{\text{Rb}}\int
+\left\left| \phi _{\text{Rb}}(\pmb{r})\right\right| {}^2 \, dr^3
+\end{equation}
+\begin{equation}
+E_{\text{kin}}=N_{\text{Na}} \frac{\hbar ^2}{2m_{\text{Na}}}\int \left\left| \nabla \phi _{\text{Na}}(\pmb{r})\right\right| {}^2 \, dr^3+N_{\text{Rb}}
+\frac{\hbar ^2}{2m_{\text{Rb}}}\int \left\left| \nabla \phi _{\text{Rb}}(\pmb{r})\right\right| {}^2 \, dr^3\\
+E_{\text{trap}}=N_{\text{Na}}\int \left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^2V_{\text{trap}-\text{Na}}(\pmb{r})dr^3+N_{\text{Rb}}\int
+\left\left| \phi _{\text{Rb}}(\pmb{r})\right\right| {}^2V_{\text{trap}-\text{Rb}}(\pmb{r})dr^3,\text{   }V_{\text{trap}-\text{Rb}}(\pmb{r})=\frac{1}{2}m_{\text{Rb}}
+\omega _{\text{Rb}}^2\pmb{r}^2\text{  }\text{and}\text{    }V_{\text{trap}-\text{Na}}(\pmb{r})=\frac{1}{2}m_{\text{Na}} \omega _{\text{Na}}^2\pmb{r}^2\\
+E_{\text{MF}}=\frac{g_{\text{Na}}}{2}N_{\text{Na}}^2\int \left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^4 \, dr^3+\frac{g_{\text{Rb}}}{2}N_{\text{Rb}}^2\int
+\left\left| \phi _{\text{Rb}}(\pmb{r})\right\right| {}^4 \, dr^3+g_{\text{Rb},\text{Na}}N_{\text{Na}}N_{\text{Rb}}\int \left\left| \phi _{\text{Rb}}(\pmb{r})\right\right|
+{}^2\left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^2dr^3,\text{    }g_{\text{Rb}}=\frac{2\pi  \hbar ^2a_{\text{Rb}}}{\left.m_{\text{Rb}}\right/2},\text{
+    }g_{\text{Na}}=\frac{2\pi  \hbar ^2a_{\text{Na}}}{\left.m_{\text{Na}}\right/2},\text{     }g_{\text{Rb},\text{Na}}=\frac{2\pi  \hbar ^2a_{\text{Rb},\text{Na}}}{m_{\text{Rb}}m_{\text{Na}}/\left(m_{\text{Rb}}+m_{\text{Na}}\right)}\\
+E_{\text{LHY}}=\int \frac{256\sqrt{\pi }\hbar ^2}{15}\left(m_{\text{Na}}^{-2/5}a_{\text{Na}}\left\left| \phi _{\text{Na}}(\pmb{r})\right\right| {}^2+m_{\text{Rb}}^{-2/5}a_{\text{Rb}}\left\left|
+\phi _{\text{Rb}}(\pmb{r})\right\right| {}^2\right){}^{5/2}dr^3
+\end{equation}
+Gaussian Ansatz with shifts
+\begin{equation}
+\phi _{\text{Na}}(x,y,z)=\frac{1}{\pi ^{3/4}\left(w^3a_{\text{ho}}^3\right){}^{1/2}}e^{-\frac{x^2+\left(y-\frac{m_{\text{Rb}}N_{\text{Rb}}\delta
+_y}{m_{\text{Rb}}N_{\text{Rb}}+m_{\text{Na}}N_{\text{Na}}}\right){}^2+z^2}{2w^2a_{\text{ho}}^2}}\\
+\phi _{\text{Rb}}(x,y,z)=\frac{1}{\pi ^{3/4}\left(w^3a_{\text{ho}}^3\right){}^{1/2}}e^{-\frac{x^2+\left(y+\frac{m_{\text{Na}}N_{\text{Na}}\delta
+_y}{m_{\text{Rb}}N_{\text{Rb}}+m_{\text{Na}}N_{\text{Na}}}\right){}^2+z^2}{2w^2a_{\text{ho}}^2}}\end{equation}
+
+Then, we have 
+
+\begin{equation}E_{\text{kin}}=N_{\text{Na}} \frac{\hbar ^2}{2m_{\text{Na}}}\int \left\left| \nabla \phi _{\text{Na}}(\pmb{r})\right\right| {}^2 \, dr^3+N_{\text{Rb}}
+\frac{\hbar ^2}{2m_{\text{Rb}}}\int \left\left| \nabla \phi _{\text{Rb}}(\pmb{r})\right\right| {}^2 \, dr^3\\
+E_{\text{trap}}=\frac{1}{2}\left(m_{\text{Rb}} \omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}} \omega _{\text{Na}}^2N_{\text{Na}}\right)\int \left|
+\phi (\pmb{r})\right| ^2\pmb{r}^2dr^3=\frac{1}{2}m \omega ^2N\int \left| \phi (\pmb{r})\right| ^2\pmb{r}^2dr^3\\
+E_{\text{MF}}=\frac{g_{\text{Na}}N_{\text{Na}}^2+g_{\text{Rb}}N_{\text{Rb}}^2+2g_{\text{Rb},\text{Na}}N_{\text{Na}}N_{\text{Rb}}}{2}\int \left| \phi
+(\pmb{r})\right| ^4 \, dr^3=\frac{g}{2}N^2\int \left| \phi (\pmb{r})\right| ^4 \, dr^3\\
+E_{\text{LHY}}=\frac{8}{15\pi ^2\hbar ^3}\left(m_{\text{Na}}^{3/5}g_{\text{Na}}N_{\text{Na}}+m_{\text{Rb}}^{3/5}g_{\text{Rb}}N_{\text{Rb}}\right){}^{5/2}\int
+\left| \phi (\pmb{r})\right| ^5 \, dr^3=\frac{8}{15\pi ^2\hbar ^3}m^{3/2}\Gamma ^{5/2}N^{5/2}\int \left| \phi (r)\right| ^5 \, dr^3\end{equation}
+
+Put the center shift Gaussian into it, we have
+
+\begin{equation}
+E_{\text{tot}}[w]=N \hbar\omega\left(\left(-\mu_{\text{eff}}\nablaB\right)\delta +\frac{3}{4}\frac{1}{w^2}+\frac{3}{4}w^2+\frac{1}{\sqrt{2\pi}}\frac{a_SN}{a_{\text{ho}}}\frac{1}{w^3}\left(\lambdae^{-\delta^2}\right)+\frac{512}{75\pi^{7/4}}\sqrt{\frac{2}{5}}\left(\frac{A}{a_{\text{ho}}}\right){}^{5/2}N^{3/2}\frac{1}{w^{9/2}}\right)
+\end{equation}
+When, $\delta $ is a small value, we have $e^{-\delta ^2}=1-\delta ^2$, thus we have
+\begin{equation}
+E_{\text{tot}}[w]=N \hbar  \omega  \left[\left(\frac{3}{4}\frac{1}{w^2}+\frac{3}{4}w^2+\frac{1}{\sqrt{2\pi }}\chi \frac{1}{w^3}+\frac{512 }{75
+\pi ^{7/4}}\sqrt{\frac{2}{5}}\xi  \frac{1}{ w^{9/2}}\right) +\lambda  \delta ^2-\left(\mu _{\text{eff}}\nabla B\right) \delta \right]\\
+\text{where}\text{    }\chi =\frac{a_SN}{a_{\text{ho}}}, \xi =\left(\frac{A}{a_{\text{ho}}}\right){}^{5/2}N^{3/2}
+\end{equation}
+
+\subsection{extended GPE solution}
+
+Hamiltonian for BEC with two components is
+\begin{equation}H_{\text{tot}}=\sum _k \epsilon _{1,k}\hat{a}_{1,k}\dagger\hat{a}_{1,k}+\frac{g_{11}}{2V}\sum _{\left\{k_i\right\}} \hat{a}_{1,k_1}^+\hat{a}_{1,k_2}^+\hat{a}_{1,k_3}\hat{a}_{1,k_4}+\sum
+_k \epsilon _{2,k}\hat{a}_{2,k}\dagger\hat{a}_{2,k}+\frac{g_{22}}{2V}\sum _{\left\{k_i\right\}} \hat{a}_{2,k_1}^+\hat{a}_{2,k_2}^+\hat{a}_{2,k_3}\hat{a}_{2,k_4}+\frac{g_{12}}{V}\sum
+_{\left\{k_i\right\}} \hat{a}_{2,k_1}^+\hat{a}_{1,k_2}^+\hat{a}_{1,k_3}\hat{a}_{2,k_4}\end{equation}
+
+where $k_1+k_2=k_3+k_4$, satisfy momentum conservation. $g_{\text{ii}}$ represent intra-interaction strength, and $g_{12}$ for inter-interaction. $\hat{a}_{i,k}^+$($\hat{a}_{i,k}$) denote the ladder operator for $i^{\text{th}}$ component. $\hat{a}_{i,0}=\sqrt{N_i}$
+After extended Bogoliubov transformation, we have
+\begin{equation}
+H=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\frac{1}{2}\sum _{k\neq 0} \left(E_++E_--\frac{\hbar ^2k^2}{2m_1}-\frac{\hbar ^2k^2}{2m_2}-\frac{g_{11}N_1+g_{22}N_2}{V}\right)+\sum
+_{k\neq 0} E_{+,k}\hat{a}_{+,k}\dagger\hat{a}_{+,k}+\sum _{k\neq 0} E_{-,k}\hat{a}_{-,k}\dagger\hat{a}_{-,k}
+\end{equation}
+where first term gives mean-field ground state energy; second term gives LHY correction; last two terms provide two branches of excitation spectrum. Details of parameters in above formula are listed here:
+\begin{equation}
+E_{\pm }=\sqrt{\frac{\omega_1^2+\omega_2^2}{2}\pm\sqrt{\left(\frac{\omega_1^2-\omega_2^2}{2}\right){}^2+\frac{g_{12}^2N_1N_2}{V^2}\frac{\hbar^2k^4}{m_1m_2}}}\\
+\omega _i=\sqrt{\frac{\hbar ^2k^2}{2m_i}\left(\frac{\hbar ^2k^2}{2m_i}+\frac{2g_{\text{ii}}N_i}{V}\right)}
+\end{equation}
+Ground state energy is
+\begin{equation}
+E_{\text{GS}}=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\frac{1}{2}\sum _{k\neq 0} \left(E_++E_--\frac{\hbar ^2k^2}{2m_1}-\frac{\hbar ^2k^2}{2m_2}-\frac{g_{11}N_1+g_{22}N_2}{V}\right)
+\end{equation}
+After re-normalization we have the second term, LHY term, which can be rewritten with (4) in
+\begin{equation}
+E_{\text{LHY}}=\frac{1}{2}\sum _{k\neq 0} \left(\sqrt{\frac{\omega _1^2+\omega _2^2}{2}+\sqrt{\left(\frac{\omega _1^2-\omega _2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}+\right.\\
+\left.\sqrt{\frac{\omega _1^2+\omega _2^2}{2}-\sqrt{\left(\frac{\omega _1^2-\omega _2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar ^4k^4}{m_1m_2}}}-\frac{\hbar^2k^2}{2m_1}-\frac{\hbar ^2k^2}{2m_2}-g_{11}n_1-g_{22}n_2+\frac{m_1g_{11}^2n_1^2+m_2g_{22}^2n_2^2+4\frac{m_1m_2}{m_1+ m_2}g_{12}^2n_1n_2}{\hbar ^2k^2}\right)
+\end{equation}
+Replace summation by integral ($\sum _k \to V\int d\pmb{\overset{\rightharpoonup }{\pmb{k}}}$), we have
+\begin{equation}
+\mathcal{E}_{\text{LHY}}=\frac{E_{\text{LHY}}}{V}=\int_0^{k_c\to\infty}\frac{k^2}{4\pi^2}\left(\sqrt{\frac{\omega_1^2+\omega_2^2}{2}+\sqrt{\left(\frac{\omega_1^2-\omega_2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}+\right.\\
+\left.\sqrt{\frac{\omega_1^2+\omega_2^2}{2}-\sqrt{\left(\frac{\omega_1^2-\omega _2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}-\frac{\hbar^2k^2}{2m_1}-\frac{\hbar^2k^2}{2m_2}-g_{11}n_1-g_{22}n_2+\frac{m_1g_{11}^2n_1^2+m_2g_{22}^2n_2^2+4\frac{m_1m_2}{m_1+m_2}g_{12}^2n_1n_2}{\hbar^2k^2}\right)dk
+\end{equation}
+
+For simplicity, we reform it into dimensionless form
+
+\begin{equation}\mathcal{E}_{\text{LHY}}=C_1\int _0^{k_c}\frac{15}{32}\tilde{k}^2\left(\surd \left(\frac{1}{2}\left( \frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)+\frac{1}{\gamma
+^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y \gamma \right)\right)+\sqrt{\left(\frac{1}{2}\left( \frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)-\frac{1}{\gamma
+^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y \gamma \right)\right)\right)^2+\frac{x y}{\gamma }\tilde{k}^4}\right)+\right.\\
+\left.\surd \left(\frac{1}{2}\left( \frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)+\frac{1}{\gamma ^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y
+\gamma \right)\right)-\sqrt{\left(\frac{1}{2}\left( \frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)-\frac{1}{\gamma ^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y
+\gamma \right)\right)\right)^2+\frac{x y}{\gamma }\tilde{k}^4}\right)-\frac{\tilde{k}^2}{2}\left(1+\frac{1}{\gamma }\right)-1-y+\frac{1+\gamma  y^2+\frac{4x
+y \gamma }{1+\gamma }}{\tilde{k}^2}\right)d\tilde{k}\end{equation}
+
+where
+
+\begin{equation}C_1=\frac{8}{15\pi ^2}g_{11}n_1\left(\frac{\sqrt{m_1g_{11}n_1}}{\hbar }\right){}^3, \gamma =\frac{m_2}{m_1}, x=\frac{g_{12}^2}{g_{11}g_{22}}, y=\frac{g_{22}n_2}{g_{11}n_1},
+\tilde{k}=\frac{\hbar  k}{\sqrt{m_1g_{11}n_1}}\end{equation}
+
+using \begin{equation}f\left(\frac{m_2}{m_1},\frac{g_{12}^2}{g_{11}g_{22}},\frac{g_{22}n_2}{g_{11}n_1}\right)\end{equation} replacing the tedious integral, we have
+
+\begin{equation}\mathcal{E}_{\text{LHY}}=\frac{8}{15\pi ^2}\frac{m_1^{3/2}\left(g_{11}n_1\right){}^{5/2}}{\hbar ^3}f(\gamma ,x,y)\end{equation}
+
+
+In this section, we will calculate $f(\gamma ,x,y)$ numerically for our Rb-Na Bose mixture system.
+First we do this integration and check its convergence. We plot $f(\gamma ,x,y)$ with increasing upper bound of integration $k_C$ to test its convergence.
+We can say that integration up to order of 6 has converged. 
+Then, we calculate $f(\gamma ,x,y)$ with different $x$, i.e. with different B-field
+Compare with Minardi's approximation
+In Minardi's paper [\textit{ 2019 - F.Minardi - M.Modugno - Effective expression of the Lee-Huang-Yang energy functional for heteronuclear mixtures}],they propose a analytical approximation which will be more convenient for deriving GPE with LHY correction. Here is the formula:
+\begin{equation}
+f(z,u=1,x)\simeq \left(1+z^{3/5}x\right)^{5/2}
+\end{equation}
+where
+\begin{equation}
+z=m_2/m_1, x=\frac{g_{22}n_2}{g_{11}n_1},u=\frac{g_{12}^2}{g_{11}g_{22}}
+\end{equation}
+Here, $u$ is set to be 1.
+Now, we compare the numerical solution with the Minardi's approximation.
+Plot of List of f($\gamma $,x,y) for numerical one and Minardi's approximation.
+So, we can see that, there are mainly several percentage error by using this formula. And the maximum error is about 15$\%$. So, keep this error
+in mind about the LHY energy.
+
+\section{Derivation of GPE and extended GPE from mean-field energy}
+
+\subsection{Derivation of GPE}
+
+First, we assume the many-body wave function is a product state
+\begin{equation}
+\Psi \left(\overset{\rightharpoonup }{r}_1,\overset{\rightharpoonup }{r}_2,\ldots  ,\overset{\rightharpoonup }{r}_N\right)=\sum _{i=1}^N \psi \left(\overset{\rightharpoonup}{r}_i\right)
+\end{equation}
+Then, we have
+\begin{equation}
+E\left(\psi ,\psi ^*\right)=N\int dr^3\left(\frac{\hbar ^2}{2m}\left| \nabla \psi (r)\right| ^2+V(r)\left| \psi (r)\right| ^2+\frac{1}{2}N g\left|\psi (r)\right| ^4\right)
+\end{equation}
+define the Variation
+\begin{equation}X\left(\psi ,\psi ^*\right)=E\left(\psi ,\psi ^*\right)-\mu  N\int dr^3\left| \psi (r)\right| ^2\end{equation}
+
+take the variation of $X\left(\psi ,\psi ^*\right)$, we have
+
+\begin{equation}
+\begin{split}
+\delta  X\left(\psi ,\psi ^*\right)&=N\int dr^3\left(\frac{\hbar ^2}{2m}\left(\nabla \psi ^*(r)\nabla \delta \psi (r)+\nabla \psi (r)\nabla \delta \psi ^*(r)\right)+(V(r)-\mu )\left(\psi ^*(r)\delta  \psi (r)+\psi (r)\delta  \psi ^*(r) \right)+N g\left(\psi ^2(r)\delta  \psi ^*(r)+\psi ^*^2(r)\delta\psi (r)\right)\right)\\
+&=N\int dr^3\left(\frac{\hbar ^2}{2m}\left(\nabla \psi (r)\nabla \delta \psi ^*(r)\right)+(V(r)-\mu )\left(\psi (r)\delta  \psi ^*(r) \right)+N g\left(\psi
+^2(r)\psi ^*(r)\delta  \psi ^*(r)\right)\right)+c.c.
+\end{split}
+\end{equation}
+for the first part, by using integrating by part method:
+\begin{equation}
+\int dr^3\left(\nabla \psi (r)\nabla \delta \psi ^*(r)\right)=\delta \psi ^*(r)\nabla \psi (r)|_0^{\infty }-\int dr^3\left(\nabla ^2\psi (r)\delta
+\psi ^*(r)\right)=\int dr^3\left(-\nabla ^2\psi (r)\right)\delta \psi ^*(r)
+\end{equation}
+Then, take the variance to be zero, we have GPE
+\begin{equation}
+\begin{split}
+-\frac{\hbar ^2}{2m}\left(\nabla ^2\psi (r)\right)+(V(r)-\mu )\psi (r)+N g\left(\psi ^2(r)\psi ^*(r)\right)=0\\
+-\frac{\hbar ^2}{2m}\left(\nabla^2\psi^*(r)\right)+(V(r)-\mu)\psi ^*(r)+N g\left(\psi ^*^2(r)\psi (r)\right)=0
+\end{split}
+\end{equation}
+
+\subsection*{Derivation of extendedGPE(eGPE)}
+First, we assume the many-body wave function is a product state
+\begin{equation}
+\Psi \left(\overset{\rightharpoonup }{r}_1,\overset{\rightharpoonup }{r}_2,\ldots  ,\overset{\rightharpoonup }{r}_N\right)=\sum _{i=1}^N \psi \left(\overset{\rightharpoonup
+}{r}_i\right)
+\end{equation}
+Then, we have
+\begin{equation}
+E\left(\psi ,\psi ^*\right)=N\int dr^3\left(\frac{\hbar ^2}{2m}\left(\nabla \psi ^*(r)\nabla \psi (r)\right)+V(r)\left(\psi ^*(r)\psi (r)\right)+\frac{1}{2}N g\left(\psi ^*(r)\psi (r)\right)^2+C \left(\psi ^*(r)\psi (r)\right)^{5/2}\right)
+\end{equation}
+define the Variation
+\begin{equation}X\left(\psi ,\psi ^*\right)=E\left(\psi ,\psi ^*\right)-\mu  N\int dr^3\left(\psi ^*(r)\psi (r)\right)\end{equation}
+
+take the variation of $X\left(\psi ,\psi ^*\right)$, we have
+\begin{equation}
+\delta  X\left(\psi ,\psi ^*\right)=N\int dr^3\left(\frac{\hbar ^2}{2m}\left(\nabla ^2\psi (r)\delta \psi ^*(r)\right)+(V(r)-\mu )\left(\psi (r)\delta\psi ^*(r) \right)+N g\left(\psi ^2(r)\psi ^*(r)\delta \psi ^*(r)\right)+\frac{5C}{2}(\psi (r))^{5/2}\left(\psi ^*(r)\right)^{3/2}\delta \psi ^*(r)\right)+c.c.
+\end{equation}
+
+where C is constants which already expressed the Last Part.
+thus, we have eGPE
+\begin{equation}
+-\frac{\hbar ^2}{2m}\left(\nabla ^2\psi (r)\right)+(V(r)-\mu )\psi (r)+N g\left(\psi ^*(r)\psi (r)\right)\psi (r)+\frac{5C}{2}\left(\psi (r)\psi^*(r)\right)^{3/2}\psi (r)=0\\
+-\frac{\hbar ^2}{2m}\left(\nabla ^2\psi ^*(r)\right)+(V(r)-\mu )\psi ^*(r)+N g\left(\psi ^*^2(r)\psi (r)\right)+\frac{5C}{2}\left(\psi ^*(r)\right)^{5/2}(\psi(r))^{3/2}=0
+\end{equation}
+
+\subsection*{Extended GPE for double species}
+
+First, we assume the many-body wave function is a product state
+\begin{equation}
+\Psi \left(\overset{\rightharpoonup }{r}_1,\overset{\rightharpoonup }{r}_2,\ldots  ,\overset{\rightharpoonup }{r}_N\right)=\sum _{i=1}^N \psi _1\left(\overset{\rightharpoonup
+}{r}_i\right)\sum _{i=1}^N \psi _2\left(\overset{\rightharpoonup }{r}_i\right)
+\end{equation}
+Then, we have
+\begin{equation}
+E\left(\psi _1,\psi _1{}^*,\psi _2,\psi _2{}^*\right)=\int dr^3\left(
+\begin{array}{cc}
+ \psi _1^* & \psi _2^* \\
+\end{array}
+\right).\left(
+\begin{array}{cc}
+ \mathcal{H}_{11} & \mathcal{H}_{12} \\
+ \mathcal{H}_{21} & \mathcal{H}_{22} \\
+\end{array}
+\right).\left(
+\begin{array}{c}
+ \psi _1 \\
+ \psi _2 \\
+\end{array}
+\right)+E_{\text{LHY}}
+\end{equation}
+
+where $\mathcal{H}_{ij}$ represent the Hamiltonian density of fields
+\begin{equation}
+\begin{split}
+\mathcal{H}_{11}&=N_1\left(\frac{\hbar ^2}{2m_1}(\nabla )^2+V_1(r)+\frac{1}{2}N_1g_{11}\left(\psi _1{}^*(r)\psi _1(r)\right)\right)\\
+\mathcal{H}_{22}&=N_2\left(\frac{\hbar ^2}{2m_2}(\nabla )^2+V_2(r)+\frac{1}{2}N_2g_{22}\left(\psi _2{}^*(r)\psi _2(r)\right){}^2\right)\\
+\mathcal{H}_{12}&=\mathcal{H}_{21}^{\dagger }=N_1N_2g_{12}\left(\psi _1{}^*(r)\psi _1(r)\right)\left(\psi _2{}^*(r)\psi _2(r)\right)
+\end{split}
+\end{equation}
+and LHY term has been expressed in the last part.
+define the Variation
+\begin{equation}
+X\left(\psi ,\psi ^*\right)=E\left(\psi ,\psi ^*\right)-\mu _1 N_1\int dr^3\left(\psi _1{}^*(r)\psi _1(r)\right)-\mu _2 N_2\int dr^3\left(\psi
+_2{}^*(r)\psi _2(r)\right)
+\end{equation}
+
+Finally, we have eGPE for 
+\begin{equation}
+i \hbar \frac{\partial\psi_1}{\partialt}=\left(-\frac{\hbar^2\nabla^2}{2m_1}+V_1+g_{11}n_1+g_{12}n_2+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta n_1}\right)\psi _1\\
+i \hbar \frac{\partial \psi _2}{\partial t}=\left(-\frac{\hbar ^2\nabla ^2}{2m_2}+V_2+g_{22}n_2+g_{12}n_1+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta n_2}\right)\psi _2
+\end{equation}
+
+\section*{eGPE for GPELAB with Minardi approximation}
+
+\begin{equation}
+i \hbar \frac{\partial\psi_1}{\partialt}=\left(-\frac{\hbar^2\nabla^2}{2m_1}+V_1+g_{11}n_1+g_{12}n_2+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta n_1}\right)\psi _1\\
+i \hbar \frac{\partial \psi _2}{\partial t}=\left(-\frac{\hbar ^2\nabla ^2}{2m_2}+V_2+g_{22}n_2+g_{12}n_1+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta n_2}\right)\psi _2
+\end{equation}
+where$n_i=N_i\psi _i^*\psi _i=N_i|\psi _i|^2$ and 
+\begin{equation}
+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta  n_1}=\frac{8}{15\pi^2}\frac{m_1^{3/2}\left(g_{11}\right){}^{5/2}n_1^{1/2}}{\hbar^3}\left(\frac{5}{2}n_1f(\gamma,x,y)-\frac{g_{22}n_2}{g_{11}}\frac{\partial f(\gamma ,x,y)}{\partial y}\right)
+\end{equation}
+\begin{equation}
+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta  n_2}=\frac{8}{15\pi^2}\frac{m_1^{3/2}\left(g_{11}\right){}^{3/2}g_{22}n_1^{3/2}}{\hbar ^3}\frac{\partial
+f(\gamma ,x,y)}{\partial y}
+\end{equation}
+if we using the approximation formula, we have
+\begin{equation}
+\mathcal{E}_{\text{LHY}}=\frac{8}{15\pi ^2}\frac{m_1^{3/2}\left(g_{11}n_1\right){}^{5/2}}{\hbar ^3}\left(1+\gamma ^{3/5}y\right)^{5/2}
+\end{equation}
+Then, 
+\begin{equation}
+\begin{split}
+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta  n_1}&=\frac{8}{15\pi^2}\frac{m_1^{3/2}\left(g_{11}\right){}^{5/2}n_1^{1/2}}{\hbar^3}\left(\frac{5}{2}n_1\left(1+\gamma^{3/5}y\right){}^{5/2}-\frac{5}{2}\frac{g_{22}n_2}{g_{11}}\left(1+\gamma ^{3/5}y\right)^{3/2}\gamma ^{3/5}\right)\\
+&=\frac{4}{3\pi^2}\frac{m_1^{3/2}\left(g_{11}\right){}^{5/2}n_1^{3/2}}{\hbar^3}\left(1+\gamma^{3/5}y\right)^{3/2}
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta n_2}&=\frac{8}{15\pi^2}\frac{m_1^{3/2}\left(g_{11}\right){}^{3/2}g_{22}n_1^{3/2}}{\hbar^3}\frac{5}{2}\left(1+\gamma^{3/5}y\right)^{3/2}\gamma ^{3/5}\\
+&=\frac{4}{3\pi^2}\frac{\gamma^{3/5}m_1^{3/2}\left(g_{11}\right){}^{3/2}g_{22}n_1^{3/2}}{\hbar^3}\left(1+\gamma ^{3/5}y\right)^{3/2}
+\end{split}
+\end{equation}
+Finally, we have extended GPE as
+\begin{equation}
+\begin{split}
+i \hbar \frac{\partial \psi _1}{\partial t}=\left(-\frac{\hbar ^2\nabla ^2}{2m_1}+V_1+g_{11}n_1+g_{12}n_2+\frac{4}{3\pi ^2}\frac{g_{11}m_1^{3/5}}{\hbar
+^3}\left(g_{11}n_1m_1^{3/5}+g_{22}n_2m_2^{3/5}\right){}^{3/2}\right)\psi _1\\
+i \hbar \frac{\partial \psi _2}{\partial t}=\left(-\frac{\hbar ^2\nabla ^2}{2m_2}+V_2+g_{22}n_2+g_{12}n_1+\frac{4}{3\pi ^2}\frac{g_{22}m_2^{3/5}}{\hbar
+^3}\left(g_{11}n_1m_1^{3/5}+g_{22}n_2m_2^{3/5}\right){}^{3/2}\right)\psi _2
+\end{split}
+\end{equation}
+Now, we need do Dimension-Reduction, 
+\begin{equation}
+\begin{split}
+i \frac{\partial \Psi _1}{\partial T}=\left(-\frac{m\pmb{\nabla }^2}{2m_1}+\frac{V_1}{\hbar  \omega }+4\pi  \frac{m}{m_1}\frac{ N_1a_{11}}{a}\Psi_1^*\Psi _1+2\pi \frac{ m }{m_{12}}\frac{N_2a_{12}}{a}\Psi _2^*\Psi _2+\frac{128\pi ^{1/2} }{3} \frac{a_{11}}{a}\left(\frac{m}{m_1}\right){}^{2/5}\left(\frac{N_1a_{11}}{a}\left(\frac{m}{m_1}\right){}^{2/5}\Psi _1^*\Psi _1+ \frac{N_2a_{22}}{a}\left(\frac{m}{m_2}\right){}^{2/5}\Psi _2^*\Psi _2\right){}^{3/2}\right)\Psi_1\\
+i \frac{\partial \Psi _2}{\partial T}=\left(-\frac{m\pmb{\nabla }^2}{2m_2}+\frac{V_2}{\hbar  \omega }+4\pi  \frac{m}{m_2}\frac{\text{  }N_2a_{22}}{a}\Psi_2^*\Psi _2+2\pi \frac{ m }{m_{12}}\frac{N_1a_{12}}{a}\Psi _1^*\Psi _1+\frac{128\pi ^{1/2} }{3}\frac{a_{22}}{a}\left(\frac{m}{m_2}\right){}^{2/5}\left(\frac{N_1a_{11}}{a}\left(\frac{m}{m_1}\right){}^{2/5}\Psi _1^*\Psi _1+ \frac{N_2a_{22}}{a}\left(\frac{m}{m_2}\right){}^{2/5}\Psi _2^*\Psi _2\right){}^{3/2}\right)\Psi_2
+\end{split}
+\end{equation}
+where we set $V_1$ and $V_2$ as harmonic trap, and it gives the characteristic length and time. Actually, this characteristic length and time can be arbitrary.
+\begin{equation}
+\begin{split}
+g_{11}=\frac{4\pi  \hbar ^2a_{11}}{m_1}, g_{22}=\frac{4\pi  \hbar ^2a_{22}}{m_2}, g_{12}=\frac{2\pi  \hbar ^2a_{12}}{m_{12}}, m_{12}=\frac{m_1m_2}{m_1+m_2}\\
+T=\omega  t, \overset{\rightharpoonup }{R}=\left.\overset{\rightharpoonup }{r}\right/a, \Psi =\psi  a^{3/2}, a=\sqrt{\frac{\hbar }{m \omega }}
+\end{split}
+\end{equation}
+By the way, we can calculate the Nonlinear-Energy function. (Just for fun, not for GPELAB)
+Recall LHY energy term
+\begin{equation}
+\begin{split}
+\mathcal{E}_{\text{LHY}}=\frac{8}{15\pi ^2}\frac{m_1^{3/2}\left(g_{11}n_1\right){}^{5/2}}{\hbar ^3}\left(1+\left(\frac{m_2}{m_1}\right){}^{3/5}\frac{g_{22}n_2}{g_{11}n_1}\right){}^{5/2}\\
+=\frac{256\sqrt{\pi }\hbar ^2}{15}\left(m_1^{-2/5}a_{11}n_1+m_2^{-2/5}a_{22}n_2\right){}^{5/2}
+\end{split}
+\end{equation}
+Do Dimension-Reduction, we have
+\begin{equation}
+\frac{\mathcal{E}_{\text{LHY}}}{\hbar\omega\left/a^3\right.}=\frac{256\pi^{1/2}}{15}\left(\frac{N_1a_{11}}{a}\left(\frac{m}{m_1}\right){}^{2/5}\Psi_1^*\Psi_1+\frac{N_2a_{22}}{a}\left(\frac{m}{m_2}\right){}^{2/5}\Psi _2^*\Psi _2\right){}^{5/2}
+\end{equation}
+
+\section{Na-Rb Hetero-nuclear quantum droplet}
+\subsection{Tuning inter-species interaction by Feshbach resonance}
+
+\section{Experiment realization of a single Na-Rb droplet}
+\subsection{Experiment method and time sequence}
+
+% time sequence
+\begin{figure}[hb]
+\begin{center}
+\includegraphics[width = 0.8\linewidth]{figures/Droplet_time-sequence.pdf}
+\end{center}
+\caption{Droplet time sequence}
+\label{Droplet_time-sequence}
+\end{figure}
+
+\subsection{Imaging method for dense sample}
+\subsection{observing non-expansion signal}
+
+\section{Characterization of liquid-gas phase transition}
+\subsection{magnetic field gradient shifts critical number}
+
+An important technical issue for observing the free-space droplet is the spatial varying magnetic field experienced by the droplet during the TOF. 
+Due to the different magnetic dipole moments of $^{23}$Na ($\mu_{b1} = 1.084$ MHz/G) and $^{87}$Rb ($\mu_{b2} = 0.837$ MHz/G) near $B_0$, a moderate gradient and curvature may generate a differential force large enough to tear the droplet apart. With the pair of Feshbach coils only, the measured magnetic field curvature near 347 G is 1.4 G/cm$^2$ and the averaged magnetic field gradient is about 0.6 G/cm. Experimentally, we observe the $^{23}$Na and $^{87}$Rb atomic clouds separating from each other following the TOF. To mitigate this problem, we placed another coil, with its current dynamically controlled following the TOF, on top of the Feshbach coil.
+This simple improvement reduces the magnetic field gradient to 0.11 G/cm and the magnetic field variation during the 18 ms TOF from $\pm 10$~mG to 
+$\pm 3$~mG which corresponds to a $a_{12}$ change of less than 0.26 $a_0$.
+
+
+% gradient_compensation
+\begin{figure}[hb]
+\begin{center}
+\includegraphics[width = 0.8\linewidth]{figures/gradient_compensation.pdf}
+\end{center}
+\caption{gradient compensation}
+\label{gradient_compensation}
+\end{figure}
+
+In the eGPEs, the magnetic field gradient is included as opposite direction linear potentials to the two species in the center-of-mass coordinate. 
+According to the simulation, this small magnetic field gradient actually doubles the critical atom numbers.
+
+For several values of $\widetilde{\delta g}$ between $-0.110$ and $-0.146$, we have created longer-lived droplets by the magnetic field quenching method. As shown in Fig.~\ref{fig2}(d), (e) and (f), during the accessible TOF, the droplet size stays nearly the same although number losses are still observed. After 10 ms, the number ratio becomes close to 1.43 and the number loss slows down significantly. As the lifetime is longer than the usable TOF 
+of 18 ms, we have not been able to measure the real lifetime and the critical numbers in this range of $\widetilde{\delta g}$. More detailed investigations, e.g., by levitating the droplet, are warranted in the near future.
+
+
+
+
+Figure~\ref{fig3} shows the critical $^{23}$Na and $^{87}$Rb atom numbers for $\widetilde{\delta g}$ from $-0.146$ to $-0.247$.
+Although the range of $\widetilde{\delta g}$ is small, a four-fold change in the measured critical numbers is observed. 
+The critical numbers calculated using coupled eGPEs with the LHY term included (dashed curves) show large discrepancies with the measurements. The agreement is greatly improved by also including the small post-compensation residual magnetic field gradient in the eGPEs (solid curves); the additional term nearly doubles  the critical numbers. This can be understood from the different magnetic dipole moments and masses of $^{23}$Na and $^{87}$Rb, which cause their centers of mass to separate in a magnetic field gradient~\cite{SM}. This decreases the density overlap and lowers the attractive interspecies mean-field energy while leaving the intraspecies energy nearly intact. Effectively, this increases the critical numbers compared to the ideal case of zero gradient.
+
+\subsection{three-body loss}
+
+\section{Lee-Huang-Yang gas}
+\subsection{Expansion of gas phase sample and Release energy}
+%introduce the LHY gas, explain the difference between liquid droplet and LHY gas
+In the previous sections, we describe a liquid phase droplet sample made of $^{23}\rm Na$--$^{87}\rm Rb$ BEC mixture. 
+Now we turn to study the gas phase (LHY gas) of this mixture, in which the Lee-Huang-Yang effects still play an important role.
+The mainly difference between a droplet and a LHY gas sample is whether the kinetic energy dominates the Hamiltonian.
+For droplet sample, the competition mainly comes from the attractive mean-field term and the repulsive LHY term.
+When the atomic number drops down, and both mean-field and LHY energy goes down, finally the kinetic energy gets not negligible.
+After the balance point of density disappeared, as we describe about the liquid-gas phase transition, the sample turns to a gas-phase sample.
+
+% talk about typical BEC and compare it with LHY gas
+As we mentioned before, a typical BEC sample actually is in a gaseous phase, which means it tends to fill its container.
+A 
+
+
+by directly releasing the sample from the trap for $\widetilde{\delta g}$ from +0.322 to -0.146.
+To characterize the LHY effect in this situation, we measure the release energy $E_{\rm rel}=E_{\rm kin}+E_{\rm int}$ from the TOF expansion~\cite{Holland1997,Mewes1996}. Here $E_\text{\rm kin}$ is the quantum pressure and $E_{\rm int}=E_{\rm MF}+E_{\rm LHY}$ is the total interaction energy. When $E_{\rm MF}$ is tuned to zero, $E_{\rm LHY}$ becomes the only interaction term in $E_{\rm rel}$. For negative $E_{\rm MF}$, the expansion of the sample, instead of collapsing, is also a direct manifestation of the LHY effect. 
+
+We prepared the trapped double BEC and measured $E_{\rm rel}$ for both species from their TOF expansion velocities~\cite{SM,Holland1997} for several different $\widetilde{\delta g}$. The resulting total $E_{\rm rel}$ is shown as open squares in Fig.~\ref{fig4}. In general, $E_{\rm rel}$ depends on $\widetilde{\delta g}$, $N_1$ and $N_2$, and the density overlap between the two species. However, within the range of $\widetilde{\delta g}$, the densities of the double BEC are still rather high even in the gas phase, and significant three-body losses are still observed during the TOF. Thus, it is difficult to maintain constant $N_1$ and $N_2$ during the TOF for different $\widetilde{\delta g}$, even though great efforts have been taken to keep the initial atom numbers in the trap fixed. However, since $E_{\rm rel}$ is a measure of the energy per atom, it is not affected severely by the loss. 
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics [width =0.85 \linewidth]{Droplet-LHY_gas_release_energy.pdf}
+\end{center}
+\caption[Measurement of the release energy as a function of $\widetilde{\delta g}$]{Measurement of the release energy as a function of $\widetilde{\delta g}$. The open squares represent $E_{\rm rel}$ of the gas phase mixtures released from the trap directly, while the solid circles are $E_{\rm rel}$ of the gas samples formed following the liquid-gas phase transition. The red solid (blue solid) curve is the calculated $E_{\rm rel}$ with (without) the LHY terms for the first case with GPEs and the red dashed curve is $E_{\rm rel}$ for the second case from variational theory.}  
+\label{LHY-release}
+\end{figure}
+
+
+We calculated the $E_{\rm rel}$ with the eGPEs for the corresponding atom numbers at the end of the TOF and found a good match for both the $E_{\rm MF}\gg E_{\rm LHY}$ and the $E_{\rm MF} \approx 0$ regions (red solid curve in Fig.~\ref{fig4}). We note that without the LHY term, the calculation fails for $\widetilde{\delta g} < 0$ due to the collapse (blue solid curve in Fig.~\ref{fig4}). 
+%In our system, near $\widetilde{\delta g} = 0$, $E_{\rm kin}$ is actually larger than $E_{\rm LHY}$. 
+At the $\widetilde{\delta g} \approx 0$ point with $E_{\rm MF}$ almost canceled, the energy difference between the two calculations is about $1$~nK. This is essentially the magnitude of $E_\text{\rm LHY}$, if we assume $E_{\rm kin}$ does not change dramatically in these two cases.   
+
+The gas phase mixture formed following the liquid-to-gas phase transition is also of great interest. As shown in Fig.~\ref{fig2}(a), its expansion velocity can be measured and converted into another $E_{\rm rel}$ even though there is no trap involved. 
+These results are shown in Fig.~\ref{fig4} as solid circles for $\widetilde{\delta g}$ from -0.146 to -0.247. 
+Compared with the gas phase mixture released from the trap, the $E_{\rm rel}$ here has a completely opposite dependence on $\widetilde{\delta g}$. 
+
+This behavior can be qualitatively understood from the change of the total energy of the droplet ($E_\text{tot}$) during the phase transition. For large enough atom numbers, $E_{\rm tot}$ has a negative minimum, and the system is in the droplet phase. 
+Following the number loss, $E_{\rm tot}$ increases gradually. The droplet becomes meta-stable when $E_{\rm tot}$ is above zero, and the system eventually enters the gas phase when the energy minimum disappears. The measured $E_{\rm rel}$ here reflects $E_\text{tot}$ at the phase transition point which also includes contributions from $E_{\rm LHY}$, $E_{\rm MF}$, and $E_{\rm kin}$.
+%
+For more negative $\widetilde{\delta g}$, the critical atom numbers at the phase transition point are smaller, but the sample size $\propto |\widetilde{\delta g}|^{-3/2}$ shrinks much steeper. As result, the increase of the positive $E_{\rm LHY}$ and $E_{\rm kin}$ terms are faster than the decrease of the negative $E_{\rm MF}$ term. $E_{\rm tot}$ is thus positive and the measured $E_{\rm rel}$ also follows the same trend and increases for more negative $\widetilde{\delta g}$. We note that without $E_{\rm LHY}$, the magnitude of $E_{\rm MF}$ is larger than $E_{\rm kin}$ and the system will collapse. This picture is confirmed by the variational calculation as depicted by the red dashed curve in Fig.~\ref{fig4}. A more detailed discussion can be found in supplementary material~\cite{SM}.       
+
+\subsection{LHY effect for gas-phase condensate mixture}
+
+\section{Mode matching when producing droplet sample}
+\subsection{In-trap vs. free-space sample}
+
+During the release of the double BEC sample from the optical trap, the trap energy suddenly is removed suddenly but the size of the sample has no time to adapt to the new value. As shown in Fig.~\ref{figS1}, in general the in-trap size is smaller than the size of the ground-state free-space droplet at the energy minimum. The sample size will thus start to expand after released from the trap and its total energy (per particle) $E_{\rm tot} = E_{\rm kin} + E_{\rm int}$ will also start to evolve following the red curves. For the cases with very small $|\widetilde{\delta g}|$ [Fig.~\ref{figS1}(a)], $E_{\rm tot}$ is higher than the energy barrier at the right hand side. In this case, the sample will just keep expanding after crossing the maximum point and never forms the droplet.
+While in Fig. \ref{figS1}(b), with $|\widetilde{\delta g}|$ large enough, 
+the negative $E_{\rm tot}$ of the released sample is not enough to overcome the energy barrier and the droplet can be formed, but its size will undergo a small-amplitude oscillation.
+
+
+
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics [width = \linewidth]{figS2.pdf}
+\end{center}
+\caption[Producing long-lived droplet by magnetic field quench]{Producing long-lived droplet by magnetic field quench. (a) For some weakly bound droplet, it is possible to find a $\widetilde{\delta g}$ 
+value where the in-trap gas-phase sample size (blue dashed curve) is the same as the size of the free-space droplet (red solid curve). Quenching $\widetilde{\delta g}$ at the instant of releasing the sample, as depicted by the black dashed arrow, will lead to a near perfect mode matching. (b) and (c) show the experimentally measured droplet signals for $\widetilde{\delta g} = -0.141$ (349.880 G) and $\widetilde{\delta g} = -0.110$ (349.910 G) created with this method. At these magnetic fields, no 
+droplet can be observed without the quench as they fall in the situation as described in Fig.~\ref{figS1}(a).}
+\label{figS2}
+\end{figure}
+
+
+As described in the main text, to improve the mode matching, we used a nearly spherical shape trap for matching the sphere shape of the quantum droplet.
+In addition, as the in-trap size of the double BEC also depends strongly on $\widetilde{\delta g}$, the magnetic field is controlled in a carefully designed sequence. After the double BEC is created, the magnetic field is first ramped up quickly across the Feshbach resonance to $358.4$~G where $a_{12}$ has a small positive value of $46.1a_0$.
+After 350 ms for the system to stabilize, the magnetic field is ramped down to 350.451 G in 130 ms.
+This is just 0.424 G above $B_c$ and the corresponding $a_{12}$ is $-39.5a_0$ ($\widetilde{\delta g} = +0.322$).
+Here the double BEC is miscible and the attractive interaction increases the spatial overlap of the two condensates and also increases the in-trap 
+densities substantially. Both effects significantly improve the mode matching and facilitate the free-space droplet formation.
+At this point, rapid atom losses are already observed; thus, the magnetic 
+field holds here for only 10 ms.
+Afterwards, the magnetic field is ramped to a target value within 5 ms before the droplet is detected in free space.
+As depicted in Fig.~\ref{figS1}(b), although droplet can be observed after these improvements for $|\widetilde{\delta g}|$ large enough, the mode matching is not perfect. For $\widetilde{\delta g}$ from 0 to -0.146, with the current atom numbers, the droplet cannot be observed by simply releasing the double BEC from the trap. As shown in Fig.~\ref{figS2}(a), even 
+better mode matching can be achieved by finding a $\widetilde{\delta g}$ value where the in-trap size matches with the target droplet size and quenches $\widetilde{\delta g}$ at the same time when the trap is shut off. To achieve the fast magnetic field quenching necessary for this method, we added a small magnetic coil which is capable of covering the magnetic field range in less than 10 $\mu$s. Fig.~\ref{figS2}(b) and (c) show two droplets formed with this method. For case (b) with $\widetilde{\delta g} = -0.141$, the droplet lifetime i
+s longer than the available observation time. For case (c) with $\widetilde{\delta g} = -0.110$, the liquid-to-gas phase transition is observed after about 7 ms. This short lifetime is probably limited by the atom numbers since at this $\widetilde{\delta g}$, the critical atom numbers are much larger.
+
+
+
+
+\subsection{producing weak bound droplet by quenching B-field}
+
