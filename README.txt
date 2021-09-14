@@ -1,6 +1,17 @@
-A PhD Thesis submitted to CUHK
+Quantum droplets in a mixture of 23Na and 87Rb Bose-Einstein condensates
+
+Author: [GUO, Zhichao](guozc12@gmail.com)
+
+PhD thesis
+Department of Physics
+CUHK
+Hong Kong
+
+2021 Sept.
+
 ---------------------------------------------
-Author: [ZHENG Fan](https://github.com/izhengfan)
+Template Author: [ZHENG Fan](https://github.com/izhengfan)
+---------------------------------------------
 
 ## Install dependencies
 
