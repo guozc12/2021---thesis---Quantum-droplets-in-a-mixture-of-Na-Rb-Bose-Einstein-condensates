@@ -4,12 +4,12 @@
 % epigraph
 \setlength{\unitlength}{1pt}
 \setlength{\epigraphwidth}{10cm}
-\epigraph{Law of physicists II: \\ Without theorists, experimentalists tend to falter.}{--- T.D. Lee\\ \textit{History of the weak interactions (1987)}}
+\epigraph{Law of physicists II: \\ Without theorists, experimentalists tend to falter. \cite{Lee:1992ui}}{--- T. D. Lee\\ \textit{History of the weak interactions (1987)}}
 
-% goal of this chapter and structure of this chapter
-This chapter discusses two fundamental things: quantum scattering theory and theory of BEC-mixture qunautum droplet. first is the quantum scattering theory which is the basic for understanding the couple channel calculation in Chap. \ref{Chap_Feshbach}. The second part tries to describe the microscopic theory for a single BEC which serves as . We mainly introduce the beyond mean field thoery which will be used in the Chap. \ref{Chap_droplet} for a mixture of BEC to explain the droplet. We should noted here that the scattering properties stay at the core part to understand the behaviour of sample. More discussion about low dimensional scattering will be introduced in the last chaper and we will talk more about a low dimensional quantum gas and quantum droplet.
+% goal of this chapter and structure of this chapter (done 2021-8-25 17:17:16)
+This chapter discusses two fundamental things: quantum scattering theory and the theory of the quantum droplet. The quantum scattering theory is the basis for understanding the couple channel calculation in Chap. \ref{Chap_Feshbach}, which is used to fitting the binding energy of the Feshbach molecule to calibrate Na-Rb molecular potential. We note here that the scattering properties play an essential role in understanding the behaviour of an ultracold sample. The second part describes the microscopic theory for two-species BEC and analytically derives its LHY correction. Then, we demonstrate the theory of droplets made of the dual-species BEC. Latter in the Chap. \ref{Chap_droplet}, we implement both variational calculation and GPELab simulation for comparing to the experiment.
 
-\section{Quantum scattering theory}
+\section{Quantum scattering: Theory}
 \label{sec:quan_scat}
 
 We starting from the most general case, writing down a Bose system's Hamiltonian. Considering N spinless Bosons with mass m = 1 in volume V in 3-D space, and with thermal dynamic limit, i.e. N$\to \infty $ and V$\to
@@ -133,9 +133,14 @@ $k\ll 1\left/r_0 \right.$ where k is scattering momentum divided by $\hbar$, and
 Scattering length $a_0$ actually depends on k, however if we consider the limit $k\to 0$, we can ignore this variance.
 This very beautiful property gives us a way to deal with not-weak atom-atom scattering problem even with strong interaction.
 
-\subsection{Basic theory of Double BEC}
+\subsection{Resonance scattering}
+
+
+\section{Quantum droplet: Theory}
+% 
+\subsection{Mean-field theory of Double BEC}
 Now, we turn to describe double BEC with mean field theory, which will be used in Bose mixture droplet in journal club.
-\subsection{Pseudo-Hamiltonian and extended Bogoliubov transformation}
+
 Hamiltonian for BEC with two species is
 \begin{equation}
 H_{\text{tot}}=\sum_k\epsilon_{1,k}\hat{a}_{1,k}\dagger\hat{a}_{1,k}+\frac{g_{11}}{2V}\sum_{\left\{k_i\right\}}\hat{a}_{1,k_1}^+\hat{a}_{1,k_2}^+\hat{a}_{1,k_3}\hat{a}_{1,k_4}+\sum_k\epsilon_{2,k}\hat{a}_{2,k}\dagger\hat{a}_{2,k}+\frac{g_{22}}{2V}\sum_{\left\{k_i\right\}}\hat{a}_{2,k_1}^+\hat{a}_{2,k_2}^+\hat{a}_{2,k_3}\hat{a}_{2,k_4}+\frac{g_{12}}{V}\sum_{\left\{k_i\right\}}\hat{a}_{2,k_1}^+\hat{a}_{1,k_2}^+\hat{a}_{1,k_3}\hat{a}_{2,k_4}
@@ -243,9 +248,6 @@ diagonalize
 n_+=\frac{n_1\sqrt{g_{11}}-n_2\sqrt{g_{22}}}{\sqrt{g_{11}+g_{22}}}, n_-=\frac{n_1\sqrt{g_{22}}+n_2\sqrt{g_{11}}}{\sqrt{g_{11}+g_{22}}}
 \end{equation}
 
-\subsection{Scattering in low dimension}
-\subsection{Resonance scattering}
-
 
 
 
@@ -253,7 +255,7 @@ n_+=\frac{n_1\sqrt{g_{11}}-n_2\sqrt{g_{22}}}{\sqrt{g_{11}+g_{22}}}, n_-=\frac{n_
 
 % from intro about the LHY correction and quantum depletion
 
-\subsection{Dilute Bose system: Pseudo-Hamiltonian and Bogoliubov transformation}
+\section{Temp: Dilute Bose system: Pseudo-Hamiltonian and Bogoliubov transformation}
 As we can use $a_S$ representing scattering process, we can write down a pseudo-potential, which gives the same effect as the original one. This procedure first done by \textit{Fermi} as following
 \begin{equation}
 V(r)=g \delta (r)\partial _r\cdot r=\frac{4\pi\hbar^2a_S}{m}\delta (r)\partial _r\cdot r
