@@ -1,29 +1,35 @@
 \chapter{Quantum droplet of hetero-nuclear Bose mixture}
 \label{Chap_droplet}
 
-% epigraph
+% epigraph (done 2021-9-30 09:06:25)
 \setlength{\unitlength}{1pt}
 \setlength{\epigraphwidth}{10cm}
-\epigraph{Law of physicists I: \\ Without experimentalists, theorists tend to drift.}{--- T.D. Lee\\ \textit{History of the weak
-interactions (1987)}}
+\epigraph{Law of physicists I: \\ Without experimentalists, theorists tend to drift. \cite{Lee:1992ui}}{--- T.D. Lee\\ \textit{History of the weak interactions (1987)}}
 
-In this Chapter, we discuss the hetero-nuclear droplet formed from the Bose-Einstein condensate mixture of Na and Rb. 
+% Overview and structure of this chapter
+In this Chapter, we discuss the hetero-nuclear droplet formed from the Bose-Einstein condensate mixture of Na and Rb.我们会先重提droplet，并目标于分析一个体积有限的droplet。这是为了于实验相对比。随后我们给出能标的分析来粗略地对这个系统做一个分析。 然后，我们会延续第二章的理论解析解，先给出变分计算以及GPE仿真。一个简单的高斯变分可以有效地帮助我们理解一个有限大小的droplet的各个能标的关系。这里提及有限大小，主要是需要引入动能项；而在第二章里我们讨论的是bulk sample的liquid droplet 平衡density等参数。为了更精细的认识和理解droplet sample，我们采用添加了LHY的GPE对其进行仿真。这一部分里我们给出extended GPE的推导，更详细的关于使用GPELAB进行仿真的代码和内容我们放在sec appendix里面了。
 
-\section{Bose-Bose mixture condensates}
-\subsection{Mean-field description and Gross-Pitaevski equation}
-\subsection{LHY correction in Bose-Bose mixture}
-\subsection{extended Gross-Pitaevski equation}
+Sec droplet 里面我们实验研究了droplet形成以及测量了droplet-gas的相图。这是我们实验研究的主体部分。实验方法简单直接，我们直接让sample 做TOF，从而避免了光井对sample的影响。实验上为了配合这个方案，我们升级了我们的系统，具体可以参考sec 。随后，在sec 里，我们研究了气态的LHY sample，这个研究的目的是探究一个气态的sample，在LHY energy主导的情况下，behavior是怎样的。这个研究可以作为LHY gas那篇文章的一个补充。在理解了droplet 形成的过程后，我们意识到，之前制备droplet的过程有突变，从而，导致sample寿命和原子数有很大限制。于是我们改进formation的方案。最后，我们展示了尝试采用droplet制备Feshbach molecule的方案。虽然转化效率并没有提高。但是，我们大大降低了分子的温度，并为未来制作简并Feshbach分子提供可能路径。
 
-\section{Bose mixture quantum droplet}
 
-\subsection{Quantum droplet vs. quantum gases}
-\subsection{Energy scale analysis}
+\section{Quantum droplet with finite size}
 
-\section{temp}
+在chap里我们analytical地分析了quantum liquid，给出了mean field 能量和beyond MF的能量。随后计算了系统平衡时的密度。这个计算忽略了系统的量子压强（动能），也就是说其适用于bulk sample，也就是比较大的一块liquid。在我们的实验中，由于原子数量的限制，我们目前并不能获得足够大的原子数去达到一个edge可以忽略的sample。所以这一节，我们首先引入有限体积带来的量子压强，以及其对于quantum liquid droplet的影响。于是，系统总能量由三部分构成，除了MF 和 LHY 相互作用能，还有量子压强。表达式如下
 
-\subsection{Mean-field collapse of Bose condensate mixture}
-\subsection{LHY correction and stabilization mechanism}
-\subsection{Variational solution}
+总能量表达式
+
+% quantum droplet with trap
+除了自由空间的quantum droplet, 在sec 中我们也讨论in trap的sample。对于in trap的sample，我们需要再额外加入trap energy这一项。于是total能量就有四个部分构成。对于一个有限大小的sample，trap energy和quanutm pressure情况刚好相反，小size引入更高的quantum presure，但是也降低了trap energy，反之亦然。小的size也引入更高的MF和LHY energy。对于droplet 区域的sample，MF是负的能量，所以MF和LHY互相竞争。分析这样一个有两组能量互相竞争的sample并不是可以直接进行的。所以我们引入的变分法的计算可以很好的帮助我们理解这种情况下的sample。这一部分在sec做了仔细的阐释。更详细的计算可以参考LiuXiaji的paper。
+
+
+\section{Variational solution}
+
+这一节我们引入对droplet的变分计算。变分计算可以帮助我们更好地理解系统各个能量竞争之后的结果。上一节的分析，我们已经可以看出，无论量子压强还是相互作用能，在一个有限体积的quantum droplet里面，都非常依赖于体系的波函数分布。在变化剧烈的地方，也就是边缘处，量子压强比较大，同时由于密度较低，相互作用能（MF and LHY）较低。而在sample的中间部分，密度较高，但是波函数变化平缓，所以情况相反。
+
+比较精确的仿真系统的方法是使用有限元的方法，将整个波函数看成是空间坐标的函数，然后采用变分的方法调整每个空间位置的波函数值，降低整体系统的能量，从而给出比较精确的解。但是这个方法有两个缺点。其一是对于三维系统的计算消耗大量计算资源，是普通个人计算机无法胜任的。其二是仿真并不能帮助我们理解系统的行为趋势。这就像社会科学里所说的，我们带着偏见看世界。或者像机器学习领域里的模型之于数据。为了理解系统的行为，我们需要一个中间模型帮助我们建立起多种因与果之间的关系。经过这一步之后，随后的GPE仿真才会更加清晰。
+
+这一节我们先回顾single species BEC的变分计算，随后我们定义了什么是release energy，并且解释了release energy如何反应了相互作用和二阶关联函数的测量。同时，这也给出了实验上的测量手段，也就是直接的TOF 方法。随后我们展示了在double-species系统里引入gauss变分。虽然是一个非常粗糙的近似，但是，对于number比较少的case，是一个还不错的近似，因为相互作用对于体系的贡献相对而言还是比较少的。这一点在随后的计算中会得到验证。我们仿照single-speceis BEC的无量纲参数，在这里引出两个无量纲参数来表征trap里的double-speceis BEC。从而便于对系统进行classify。
+
 In this note, we try to calculate two things by variational method: 1. LHY gas in a harmonic trap and the released energy when expansion in freespace. 2. Droplet  with magnetic field gradient and how the critical number shifting. 
 We start from Single BEC in a harmonic trap and review the variational method with Gaussian Ansatz. Noted that, we get the $\chi $= - 0.67 there is a collapse point, which offers no solution. Then, we plot the release energy curve. The release energy is just the sum of kinetic energy in trap plus the interaction energy. 
 For the Double BEC near MF = 0 point, the behavior of the sample is very similar to a single BEC, as the $\lambda _+$ branch require minimum density, leaving only the $\lambda _-$ branch. So, with the assumption that Na and Rb share the same wave-function, we can just use the result from the Single BEC part. By choosing { }correct characteristic value, we can make comparison for experiment data.
@@ -182,7 +188,7 @@ about the $\xi $
 
 \begin{equation}\text{}\end{equation}
 
-\subsection*{Double BEC in harmonic trap with near zero-MF interaction }
+\subsection{Double BEC in harmonic trap with near zero-MF interaction }
 
 When we put $N_{\text{Rb}}$ Rb and $N_{\text{Na}}$ Na in a harmonic trap with trap frequency of $\omega _{\text{Rb}}$ and $\omega _{\text{Na}}$,
 we have ground state energy of
@@ -229,7 +235,7 @@ about the $\chi$
 \sqrt{\frac{N_{\text{Na}}m_{\text{Rb}}+N_{\text{Rb}}m_{\text{Na}}}{\left(m_{\text{Rb}} \omega _{\text{Rb}}^2N_{\text{Rb}}+m_{\text{Na}} \omega _{\text{Na}}^2N_{\text{Na}}\right)m_{\text{Na}}m_{\text{Rb}}}}}}
 \end{equation}
 
-\subsection*{How magnetic field gradient affect droplet}
+\subsection{How magnetic field gradient affect droplet}
 
 When we put $N_{\text{Rb}}$ Rb and $N_{\text{Na}}$ Na in free space, with magnetic gradient $\nabla $B, we take the center-of-mass as original point.
 Consider gradient force
@@ -298,7 +304,7 @@ E_{\text{tot}}[w]=N \hbar  \omega  \left[\left(\frac{3}{4}\frac{1}{w^2}+\frac{3}
 \text{where}\text{    }\chi =\frac{a_SN}{a_{\text{ho}}}, \xi =\left(\frac{A}{a_{\text{ho}}}\right){}^{5/2}N^{3/2}
 \end{equation}
 
-\subsection{extended GPE solution}
+\section{extended GPE solution}
 
 Hamiltonian for BEC with two components is
 \begin{equation}H_{\text{tot}}=\sum _k \epsilon _{1,k}\hat{a}_{1,k}\dagger\hat{a}_{1,k}+\frac{g_{11}}{2V}\sum _{\left\{k_i\right\}} \hat{a}_{1,k_1}^+\hat{a}_{1,k_2}^+\hat{a}_{1,k_3}\hat{a}_{1,k_4}+\sum
@@ -370,7 +376,8 @@ Plot of List of f($\gamma $,x,y) for numerical one and Minardi's approximation.
 So, we can see that, there are mainly several percentage error by using this formula. And the maximum error is about 15$\%$. So, keep this error
 in mind about the LHY energy.
 
-\section{Derivation of GPE and extended GPE from mean-field energy}
+\subsection{Derivation of GPE and extended GPE from mean-field energy}
+
 
 \subsection{Derivation of GPE}
 
@@ -479,7 +486,7 @@ i \hbar \frac{\partial\psi_1}{\partialt}=\left(-\frac{\hbar^2\nabla^2}{2m_1}+V_1
 i \hbar \frac{\partial \psi _2}{\partial t}=\left(-\frac{\hbar ^2\nabla ^2}{2m_2}+V_2+g_{22}n_2+g_{12}n_1+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta n_2}\right)\psi _2
 \end{equation}
 
-\section*{eGPE for GPELAB with Minardi approximation}
+\subsection*{eGPE for GPELAB with Minardi approximation}
 
 \begin{equation}
 i \hbar \frac{\partial\psi_1}{\partialt}=\left(-\frac{\hbar^2\nabla^2}{2m_1}+V_1+g_{11}n_1+g_{12}n_2+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta n_1}\right)\psi _1\\
@@ -548,8 +555,6 @@ Do Dimension-Reduction, we have
 
 \section{Na-Rb Hetero-nuclear quantum droplet}
 \subsection{Tuning inter-species interaction by Feshbach resonance}
-
-\section{Experiment realization of a single Na-Rb droplet}
 \subsection{Experiment method and time sequence}
 
 % time sequence
@@ -680,3 +685,5 @@ s longer than the available observation time. For case (c) with $\widetilde{\del
 
 \subsection{producing weak bound droplet by quenching B-field}
 
+
+\section{producing Feshbach molecule from droplet}

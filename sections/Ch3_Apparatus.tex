@@ -445,27 +445,27 @@ There are two reasons for us to do the dynamic compensations, first is the coupl
 \section{Other Technical Issues}
 \subsection{Magnetic field gradient compensation}
 \label{subsec:gradientcompen}
-%Why we need to compensate the B-field gradient (done 2021-9-17 22:27:44)
-As mentioned before, we use a pair of Feshbahc coils to generate a large bias magnetic field to control the Feshbach resonance. However,  the imperfection of the coil, such as asymmetry of coils and imperfection of distance between up-down Helmholzts coils, renders a gradient and curvature of the magnetic field. This effect can be easily detected by the free-falling of atoms in the high magnetic field. If one finds that the atom's acceleration deviates from gravity acceleration, there must be a gradient. Another evidence is the MW/RF spectroscopy for an elongated sample that could detect the horizontal gradient. As shown in Fig. \ref{Apparatus_Tof-grad}, we free-fall Rb or Na under a high magnetic field. The acceleration is shown to be different from gravity; thus, in our set-up, this effect could affect a lot when doing experiments with the free-falling method.
+%Why we need to compensate the B-field gradient (done 2021-9-24 17:34:04)
+As mentioned before, we use a pair of Feshbach coils to generate a large bias magnetic field to control the Feshbach resonance. However,  the imperfection of the coil, such as asymmetry of coils and imperfection of distance between up-down Helmholtz coils, renders a gradient and curvature of the magnetic field. This effect can be easily detected by the free-falling of atoms in the high magnetic field. If one finds that the atom's acceleration deviates from gravity acceleration, there must be a gradient. Another evidence is the MW (RF) spectroscopy for an elongated sample that could detect the horizontal gradient. As shown in Fig. \ref{Apparatus_Tof-grad}, we free-fall Rb or Na under a high magnetic field. The acceleration is shown to be different from gravity; thus, this effect could affect a lot when doing experiments with the free-falling method in our set-up.
 
 % add free falling atom under high magnetic field
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics [width = \linewidth]{Apparatus_Tof-grad.pdf}
 \end{center}
-\caption[Fast coil, main coil and environment]{}
+\caption[]{}
 \label{Apparatus_Tof-grad}
 \end{figure}
 
 % What is our gradient looks like? (done 2021-9-17 22:37:43)
-Before talking about cancelling this gradient, we first measure it. The method is simple, following the MW transition calibration method, we apply the MW pulse coupling the \ket{1,-1} and \ket{2,0} state. To get the spatial distribution of the magnetic field, we first let the atom free-fall, then apply the MW pulse at different ToF. Even though the gradient affects the atom's position by adding an extra acceleration, considering the small effect related to gravity, this can be neglected. Then, we get the magnetic spatial distribution as shown in Fig.\ref{Apparatus_mag-field}. Not only exists the gradient but also the the curvature of the magnetic field because the spatial changing B-field is definitely more than linear. By a simple quadratic curve fitting, we get the curvature of about 1xxx \(G/cm^2\) and an average gradient of about xx G/cm. One thing that needs to be noticed here is that we measured only the magnetic field gradient in the vertical direction, which is our main contribution. As we can see in the horizontal direction, the acceleration is even much lower than that in the vertical direction, which infer that this gradient should come mainly from the wrong distance of the Helmholtz coil.
+Before talking about cancelling this gradient, we first measure it. The method is simple, following the MW transition calibration method, we apply the MW pulse coupling the $\ket{1,-1}$ and $\ket{2,0}$ state. To get the spatial distribution of the magnetic field, we first let the atom free-fall, then apply the MW pulse at different ToF. Even though the gradient affects the atom's position by adding an extra acceleration, considering the small effect related to gravity, this can be neglected. Then, we get the magnetic spatial distribution as shown in Fig.\ref{Apparatus_mag-field}. Not only exists the gradient but also the the curvature of the magnetic field because the spatial changing B-field is definitely more than linear. By a simple quadratic curve fitting, we get the curvature of about 1xxx \(G/cm^2\) and an average gradient of about xx G/cm. One thing that needs to be noticed here is that we measured only the magnetic field gradient in the vertical direction, which is our main contribution. As we can see in the horizontal direction, the acceleration is even much lower than that in the vertical direction, which infer that this gradient should come mainly from the wrong distance of the Helmholtz coil.
 
 % add magnetic field spatial distribution
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics [width = \linewidth]{Apparatus_mag-field.pdf}
 \end{center}
-\caption[Fast coil, main coil and environment]{}
+\caption[]{}
 \label{Apparatus_mag-field}
 \end{figure}
 

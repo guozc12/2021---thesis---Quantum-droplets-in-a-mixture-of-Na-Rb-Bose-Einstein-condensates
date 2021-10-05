@@ -1,47 +1,17 @@
 \chapter{Theory}
 \label{Chap:theory}
 
-% epigraph
+% epigraph (done 2021-9-24 18:51:52)
 \setlength{\unitlength}{1pt}
 \setlength{\epigraphwidth}{10cm}
 \epigraph{Law of physicists II: \\ Without theorists, experimentalists tend to falter. \cite{Lee:1992ui}}{--- T. D. Lee\\ \textit{History of the weak interactions (1987)}}
 
-% goal of this chapter and structure of this chapter (done 2021-8-25 17:17:16)
-This chapter discusses two fundamental things: quantum scattering theory and the theory of the quantum droplet. The quantum scattering theory is the basis for understanding the couple channel calculation in Chap. \ref{Chap_Feshbach}, which is used to fitting the binding energy of the Feshbach molecule to calibrate Na-Rb molecular potential. We note here that the scattering properties play an essential role in understanding the behaviour of an ultracold sample. The second part describes the microscopic theory for two-species BEC and analytically derives its LHY correction. Then, we demonstrate the theory of droplets made of the dual-species BEC. Latter in the Chap. \ref{Chap_droplet}, we implement both variational calculation and GPELab simulation for comparing to the experiment.
+% goal of this chapter and structure of this chapter (done 2021-9-30 08:21:07)
+This chapter discusses two fundamental things: quantum scattering theory and the theory of the quantum droplet. The quantum scattering theory is the basis for understanding the couple channel calculation in Chap. \ref{Chap_Feshbach}. It is the base for understanding the fitting of the binding energy of the Feshbach molecule to calibrate Na-Rb molecular potential. We note here that the scattering properties play an essential role in understanding the behaviour of an ultracold sample. The second part describes the microscopic theory for two-species BEC and analytically derives its LHY correction. Then, we demonstrate the theory of droplets made of the dual-species BEC. Latter in the Chap. \ref{Chap_droplet}, we will implement both variational calculation and GPELab simulation for comparing to the experiment.
 
-\section{Quantum scattering: Theory}
+\section{Quantum scattering}
 \label{sec:quan_scat}
 
-We starting from the most general case, writing down a Bose system's Hamiltonian. Considering N spinless Bosons with mass m = 1 in volume V in 3-D space, and with thermal dynamic limit, i.e. N$\to \infty $ and V$\to
-\infty $, and $\frac{N}{V}=n\to \text{finite}$), we write down the Hamiltonian
-\begin{equation}
-\begin{split}
-\hat{H}_0&=\frac{1}{2}\int\nabla\hat{\Psi}^\dagger(x)\nabla\hat{\Psi }(x)dx=\frac{V}{(2\pi)^3}\int\epsilon_p^0\hat{a}_p^\dagger\hat{a}_pdp\\
-\hat{H}_1&=\frac{1}{2}\int\hat{\Psi}^\dagger(x)\hat{\Psi}^\dagger(x')V(x-x')\hat{\Psi}(x')\hat{\Psi}(x)dxdx'=\frac{1}{2}\frac{V}{(2\pi)^3}\int V(p)\hat{a}_p^\dagger\hat{a}_{p'}^\dagger\hat{a}_{p'-q}\hat{a}_{p+q}dp
-\end{split}
-\end{equation}
-with $\epsilon _p^0=\left.p^2\right/2$
-For convenience we set $\hbar $ = 1.
-where Fourier transformation for ladder operators are
-\begin{equation}
-\begin{split}
-\hat{\Psi}(x)=\frac{1}{\sqrt{V}}\sum_{p}e^{ipx}\hat{a}_p=\frac{\sqrt{V}}{(2\pi)^3}\int dp e^{i p x}\hat{a}_p\\
-\hat{\Psi}^\dagger(x)=\frac{1}{\sqrt{V}}\sum_p e^{-i p x}\hat{a}_p^\dagger=\frac{\sqrt{V}}{(2\pi)^3}\int dp e^{-i p x}\hat{a}_p^\dagger
-\end{split}
-\end{equation}
-The interaction term $V(x-x')$ plays core role. Theoretically, it is hard to solve this problem because the real potential of atom-atom interaction is quite complicated. However, if we consider a special case, such that a bunch of Bose gas is quite dilute, we can use low-energy effective theory to tackle it.
-
-There are three keywords for this special system: short-range interaction, dilute and low-temperature. 
-Short-range gives a length scale $r_0$, which represent the inter-particle potential range. 
-Dilute means: $n^{1/3}r_0<<1$, where n denote particle number density. 
-Low temperature(energy) means $k r_0<<1$, where $k$ denotes momentum.
-
-These three conditions allow us to ignore the complicated real potential between atoms, instead we can use scattering length (we will talk it later) to represent the whole scattering property of this system, especially at very low temperature left only one parameter, the s-wave scattering length $a_S$.
-
-This note's material is arranged as following: first, we briefly talk about the basic scattering problem, which define $a_S$ in low temperature.
-Then, we use mean field method solve Bose system, and discuss its ground state and excitation spectrum. Finally, we will go a little bit beyond the mean field theory, talking about quantum depletion and LHY correction.
-
-\subsection{Scattering property}
 The stationary Schrodinger equation and the Hamiltonian of the system is
 \begin{equation}
 \left(-\frac{\hbar ^2}{2m}\nabla ^2+\hat{V}(r)\right)\psi _k(r,\theta ,\phi )=\psi _k(r,\theta ,\phi )
@@ -136,126 +106,38 @@ This very beautiful property gives us a way to deal with not-weak atom-atom scat
 \subsection{Resonance scattering}
 
 
-\section{Quantum droplet: Theory}
-% 
-\subsection{Mean-field theory of Double BEC}
-Now, we turn to describe double BEC with mean field theory, which will be used in Bose mixture droplet in journal club.
+\section{Quantum droplet}
 
-Hamiltonian for BEC with two species is
-\begin{equation}
-H_{\text{tot}}=\sum_k\epsilon_{1,k}\hat{a}_{1,k}\dagger\hat{a}_{1,k}+\frac{g_{11}}{2V}\sum_{\left\{k_i\right\}}\hat{a}_{1,k_1}^+\hat{a}_{1,k_2}^+\hat{a}_{1,k_3}\hat{a}_{1,k_4}+\sum_k\epsilon_{2,k}\hat{a}_{2,k}\dagger\hat{a}_{2,k}+\frac{g_{22}}{2V}\sum_{\left\{k_i\right\}}\hat{a}_{2,k_1}^+\hat{a}_{2,k_2}^+\hat{a}_{2,k_3}\hat{a}_{2,k_4}+\frac{g_{12}}{V}\sum_{\left\{k_i\right\}}\hat{a}_{2,k_1}^+\hat{a}_{1,k_2}^+\hat{a}_{1,k_3}\hat{a}_{2,k_4}
-\end{equation}
-where $k_1+k_2=k_3+k_4$, satisfy momentum conservation.$g_{\text{ii}}$ represent intra-interaction strength, and $g_{12}$ for inter-interaction.
-$\hat{a}_{i,k}^+$($\hat{a}_{i,k}$) denote the ladder operator for $i^{\text{th}}$ component.
-Because of the special role of the state with k = 0, i.e. condensate, we separate ladder operator into two piece for whole Bose gas
-\begin{equation}
-\hat{\Psi }_i(x)=\frac{1}{\sqrt{V}}\sum_{p\neq0}e^{ipx}\hat{a}_{i,p}+\frac{1}{\sqrt{V}}\hat{a}_{i,0}=\hat{\Psi }_i'(x)+\frac{1}{\sqrt{V}}\hat{a}_{i,0}
-\end{equation}
-\begin{equation}
-\hat{\Psi }_i\dagger(x)=\frac{1}{\sqrt{V}}\sum_{p\neq0}e^{-ipx}\hat{a}_{i,p}\dagger+\frac{1}{\sqrt{V}}\hat{a}_{i,0}\dagger=\hat{\Psi}'\dagger(x)+\frac{1}{\sqrt{V}}\hat{a}_{i,0}\dagger
-\end{equation}
-Then we get Hamiltonian as
+We starting from the most general case, writing down a Bose system's Hamiltonian. Considering N spinless Bosons with mass m = 1 in volume V in 3-D space, and with thermal dynamic limit, i.e. N$\to \infty $ and V$\to
+\infty $, and $\frac{N}{V}=n\to \text{finite}$), we write down the Hamiltonian
 \begin{equation}
 \begin{split}
-H=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\sum _{k\neq 0} \left(\epsilon _{1,k}+\frac{g_{11}N_1+g_{12}N_2}{V}\right)\hat{a}_{1,k}\dagger\hat{a}_{1,k}+\sum_{k\neq 0} \left(\epsilon _{2,k}+\frac{g_{22} N_2+g_{12}N_1}{V}\right)\hat{a}_{2,k}\dagger\hat{a}_{2,k}+\\
-\frac{g_{11} N_1}{2V}\sum _{k\neq 0} \left(\hat{a}_{1,k}^+\hat{a}_{1,-k}^++\hat{a}_{1,k}\hat{a}_{1,-k}\right)+\frac{g_{22} N_2}{2V}\sum_{k\neq0}\left(\hat{a}_{2,k}^+\hat{a}_{2,-k}^++\hat{a}_{2,k}\hat{a}_{2,-k}\right)+\frac{g_{12}\sqrt{N_1N_2}}{2V}\sum _{k\neq 0} \left(\hat{a}_{1,k}^+\hat{a}_{2,k}+\hat{a}_{2,k}^+\hat{a}_{1,k}+\hat{a}_{1,k}\hat{a}_{2,-k}+\hat{a}_{2,k}^+\hat{a}_{1,-k}^+\right)
+\hat{H}_0&=\frac{1}{2}\int\nabla\hat{\Psi}^\dagger(x)\nabla\hat{\Psi }(x)dx=\frac{V}{(2\pi)^3}\int\epsilon_p^0\hat{a}_p^\dagger\hat{a}_pdp\\
+\hat{H}_1&=\frac{1}{2}\int\hat{\Psi}^\dagger(x)\hat{\Psi}^\dagger(x')V(x-x')\hat{\Psi}(x')\hat{\Psi}(x)dxdx'=\frac{1}{2}\frac{V}{(2\pi)^3}\int V(p)\hat{a}_p^\dagger\hat{a}_{p'}^\dagger\hat{a}_{p'-q}\hat{a}_{p+q}dp
 \end{split}
 \end{equation}
-where we only keep the second order of $N_i$, dropping third and forth order of $N_i$. Then, diagonalize this Hamiltonian by extended Bogoliubov transformation for double BEC, we have
-\begin{equation}
-H=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\frac{1}{2}\sum _{k\neq 0} \left(E_++E_--\frac{\hbar ^2k^2}{2m_1}-\frac{\hbar ^2k^2}{2m_2}-\frac{g_{11}N_1+g_{22}N_2}{V}\right)+\sum_{k\neq 0} E_{+,k}\hat{a}_{+,k}\dagger\hat{a}_{+,k}+\sum _{k\neq 0} E_{-,k}\hat{a}_{-,k}\dagger\hat{a}_{-,k}
-\end{equation}
-where
-\begin{equation}
-E_{\pm }=\sqrt{\frac{\omega _1^2+\omega _2^2}{2}\pm \sqrt{\left(\frac{\omega _1^2-\omega _2^2}{2}\right){}^2+\frac{g_{12}^2N_1N_2}{V^2}\frac{\hbar
-^2k^4}{m_1m_2}}}
-\end{equation}
-where
-\begin{equation}
-\omega _i=\sqrt{\frac{\hbar ^2k^2}{2m_i}\left(\frac{\hbar ^2k^2}{2m_i}+\frac{2g_{\text{ii}}N_i}{V}\right)}
-\end{equation}
-We plot the spectrum for each channel $E_+$ and $E_-$, with $\text{$\delta $g}=\sqrt{g_{11}g_{22}}-g_{12}>0$ and $\text{$\delta $g}=\sqrt{g_{11}g_{22}}-g_{12}<0$
-Where we find similar spectrum with one component BEC. For $\text{$\delta $g}<0$, we get complex energy with small $k$, which represent unstable of the system.
-
-\subsection{Ground state energy and LHY correction}
-Ground state energy will be
-\begin{equation}
-E_{\text{GS}}=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\frac{1}{2}\sum _{k\neq0}\left(E_++E_--\frac{\hbar^2k^2}{2m_1}-\frac{\hbar ^2k^2}{2m_2}-\frac{g_{11}N_1+g_{22}N_2}{V}\right)
-\end{equation}
-After re-normalization we have
-\begin{equation}
-E_{\text{GS}}^R=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\frac{1}{2}\sum _{k\neq 0} \left(E_++E_--\frac{\hbar ^2k^2}{2m_1}-\frac{\hbar^2k^2}{2m_2}-\frac{g_{11}N_1+g_{22}N_2}{V}+\frac{m_1g_{11}^2N_1^2/V^2+m_2g_{22}^2N_2^2/V^2+4\frac{m_1m_2}{m_1+ m_2}g_{12}^2N_1N_2/V^2}{\hbar ^2k^2}\right)
-\end{equation}
-The second term is LHY term which can be rewritten as
-\begin{equation}
-E_{\text{LHY}}=\frac{1}{2}\sum _{k\neq0}\left(\sqrt{\frac{\omega _1^2+\omega _2^2}{2}+\sqrt{\left(\frac{\omega_1^2-\omega_2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}+\sqrt{\frac{\omega _1^2+\omega_2^2}{2}-\sqrt{\left(\frac{\omega_1^2-\omega _2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}-\frac{\hbar^2k^2}{2m_1}-\frac{\hbar^2k^2}{2m_2}-g_{11}n_1-g_{22}n_2+\frac{m_1g_{11}^2n_1^2+m_2g_{22}^2n_2^2+4\frac{m_1m_2}{m_1+m_2}g_{12}^2n_1n_2}{\hbar ^2k^2}\right)
-\end{equation}
-into integral formation
-\begin{equation}
-\frac{E_{\text{LHY}}}{V}=\int _0^{k_c}\frac{k^2}{4\pi ^2}\left(\sqrt{\frac{\omega_1^2+\omega_2^2}{2}+\sqrt{\left(\frac{\omega_1^2-\omega_2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}+\sqrt{\frac{\omega_1^2+\omega_2^2}{2}-\sqrt{\left(\frac{\omega_1^2-\omega_2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}-\frac{\hbar^2k^2}{2m_1}-\frac{\hbar^2k^2}{2m_2}-g_{11}n_1-g_{22}n_2+\frac{m_1g_{11}^2n_1^2+m_2g_{22}^2n_2^2+4\frac{m_1m_2}{m_1+ m_2}g_{12}^2n_1n_2}{\hbar ^2k^2}\right)dk
-\end{equation}
+with $\epsilon _p^0=\left.p^2\right/2$
+For convenience we set $\hbar $ = 1.
+where Fourier transformation for ladder operators are
 \begin{equation}
 \begin{split}
-\frac{E_{\text{LHY}}}{V}=C_1\int _0^{k_c}\frac{\tilde{k}^2}{4\pi ^2}\left(\sqrt{\frac{1}{2}\left(\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)+\frac{1}{\gamma^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y\gamma\right)\right)+\sqrt{\left(\frac{1}{2}\left(\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)-\frac{1}{\gamma^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y \gamma \right)\right)\right)^2+\frac{xy}{\gamma }\tilde{k}^4}}+\right.\\
-\left.\sqrt{\frac{1}{2}\left( \frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)+\frac{1}{\gamma ^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y\gamma \right)\right)-\sqrt{\left(\frac{1}{2}\left(\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)-\frac{1}{\gamma ^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y\gamma \right)\right)\right)^2+\frac{xy}{\gamma}\tilde{k}^4}}-\frac{\tilde{k}^2}{2}\left(1+\frac{1}{\gamma }\right)-1-y+\frac{1+\gamma y^2+\frac{4xy \gamma}{1+\gamma}}{\tilde{k}^2}\right)d\tilde{k}
+\hat{\Psi}(x)=\frac{1}{\sqrt{V}}\sum_{p}e^{ipx}\hat{a}_p=\frac{\sqrt{V}}{(2\pi)^3}\int dp e^{i p x}\hat{a}_p\\
+\hat{\Psi}^\dagger(x)=\frac{1}{\sqrt{V}}\sum_p e^{-i p x}\hat{a}_p^\dagger=\frac{\sqrt{V}}{(2\pi)^3}\int dp e^{-i p x}\hat{a}_p^\dagger
 \end{split}
 \end{equation}
+The interaction term $V(x-x')$ plays core role. Theoretically, it is hard to solve this problem because the real potential of atom-atom interaction is quite complicated. However, if we consider a special case, such that a bunch of Bose gas is quite dilute, we can use low-energy effective theory to tackle it.
 
-\begin{equation}
-\begin{split}
-C_1=g_{11}n_1\left(\frac{\sqrt{m_1g_{11}n_1}}{\hbar }\right){}^3\\
-\gamma =\frac{m_2}{m_1}\\
-x=\frac{g_{12}^2}{g_{11}g_{22}}\\
-y=\frac{g_{22}n_2}{g_{11}n_1}\\
-\tilde{k}=\frac{\hbar  k}{\sqrt{m_1g_{11}n_1}}
-\end{split}
-\end{equation}
-\begin{equation}
-\frac{\omega _1}{g_{11}n_1}=\sqrt{\frac{\hbar^2k^2}{2m_1g_{11}n_1}\left(\frac{\hbar^2k^2}{2m_1g_{11}n_1}+2\right)}=\sqrt{\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)}
-\end{equation}
-\begin{equation}
-\frac{\omega _2}{g_{11}n_1}=\sqrt{\frac{\hbar^2k^2}{2m_2g_{11}n_1}\left(\frac{\hbar^2k^2}{2m_2g_{11}n_1}+2\frac{g_{22}n_2}{g_{11}n_1}\right)}=\sqrt{\frac{1}{\gamma}\frac{\tilde{k}^2}{2}\left(\frac{1}{\gamma}\frac{\tilde{k}^2}{2}+2y\right)}=\frac{1}{\gamma}\sqrt{\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y\gamma \right)}
-\end{equation}
-we take out the dimensionless part of it, i.e.
-\begin{equation}
-E_{\text{GS}}^R=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\frac{8V}{15\pi^2}m_1^{3/2}\left(g_{11}n_1\right){}^{5/2}f\left(\frac{m_2}{m_1},\frac{g_{12}^2}{g_{11}g_{22}},\frac{g_{22}n_2}{g_{11}n_1}\right)
-\end{equation}
-Where $f$ is always larger than 0 and is dimensionless.
-We will show in this week's journal club that, the second term of LHY correction will actually stabilize the system from collapse and will not require entering strong interaction regime.
+There are three keywords for this special system: short-range interaction, dilute and low-temperature. 
+Short-range gives a length scale $r_0$, which represent the inter-particle potential range. 
+Dilute means: $n^{1/3}r_0<<1$, where n denote particle number density. 
+Low temperature(energy) means $k r_0<<1$, where $k$ denotes momentum.
 
-\begin{equation}
-\frac{1}{2}\left(
-\begin{array}{cc}
- n_1 & n_2 \\
-\end{array}
-\right)\left(
-\begin{array}{cc}
- g_{11} & g_{12} \\
- g_{12} & g_{22} \\
-\end{array}
-\right)\left(
-\begin{array}{c}
- n_1 \\
- n_2 \\
-\end{array}
-\right)
-\end{equation}
-diagonalize
-\begin{equation}
-\lambda _+=\frac{g_{11}+g_{22}}{2},\lambda_-=\frac{\sqrt{g_{11}g_{22}}}{g_{11}+g_{22}}\text{$\delta $g}
-\end{equation}
-\begin{equation}
-n_+=\frac{n_1\sqrt{g_{11}}-n_2\sqrt{g_{22}}}{\sqrt{g_{11}+g_{22}}}, n_-=\frac{n_1\sqrt{g_{22}}+n_2\sqrt{g_{11}}}{\sqrt{g_{11}+g_{22}}}
-\end{equation}
+These three conditions allow us to ignore the complicated real potential between atoms, instead we can use scattering length (we will talk it later) to represent the whole scattering property of this system, especially at very low temperature left only one parameter, the s-wave scattering length $a_S$.
 
+This note's material is arranged as following: first, we briefly talk about the basic scattering problem, which define $a_S$ in low temperature.
+Then, we use mean field method solve Bose system, and discuss its ground state and excitation spectrum. Finally, we will go a little bit beyond the mean field theory, talking about quantum depletion and LHY correction.
 
-
-
-
-
-% from intro about the LHY correction and quantum depletion
-
-\section{Temp: Dilute Bose system: Pseudo-Hamiltonian and Bogoliubov transformation}
+\subsection{Dilute Bose system: Pseudo-Hamiltonian and Bogoliubov transformation}
 As we can use $a_S$ representing scattering process, we can write down a pseudo-potential, which gives the same effect as the original one. This procedure first done by \textit{Fermi} as following
 \begin{equation}
 V(r)=g \delta (r)\partial _r\cdot r=\frac{4\pi\hbar^2a_S}{m}\delta (r)\partial _r\cdot r
@@ -394,6 +276,128 @@ actually cure the unstable system from long-wave-instability, which gives the fo
 %From another point of view, i.e. how many particle stay beyond the zero momentum state, we need to introduce the quantum depletion. Similar to thermal depletion of a condensate, the quantum depletion is excited due to the inter-particle interaction. The depletion density can be written as
 
 
+
+
+
+
+
+% 
+\subsection{Mean-field theory of Double BEC}
+Now, we turn to describe double BEC with mean field theory, which will be used in Bose mixture droplet in journal club.
+
+Hamiltonian for BEC with two species is
+\begin{equation}
+H_{\text{tot}}=\sum_k\epsilon_{1,k}\hat{a}_{1,k}\dagger\hat{a}_{1,k}+\frac{g_{11}}{2V}\sum_{\left\{k_i\right\}}\hat{a}_{1,k_1}^+\hat{a}_{1,k_2}^+\hat{a}_{1,k_3}\hat{a}_{1,k_4}+\sum_k\epsilon_{2,k}\hat{a}_{2,k}\dagger\hat{a}_{2,k}+\frac{g_{22}}{2V}\sum_{\left\{k_i\right\}}\hat{a}_{2,k_1}^+\hat{a}_{2,k_2}^+\hat{a}_{2,k_3}\hat{a}_{2,k_4}+\frac{g_{12}}{V}\sum_{\left\{k_i\right\}}\hat{a}_{2,k_1}^+\hat{a}_{1,k_2}^+\hat{a}_{1,k_3}\hat{a}_{2,k_4}
+\end{equation}
+where $k_1+k_2=k_3+k_4$, satisfy momentum conservation.$g_{\text{ii}}$ represent intra-interaction strength, and $g_{12}$ for inter-interaction.
+$\hat{a}_{i,k}^+$($\hat{a}_{i,k}$) denote the ladder operator for $i^{\text{th}}$ component.
+Because of the special role of the state with k = 0, i.e. condensate, we separate ladder operator into two piece for whole Bose gas
+\begin{equation}
+\hat{\Psi }_i(x)=\frac{1}{\sqrt{V}}\sum_{p\neq0}e^{ipx}\hat{a}_{i,p}+\frac{1}{\sqrt{V}}\hat{a}_{i,0}=\hat{\Psi }_i'(x)+\frac{1}{\sqrt{V}}\hat{a}_{i,0}
+\end{equation}
+\begin{equation}
+\hat{\Psi }_i\dagger(x)=\frac{1}{\sqrt{V}}\sum_{p\neq0}e^{-ipx}\hat{a}_{i,p}\dagger+\frac{1}{\sqrt{V}}\hat{a}_{i,0}\dagger=\hat{\Psi}'\dagger(x)+\frac{1}{\sqrt{V}}\hat{a}_{i,0}\dagger
+\end{equation}
+Then we get Hamiltonian as
+\begin{equation}
+\begin{split}
+H=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\sum _{k\neq 0} \left(\epsilon _{1,k}+\frac{g_{11}N_1+g_{12}N_2}{V}\right)\hat{a}_{1,k}\dagger\hat{a}_{1,k}+\sum_{k\neq 0} \left(\epsilon _{2,k}+\frac{g_{22} N_2+g_{12}N_1}{V}\right)\hat{a}_{2,k}\dagger\hat{a}_{2,k}+\\
+\frac{g_{11} N_1}{2V}\sum _{k\neq 0} \left(\hat{a}_{1,k}^+\hat{a}_{1,-k}^++\hat{a}_{1,k}\hat{a}_{1,-k}\right)+\frac{g_{22} N_2}{2V}\sum_{k\neq0}\left(\hat{a}_{2,k}^+\hat{a}_{2,-k}^++\hat{a}_{2,k}\hat{a}_{2,-k}\right)+\frac{g_{12}\sqrt{N_1N_2}}{2V}\sum _{k\neq 0} \left(\hat{a}_{1,k}^+\hat{a}_{2,k}+\hat{a}_{2,k}^+\hat{a}_{1,k}+\hat{a}_{1,k}\hat{a}_{2,-k}+\hat{a}_{2,k}^+\hat{a}_{1,-k}^+\right)
+\end{split}
+\end{equation}
+where we only keep the second order of $N_i$, dropping third and forth order of $N_i$. Then, diagonalize this Hamiltonian by extended Bogoliubov transformation for double BEC, we have
+\begin{equation}
+H=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\frac{1}{2}\sum _{k\neq 0} \left(E_++E_--\frac{\hbar ^2k^2}{2m_1}-\frac{\hbar ^2k^2}{2m_2}-\frac{g_{11}N_1+g_{22}N_2}{V}\right)+\sum_{k\neq 0} E_{+,k}\hat{a}_{+,k}\dagger\hat{a}_{+,k}+\sum _{k\neq 0} E_{-,k}\hat{a}_{-,k}\dagger\hat{a}_{-,k}
+\end{equation}
+where
+\begin{equation}
+E_{\pm }=\sqrt{\frac{\omega _1^2+\omega _2^2}{2}\pm \sqrt{\left(\frac{\omega _1^2-\omega _2^2}{2}\right){}^2+\frac{g_{12}^2N_1N_2}{V^2}\frac{\hbar
+^2k^4}{m_1m_2}}}
+\end{equation}
+where
+\begin{equation}
+\omega _i=\sqrt{\frac{\hbar ^2k^2}{2m_i}\left(\frac{\hbar ^2k^2}{2m_i}+\frac{2g_{\text{ii}}N_i}{V}\right)}
+\end{equation}
+We plot the spectrum for each channel $E_+$ and $E_-$, with $\text{$\delta $g}=\sqrt{g_{11}g_{22}}-g_{12}>0$ and $\text{$\delta $g}=\sqrt{g_{11}g_{22}}-g_{12}<0$
+Where we find similar spectrum with one component BEC. For $\text{$\delta $g}<0$, we get complex energy with small $k$, which represent unstable of the system.
+
+\subsection{Ground state energy and LHY correction}
+Ground state energy will be
+\begin{equation}
+E_{\text{GS}}=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\frac{1}{2}\sum _{k\neq0}\left(E_++E_--\frac{\hbar^2k^2}{2m_1}-\frac{\hbar ^2k^2}{2m_2}-\frac{g_{11}N_1+g_{22}N_2}{V}\right)
+\end{equation}
+After re-normalization we have
+\begin{equation}
+E_{\text{GS}}^R=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\frac{1}{2}\sum _{k\neq 0} \left(E_++E_--\frac{\hbar ^2k^2}{2m_1}-\frac{\hbar^2k^2}{2m_2}-\frac{g_{11}N_1+g_{22}N_2}{V}+\frac{m_1g_{11}^2N_1^2/V^2+m_2g_{22}^2N_2^2/V^2+4\frac{m_1m_2}{m_1+ m_2}g_{12}^2N_1N_2/V^2}{\hbar ^2k^2}\right)
+\end{equation}
+The second term is LHY term which can be rewritten as
+\begin{equation}
+E_{\text{LHY}}=\frac{1}{2}\sum _{k\neq0}\left(\sqrt{\frac{\omega _1^2+\omega _2^2}{2}+\sqrt{\left(\frac{\omega_1^2-\omega_2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}+\sqrt{\frac{\omega _1^2+\omega_2^2}{2}-\sqrt{\left(\frac{\omega_1^2-\omega _2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}-\frac{\hbar^2k^2}{2m_1}-\frac{\hbar^2k^2}{2m_2}-g_{11}n_1-g_{22}n_2+\frac{m_1g_{11}^2n_1^2+m_2g_{22}^2n_2^2+4\frac{m_1m_2}{m_1+m_2}g_{12}^2n_1n_2}{\hbar ^2k^2}\right)
+\end{equation}
+into integral formation
+\begin{equation}
+\frac{E_{\text{LHY}}}{V}=\int _0^{k_c}\frac{k^2}{4\pi ^2}\left(\sqrt{\frac{\omega_1^2+\omega_2^2}{2}+\sqrt{\left(\frac{\omega_1^2-\omega_2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}+\sqrt{\frac{\omega_1^2+\omega_2^2}{2}-\sqrt{\left(\frac{\omega_1^2-\omega_2^2}{2}\right){}^2+g_{12}^2n_1n_2\frac{\hbar^4k^4}{m_1m_2}}}-\frac{\hbar^2k^2}{2m_1}-\frac{\hbar^2k^2}{2m_2}-g_{11}n_1-g_{22}n_2+\frac{m_1g_{11}^2n_1^2+m_2g_{22}^2n_2^2+4\frac{m_1m_2}{m_1+ m_2}g_{12}^2n_1n_2}{\hbar ^2k^2}\right)dk
+\end{equation}
+\begin{equation}
+\begin{split}
+\frac{E_{\text{LHY}}}{V}=C_1\int _0^{k_c}\frac{\tilde{k}^2}{4\pi ^2}\left(\sqrt{\frac{1}{2}\left(\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)+\frac{1}{\gamma^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y\gamma\right)\right)+\sqrt{\left(\frac{1}{2}\left(\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)-\frac{1}{\gamma^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y \gamma \right)\right)\right)^2+\frac{xy}{\gamma }\tilde{k}^4}}+\right.\\
+\left.\sqrt{\frac{1}{2}\left( \frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)+\frac{1}{\gamma ^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y\gamma \right)\right)-\sqrt{\left(\frac{1}{2}\left(\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)-\frac{1}{\gamma ^2}\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y\gamma \right)\right)\right)^2+\frac{xy}{\gamma}\tilde{k}^4}}-\frac{\tilde{k}^2}{2}\left(1+\frac{1}{\gamma }\right)-1-y+\frac{1+\gamma y^2+\frac{4xy \gamma}{1+\gamma}}{\tilde{k}^2}\right)d\tilde{k}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+C_1=g_{11}n_1\left(\frac{\sqrt{m_1g_{11}n_1}}{\hbar }\right){}^3\\
+\gamma =\frac{m_2}{m_1}\\
+x=\frac{g_{12}^2}{g_{11}g_{22}}\\
+y=\frac{g_{22}n_2}{g_{11}n_1}\\
+\tilde{k}=\frac{\hbar  k}{\sqrt{m_1g_{11}n_1}}
+\end{split}
+\end{equation}
+\begin{equation}
+\frac{\omega _1}{g_{11}n_1}=\sqrt{\frac{\hbar^2k^2}{2m_1g_{11}n_1}\left(\frac{\hbar^2k^2}{2m_1g_{11}n_1}+2\right)}=\sqrt{\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2\right)}
+\end{equation}
+\begin{equation}
+\frac{\omega _2}{g_{11}n_1}=\sqrt{\frac{\hbar^2k^2}{2m_2g_{11}n_1}\left(\frac{\hbar^2k^2}{2m_2g_{11}n_1}+2\frac{g_{22}n_2}{g_{11}n_1}\right)}=\sqrt{\frac{1}{\gamma}\frac{\tilde{k}^2}{2}\left(\frac{1}{\gamma}\frac{\tilde{k}^2}{2}+2y\right)}=\frac{1}{\gamma}\sqrt{\frac{\tilde{k}^2}{2}\left(\frac{\tilde{k}^2}{2}+2y\gamma \right)}
+\end{equation}
+we take out the dimensionless part of it, i.e.
+\begin{equation}
+E_{\text{GS}}^R=\frac{g_{11}N_1^2+g_{22}N_2^2+2g_{12}N_1N_2}{2V}+\frac{8V}{15\pi^2}m_1^{3/2}\left(g_{11}n_1\right){}^{5/2}f\left(\frac{m_2}{m_1},\frac{g_{12}^2}{g_{11}g_{22}},\frac{g_{22}n_2}{g_{11}n_1}\right)
+\end{equation}
+Where $f$ is always larger than 0 and is dimensionless.
+We will show in this week's journal club that, the second term of LHY correction will actually stabilize the system from collapse and will not require entering strong interaction regime.
+
+\begin{equation}
+\frac{1}{2}\left(
+\begin{array}{cc}
+ n_1 & n_2 \\
+\end{array}
+\right)\left(
+\begin{array}{cc}
+ g_{11} & g_{12} \\
+ g_{12} & g_{22} \\
+\end{array}
+\right)\left(
+\begin{array}{c}
+ n_1 \\
+ n_2 \\
+\end{array}
+\right)
+\end{equation}
+diagonalize
+\begin{equation}
+\lambda _+=\frac{g_{11}+g_{22}}{2},\lambda_-=\frac{\sqrt{g_{11}g_{22}}}{g_{11}+g_{22}}\text{$\delta $g}
+\end{equation}
+\begin{equation}
+n_+=\frac{n_1\sqrt{g_{11}}-n_2\sqrt{g_{22}}}{\sqrt{g_{11}+g_{22}}}, n_-=\frac{n_1\sqrt{g_{22}}+n_2\sqrt{g_{11}}}{\sqrt{g_{11}+g_{22}}}
+\end{equation}
+
+
+
+
+
+
+% from intro about the LHY correction and quantum depletion
 
 
 \chapterend
