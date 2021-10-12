@@ -107,35 +107,10 @@ This very beautiful property gives us a way to deal with not-weak atom-atom scat
 
 
 \section{Quantum droplet}
+\label{sec:droplet_ana}
 
-We starting from the most general case, writing down a Bose system's Hamiltonian. Considering N spinless Bosons with mass m = 1 in volume V in 3-D space, and with thermal dynamic limit, i.e. N$\to \infty $ and V$\to
-\infty $, and $\frac{N}{V}=n\to \text{finite}$), we write down the Hamiltonian
-\begin{equation}
-\begin{split}
-\hat{H}_0&=\frac{1}{2}\int\nabla\hat{\Psi}^\dagger(x)\nabla\hat{\Psi }(x)dx=\frac{V}{(2\pi)^3}\int\epsilon_p^0\hat{a}_p^\dagger\hat{a}_pdp\\
-\hat{H}_1&=\frac{1}{2}\int\hat{\Psi}^\dagger(x)\hat{\Psi}^\dagger(x')V(x-x')\hat{\Psi}(x')\hat{\Psi}(x)dxdx'=\frac{1}{2}\frac{V}{(2\pi)^3}\int V(p)\hat{a}_p^\dagger\hat{a}_{p'}^\dagger\hat{a}_{p'-q}\hat{a}_{p+q}dp
-\end{split}
-\end{equation}
-with $\epsilon _p^0=\left.p^2\right/2$
-For convenience we set $\hbar $ = 1.
-where Fourier transformation for ladder operators are
-\begin{equation}
-\begin{split}
-\hat{\Psi}(x)=\frac{1}{\sqrt{V}}\sum_{p}e^{ipx}\hat{a}_p=\frac{\sqrt{V}}{(2\pi)^3}\int dp e^{i p x}\hat{a}_p\\
-\hat{\Psi}^\dagger(x)=\frac{1}{\sqrt{V}}\sum_p e^{-i p x}\hat{a}_p^\dagger=\frac{\sqrt{V}}{(2\pi)^3}\int dp e^{-i p x}\hat{a}_p^\dagger
-\end{split}
-\end{equation}
-The interaction term $V(x-x')$ plays core role. Theoretically, it is hard to solve this problem because the real potential of atom-atom interaction is quite complicated. However, if we consider a special case, such that a bunch of Bose gas is quite dilute, we can use low-energy effective theory to tackle it.
-
-There are three keywords for this special system: short-range interaction, dilute and low-temperature. 
-Short-range gives a length scale $r_0$, which represent the inter-particle potential range. 
-Dilute means: $n^{1/3}r_0<<1$, where n denote particle number density. 
-Low temperature(energy) means $k r_0<<1$, where $k$ denotes momentum.
-
-These three conditions allow us to ignore the complicated real potential between atoms, instead we can use scattering length (we will talk it later) to represent the whole scattering property of this system, especially at very low temperature left only one parameter, the s-wave scattering length $a_S$.
-
-This note's material is arranged as following: first, we briefly talk about the basic scattering problem, which define $a_S$ in low temperature.
-Then, we use mean field method solve Bose system, and discuss its ground state and excitation spectrum. Finally, we will go a little bit beyond the mean field theory, talking about quantum depletion and LHY correction.
+% overall of this section
+这一节我们引入quantum droplet的基本理论。我们从最基本的BEC的理论开始，先给出bogoliubov对BEC的处理，从而引出LHY correction 给出的基态能量的修正。这一部分相较于introduction部分的给出了更为细致的推导。随后，我们引入两组分BEC的理论，针对质量不相同的case我们给出LHY correction的数值解。这样我们就可以来解释Bose mixture的quantum droplet的形成机制了。在这一部分的讨论中我们考虑的是bulk sample，于是我们忽略动能项。针对实验中有限大小的droplet的理论和仿真我们放在 这一节里 讨论。
 
 \subsection{Dilute Bose system: Pseudo-Hamiltonian and Bogoliubov transformation}
 As we can use $a_S$ representing scattering process, we can write down a pseudo-potential, which gives the same effect as the original one. This procedure first done by \textit{Fermi} as following
@@ -399,6 +374,37 @@ n_+=\frac{n_1\sqrt{g_{11}}-n_2\sqrt{g_{22}}}{\sqrt{g_{11}+g_{22}}}, n_-=\frac{n_
 
 % from intro about the LHY correction and quantum depletion
 
+
+
+\section{temp}
+We starting from the most general case, writing down a Bose system's Hamiltonian. Considering N spinless Bosons with mass m = 1 in volume V in 3-D space, and with thermal dynamic limit, i.e. N$\to \infty $ and V$\to
+\infty $, and $\frac{N}{V}=n\to \text{finite}$), we write down the Hamiltonian
+\begin{equation}
+\begin{split}
+\hat{H}_0&=\frac{1}{2}\int\nabla\hat{\Psi}^\dagger(x)\nabla\hat{\Psi }(x)dx=\frac{V}{(2\pi)^3}\int\epsilon_p^0\hat{a}_p^\dagger\hat{a}_pdp\\
+\hat{H}_1&=\frac{1}{2}\int\hat{\Psi}^\dagger(x)\hat{\Psi}^\dagger(x')V(x-x')\hat{\Psi}(x')\hat{\Psi}(x)dxdx'=\frac{1}{2}\frac{V}{(2\pi)^3}\int V(p)\hat{a}_p^\dagger\hat{a}_{p'}^\dagger\hat{a}_{p'-q}\hat{a}_{p+q}dp
+\end{split}
+\end{equation}
+with $\epsilon _p^0=\left.p^2\right/2$
+For convenience we set $\hbar $ = 1.
+where Fourier transformation for ladder operators are
+\begin{equation}
+\begin{split}
+\hat{\Psi}(x)=\frac{1}{\sqrt{V}}\sum_{p}e^{ipx}\hat{a}_p=\frac{\sqrt{V}}{(2\pi)^3}\int dp e^{i p x}\hat{a}_p\\
+\hat{\Psi}^\dagger(x)=\frac{1}{\sqrt{V}}\sum_p e^{-i p x}\hat{a}_p^\dagger=\frac{\sqrt{V}}{(2\pi)^3}\int dp e^{-i p x}\hat{a}_p^\dagger
+\end{split}
+\end{equation}
+The interaction term $V(x-x')$ plays core role. Theoretically, it is hard to solve this problem because the real potential of atom-atom interaction is quite complicated. However, if we consider a special case, such that a bunch of Bose gas is quite dilute, we can use low-energy effective theory to tackle it.
+
+There are three keywords for this special system: short-range interaction, dilute and low-temperature. 
+Short-range gives a length scale $r_0$, which represent the inter-particle potential range. 
+Dilute means: $n^{1/3}r_0<<1$, where n denote particle number density. 
+Low temperature(energy) means $k r_0<<1$, where $k$ denotes momentum.
+
+These three conditions allow us to ignore the complicated real potential between atoms, instead we can use scattering length (we will talk it later) to represent the whole scattering property of this system, especially at very low temperature left only one parameter, the s-wave scattering length $a_S$.
+
+This note's material is arranged as following: first, we briefly talk about the basic scattering problem, which define $a_S$ in low temperature.
+Then, we use mean field method solve Bose system, and discuss its ground state and excitation spectrum. Finally, we will go a little bit beyond the mean field theory, talking about quantum depletion and LHY correction.
 
 \chapterend
 

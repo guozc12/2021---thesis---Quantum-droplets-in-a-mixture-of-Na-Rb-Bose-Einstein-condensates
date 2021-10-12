@@ -6,29 +6,56 @@
 \setlength{\epigraphwidth}{10cm}
 \epigraph{Law of physicists I: \\ Without experimentalists, theorists tend to drift. \cite{Lee:1992ui}}{--- T.D. Lee\\ \textit{History of the weak interactions (1987)}}
 
-% Overview and structure of this chapter
-In this Chapter, we discuss the hetero-nuclear droplet formed from the Bose-Einstein condensate mixture of Na and Rb.我们会先重提droplet，并目标于分析一个体积有限的droplet。这是为了于实验相对比。随后我们给出能标的分析来粗略地对这个系统做一个分析。 然后，我们会延续第二章的理论解析解，先给出变分计算以及GPE仿真。一个简单的高斯变分可以有效地帮助我们理解一个有限大小的droplet的各个能标的关系。这里提及有限大小，主要是需要引入动能项；而在第二章里我们讨论的是bulk sample的liquid droplet 平衡density等参数。为了更精细的认识和理解droplet sample，我们采用添加了LHY的GPE对其进行仿真。这一部分里我们给出extended GPE的推导，更详细的关于使用GPELAB进行仿真的代码和内容我们放在sec appendix里面了。
+% Overview and structure of theory part of this chapter (done 2021-10-7 20:49:40)
+This chapter discusses the heteronuclear droplets formed by the Bose-Einstein condensate mixture of Na and Rb. We first reanalyze the droplet, however, with a finite volume instead of homogeneous density distribution. This is for comparison with experiments since an actual quantum droplet we build in the experiment always has a specific size due to a limited atomic number. We make a rough estimation by analyzing the energy scales of each term. Then, continuing with the analytical solution in Sec. \ref{sec:droplet_ana}, we implement the variational calculation. We use a simple Gaussian trial function to help understand how different energy scales compete in the finite-size droplets. Its specific size mainly requires introducing a kinetic energy term (i.e. quantum pressure). In order to better understand the droplet sample, we simulate it with extended Gross–Pitaevskii equation (eGPE). In this part, we give the derivation of the extended GPE especially for the two-species BEC sample near zero MF energy region. We put the code of GPELAB \cite{ANTOINE20142969} and samples of the simulation results in the Appendix \ref{chap:eGPELAB} with more details.
 
-Sec droplet 里面我们实验研究了droplet形成以及测量了droplet-gas的相图。这是我们实验研究的主体部分。实验方法简单直接，我们直接让sample 做TOF，从而避免了光井对sample的影响。实验上为了配合这个方案，我们升级了我们的系统，具体可以参考sec 。随后，在sec 里，我们研究了气态的LHY sample，这个研究的目的是探究一个气态的sample，在LHY energy主导的情况下，behavior是怎样的。这个研究可以作为LHY gas那篇文章的一个补充。在理解了droplet 形成的过程后，我们意识到，之前制备droplet的过程有突变，从而，导致sample寿命和原子数有很大限制。于是我们改进formation的方案。最后，我们展示了尝试采用droplet制备Feshbach molecule的方案。虽然转化效率并没有提高。但是，我们大大降低了分子的温度，并为未来制作简并Feshbach分子提供可能路径。
+% Overview and structure of experiment part of this chapter (done 2021-10-7 22:54:47)
+In Sec. \ref{sec:droplet_experiment}, we experimentally study Na-Rb droplet and measure the phase diagram of liquid-gas phase transition, which is the central part of our experimental research. The experimental method is simple and straightforward. We directly let the sample do Time-of-Flight and observe the non-expansion signal. This method avoids the complexity of the optical-levitation method however need more effort to eliminate the inhomogeneity of the magnetic field. In order to cooperate with this scheme, we upgrade our system on both control of magnetic field and imaging method, referring to Sec. \ref{sec:image} and Sec. \ref{sec:fastcoil} for details. Later, in Sec. \ref{sec:LHY_gas}, we study the gaseous LHY sample. This research aims to explore the behaviour of a gaseous sample under the dominance of LHY energy instead of MF energy. This research is a supplement to the study of LHY gas by measuring the trap frequency \cite{skov2020}. After understanding the droplet formation process, we realize that the previous process of preparing droplets is far from adiabatic, which resulted in significant limitations on the sample life and the number of atoms. So we improve the preparation scheme to achieve a droplet sample with more numbers as shown in Sec. \ref{sec:mode_match}. Finally, Sec. \ref{sec:droplet_molecule} shows our efforts on using droplets to form the Feshbach molecules. Although the conversion efficiency has no improvement, we have greatly reduced the temperature of the molecules and provide a promising path for the future production of degenerate Feshbach molecules.
 
 
 \section{Quantum droplet with finite size}
 
-在chap里我们analytical地分析了quantum liquid，给出了mean field 能量和beyond MF的能量。随后计算了系统平衡时的密度。这个计算忽略了系统的量子压强（动能），也就是说其适用于bulk sample，也就是比较大的一块liquid。在我们的实验中，由于原子数量的限制，我们目前并不能获得足够大的原子数去达到一个edge可以忽略的sample。所以这一节，我们首先引入有限体积带来的量子压强，以及其对于quantum liquid droplet的影响。于是，系统总能量由三部分构成，除了MF 和 LHY 相互作用能，还有量子压强。表达式如下
+% overall of this section (done 2021-10-8 09:20:57)
+In Sec. \ref{sec:droplet_ana}, we calculate the quantum liquid analytically, showing the mean-field and LHY energy expressions. Then we obtain the equilibrium density of the system. This calculation ignores the system's quantum pressure (kinetic energy), which means it is only proper for homogeneous bulk samples. However, in our experiments, due to the limitation of the atomic number, we currently cannot obtain a sample with a large enough number allowing us to ignore its edge. Thus, in this section, we first analyse the quantum pressure caused by the finite volume then show its influence on the quantum liquid droplet. 
 
-总能量表达式
+% introducing energy expression
+The total energy of the system consists of three parts, in addition to the interaction energy from MF and LHY, there is also the quantum pressure. The expression is as follows
+\begin{equation}
+\begin{split}
+E_{\text{kin}}=N \frac{\hbar ^2}{2m}\int \left| \nabla \phi (\pmb{r})\right| ^2 \, dr^3\\
+E_{\text{trap}}=N\int \left| \phi (\pmb{r})\right| ^2V_{\text{trap}}(\pmb{r})dr^3,\text{   }V_{\text{trap}}(\pmb{r})=\frac{1}{2}m \omega _0^2\pmb{r}^2\\
+E_{\text{MF}}=\frac{g}{2}N^2\int \left| \phi (\pmb{r})\right| ^4 \, dr^3,\text{    }g=\frac{2\pi  \hbar ^2a_S}{m/2}
+\end{split}
+\end{equation}
+where ... 什么是什么
+局部而言，MF能量正比于n方，LHY正比于n 2.5 次方。动能正比于波函数变化，所以对于homogeneous的bulk sample，这一项是零。但是，考虑到边界上波函数迅速降低（里面density 有限，外面是真空）所以，边界上一定会引入额外的动能，这个动能趋向于让边界变化率降低，也就是变得的更平缓。所以也就趋向于让sampple膨胀。这是经典系统里没有的。另一个被称为表面张力的现象可以用MF enrgy 来解释，在边界上，density 较低，LHY的正的能量相较于MF的吸引能量小很多，所以主要由MF能量主导一个吸引。这个吸引相互作用只发生在density低的边界上，从而构成了表面张力。这一点和经典液体的表面张力成因是一样的。从另一个角度来说MF能量是一个零阶近似，不管是经典还是量子系统都有的。
+
+% 插入图片density 分布随着number变化的变化，展示edge 效应
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width = 0.7\linewidth]{.pdf}
+\end{center}
+\caption[]{}
+\label{}
+\end{figure}
+
+
+%继续分析
+现在考虑一个有限大小的droplet sample。鉴于上面的分析，如果边界足够大，那么边界上的动能就远小于边界上的MF能，因为总的动能正比于 梯度平方乘上边界大小。而MF正比于边界 什么？ 能不能忽略动能？ ***仔细检查*** 所以，
 
 % quantum droplet with trap
-除了自由空间的quantum droplet, 在sec 中我们也讨论in trap的sample。对于in trap的sample，我们需要再额外加入trap energy这一项。于是total能量就有四个部分构成。对于一个有限大小的sample，trap energy和quanutm pressure情况刚好相反，小size引入更高的quantum presure，但是也降低了trap energy，反之亦然。小的size也引入更高的MF和LHY energy。对于droplet 区域的sample，MF是负的能量，所以MF和LHY互相竞争。分析这样一个有两组能量互相竞争的sample并不是可以直接进行的。所以我们引入的变分法的计算可以很好的帮助我们理解这种情况下的sample。这一部分在sec做了仔细的阐释。更详细的计算可以参考LiuXiaji的paper。
+In addition to the quantum droplet of free space, we also discuss the sample of in trap in sec. For the in trap sample, we need to add an additional item of trap energy. So total energy is composed of four parts. For a sample of finite size, trap energy and quantum pressure are just the opposite. Small size introduces higher quantum pressure, but also reduces trap energy, and vice versa. Small size also introduces higher MF and LHY energy. For the sample in the droplet area, MF is negative energy, so MF and LHY compete with each other. Analyzing such a sample with two groups of energies competing with each other is not straightforward. Therefore, the calculation of the variational method we introduced can help us understand the sample in this case very well. This part is explained carefully in sec. For more detailed calculations, please refer to \cite{Liuxiaji2020}.
 
+\section{Variational calculation}
 
-\section{Variational solution}
+% overall of this section
+In this section we introduce the variational calculation of droplet. Variational calculations can help us better understand the results of each energy competition in the system. From the analysis in the previous section, we can already see that no matter the quantum pressure or the interaction energy, in a quantum droplet of finite volume, it is very dependent on the wave function distribution of the system. In places where the changes are severe, that is, at the edges, the quantum pressure is relatively large, and at the same time, the interaction energy (MF and LHY) is low due to the low density. In the middle part of the sample, the density is higher, but the wave function changes smoothly, so the situation is reversed.
 
-这一节我们引入对droplet的变分计算。变分计算可以帮助我们更好地理解系统各个能量竞争之后的结果。上一节的分析，我们已经可以看出，无论量子压强还是相互作用能，在一个有限体积的quantum droplet里面，都非常依赖于体系的波函数分布。在变化剧烈的地方，也就是边缘处，量子压强比较大，同时由于密度较低，相互作用能（MF and LHY）较低。而在sample的中间部分，密度较高，但是波函数变化平缓，所以情况相反。
+% why we use variational method instead of directly using GPE simulation
+A more accurate method of simulating the system is to use the finite element method, which treats the entire wave function as a function of space coordinates, and then uses a variational method to adjust the value of the wave function at each spatial position, reducing the energy of the overall system, thereby giving Get a more accurate solution. But this method has two disadvantages. One is that the calculation of the three-dimensional system consumes a lot of computing resources, which is incapable of ordinary personal computers. The second is that simulation does not help us understand the behavioral trends of the system. It's like what social science says, we look at the world with prejudice. Or like the model in the field of machine learning to data. In order to understand the behavior of the system, we need an intermediate model to help us establish the relationship between various causes and effects. After this step, the subsequent GPE simulation will be clearer.
 
-比较精确的仿真系统的方法是使用有限元的方法，将整个波函数看成是空间坐标的函数，然后采用变分的方法调整每个空间位置的波函数值，降低整体系统的能量，从而给出比较精确的解。但是这个方法有两个缺点。其一是对于三维系统的计算消耗大量计算资源，是普通个人计算机无法胜任的。其二是仿真并不能帮助我们理解系统的行为趋势。这就像社会科学里所说的，我们带着偏见看世界。或者像机器学习领域里的模型之于数据。为了理解系统的行为，我们需要一个中间模型帮助我们建立起多种因与果之间的关系。经过这一步之后，随后的GPE仿真才会更加清晰。
-
-这一节我们先回顾single species BEC的变分计算，随后我们定义了什么是release energy，并且解释了release energy如何反应了相互作用和二阶关联函数的测量。同时，这也给出了实验上的测量手段，也就是直接的TOF 方法。随后我们展示了在double-species系统里引入gauss变分。虽然是一个非常粗糙的近似，但是，对于number比较少的case，是一个还不错的近似，因为相互作用对于体系的贡献相对而言还是比较少的。这一点在随后的计算中会得到验证。我们仿照single-speceis BEC的无量纲参数，在这里引出两个无量纲参数来表征trap里的double-speceis BEC。从而便于对系统进行classify。
+% section structure
+In this section, we first review the variational calculation of single species BEC, and then we define what release energy is, and explain how release energy reflects the interaction and the measurement of the second-order correlation function. At the same time, this also gives an experimental measurement method, that is, the direct TOF method. Then we showed the introduction of Gauss variation in the double-species system. Although it is a very rough approximation, it is a good approximation for a case with a relatively small number, because the contribution of the interaction to the system is relatively small. This will be verified in subsequent calculations. We imitate the dimensionless parameters of the single-species BEC, and here introduce two dimensionless parameters to characterize the double-species BEC in the trap. Thereby it is convenient to classify the system.
 
 In this note, we try to calculate two things by variational method: 1. LHY gas in a harmonic trap and the released energy when expansion in freespace. 2. Droplet  with magnetic field gradient and how the critical number shifting. 
 We start from Single BEC in a harmonic trap and review the variational method with Gaussian Ansatz. Noted that, we get the $\chi $= - 0.67 there is a collapse point, which offers no solution. Then, we plot the release energy curve. The release energy is just the sum of kinetic energy in trap plus the interaction energy. 
@@ -188,7 +215,6 @@ about the $\xi $
 
 \begin{equation}\text{}\end{equation}
 
-\subsection{Double BEC in harmonic trap with near zero-MF interaction }
 
 When we put $N_{\text{Rb}}$ Rb and $N_{\text{Na}}$ Na in a harmonic trap with trap frequency of $\omega _{\text{Rb}}$ and $\omega _{\text{Na}}$,
 we have ground state energy of
@@ -304,7 +330,16 @@ E_{\text{tot}}[w]=N \hbar  \omega  \left[\left(\frac{3}{4}\frac{1}{w^2}+\frac{3}
 \text{where}\text{    }\chi =\frac{a_SN}{a_{\text{ho}}}, \xi =\left(\frac{A}{a_{\text{ho}}}\right){}^{5/2}N^{3/2}
 \end{equation}
 
+更加精细的变分函数的使用可以获得更精确的解。
+
 \section{extended GPE solution}
+
+% overall of this section
+Although the variational method used in the previous section provides a general physical image, because we use a rough gauss function, the method will get meaningless results when the system deviates from the reasonable parameter interval. So we need more accurate numerical calculations to compare with experimental data. In view of the fact that quantum depletion is still a very low part of our system, it is more reasonable to use local density approximation to calculate the wave function of the condensate part. Therefore, we only need to add LHY correctin to MF shift as a high-level correction. Then use this extended GPE to calculate the system to get the condensate wave function of the system.
+
+% adopt Minardi approximation
+In this section, let us first revisit the calculation of MF and LHY correction of the double BEC system. Then we give the derivation of extended GPE. We first give the derivation of single species GPE. Then imitating this process, the derivation of the extended GPE of double-species is given. When calculating the LHY correction, if we adopt the method of infinite integration, the amount of calculation will increase. So we imitated Minardi's paper and adopted an approximation with an error of less than 5\%. The rationality of this approximation essentially stems from the symmetry of the two species (and check the paper to check this)
+
 
 Hamiltonian for BEC with two components is
 \begin{equation}H_{\text{tot}}=\sum _k \epsilon _{1,k}\hat{a}_{1,k}\dagger\hat{a}_{1,k}+\frac{g_{11}}{2V}\sum _{\left\{k_i\right\}} \hat{a}_{1,k_1}^+\hat{a}_{1,k_2}^+\hat{a}_{1,k_3}\hat{a}_{1,k_4}+\sum
@@ -376,10 +411,7 @@ Plot of List of f($\gamma $,x,y) for numerical one and Minardi's approximation.
 So, we can see that, there are mainly several percentage error by using this formula. And the maximum error is about 15$\%$. So, keep this error
 in mind about the LHY energy.
 
-\subsection{Derivation of GPE and extended GPE from mean-field energy}
-
-
-\subsection{Derivation of GPE}
+\subsection{Derivation of GPE for single species BEC}
 
 First, we assume the many-body wave function is a product state
 \begin{equation}
@@ -414,7 +446,7 @@ Then, take the variance to be zero, we have GPE
 \end{split}
 \end{equation}
 
-\subsection*{Derivation of extendedGPE(eGPE)}
+\subsection{Derivation of extended GPE for double species}
 First, we assume the many-body wave function is a product state
 \begin{equation}
 \Psi \left(\overset{\rightharpoonup }{r}_1,\overset{\rightharpoonup }{r}_2,\ldots  ,\overset{\rightharpoonup }{r}_N\right)=\sum _{i=1}^N \psi \left(\overset{\rightharpoonup
@@ -438,8 +470,6 @@ thus, we have eGPE
 -\frac{\hbar ^2}{2m}\left(\nabla ^2\psi (r)\right)+(V(r)-\mu )\psi (r)+N g\left(\psi ^*(r)\psi (r)\right)\psi (r)+\frac{5C}{2}\left(\psi (r)\psi^*(r)\right)^{3/2}\psi (r)=0\\
 -\frac{\hbar ^2}{2m}\left(\nabla ^2\psi ^*(r)\right)+(V(r)-\mu )\psi ^*(r)+N g\left(\psi ^*^2(r)\psi (r)\right)+\frac{5C}{2}\left(\psi ^*(r)\right)^{5/2}(\psi(r))^{3/2}=0
 \end{equation}
-
-\subsection*{Extended GPE for double species}
 
 First, we assume the many-body wave function is a product state
 \begin{equation}
@@ -486,7 +516,7 @@ i \hbar \frac{\partial\psi_1}{\partialt}=\left(-\frac{\hbar^2\nabla^2}{2m_1}+V_1
 i \hbar \frac{\partial \psi _2}{\partial t}=\left(-\frac{\hbar ^2\nabla ^2}{2m_2}+V_2+g_{22}n_2+g_{12}n_1+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta n_2}\right)\psi _2
 \end{equation}
 
-\subsection*{eGPE for GPELAB with Minardi approximation}
+\subsection{eGPE for GPELAB with Minardi approximation}
 
 \begin{equation}
 i \hbar \frac{\partial\psi_1}{\partialt}=\left(-\frac{\hbar^2\nabla^2}{2m_1}+V_1+g_{11}n_1+g_{12}n_2+\frac{\delta  \mathcal{E}_{\text{LHY}}}{\delta n_1}\right)\psi _1\\
@@ -554,8 +584,40 @@ Do Dimension-Reduction, we have
 \end{equation}
 
 \section{Na-Rb Hetero-nuclear quantum droplet}
-\subsection{Tuning inter-species interaction by Feshbach resonance}
+\label{sec:droplet_experiment}
+
+Our experiment starts from an optically trapped double BEC of $^{23}$Na and $^{87}$Rb (denoted as species 1 and 2 hereafter, respectively) both prepared in their lowest-energy hyperfine Zeeman level $\ket{F = 1, m_F = 1}$~\cite{wang2015double}. To reveal the LHY effects, we focus on the near-zero MF region with $\delta g = g_{12} + \sqrt{g_{11} g_{22}} \approx 0$. Here $g_{ij} = 2\pi\hbar^2 a_{ij}/M_{ij}$ are the two-body interaction constants, with $a_{ij}$ the scattering lengths and $M_{ij}$ the reduced masses. To reach this regime, we use the Na-Rb Feshbach resonance at $B_0 = 347.648$~G to tune the Na-Rb scattering length. The scattering length is represented as $a_{12} = a_\text{bg}\big(1-\Delta/(B-B_0)\big)$ [upper panel of Fig.~\ref{fig1}(a)], with background scattering length $a_\text{bg} = 76.33a_0$ and resonance width $\Delta = 4.255$~G~\cite{Wang2013,note1}. Near $B_0$ the intraspecies scattering lengths $a_{11} = 60.05a_0$~\cite{Knoop2011,SM} and $a_{22} = 100.13a_0$~\cite{Kempen2002,SM} remain almost constant. 
+
+%% add figure1 here
+\begin{figure*}[t]
+\begin{center}
+\includegraphics [width = 0.85\linewidth]{fig1.pdf}
+\end{center}
+\caption{(color online). Creation and detection of Na-Rb mixtures for investigating LHY effects. (a) In the upper panel, the purple, yellow, and black solid lines are scattering lengths between Na-Na($a_{11}$), Rb-Rb($a_{22}$) and Na-Rb($a_{12}$), respectively. The dashed green curve is $\widetilde{\delta g}$. The dashed vertical line indicates the magnetic field for $\widetilde{\delta g} = 0$. In the lower panel, the phase diagrams at different atomic numbers and magnetic fields are shown. Inset: schematic detection method of the droplet in free space. (b) Images of the mixture during the TOF expansion in the gas phase at 350.451 G (left) and the droplet phase at 349.849 G (right). (c) Cloud sizes obtained from (b) reveal the very different behaviors of the two phases. Data points for $^{87}$Rb are shown in purple, while those for $^{23}$Na are in yellow. Inset: in the droplet phase, 
+bimodal distributions are observed for the cloud with excess atoms. A double Gaussian fitting is used to extract the droplet size in this case.
+}
+\label{fig1}
+\end{figure*}
+%% add figure1 here
+
+For convenience, we define a dimensionless parameter $\widetilde{\delta g} \equiv \delta g/\overline{g}$ to characterize the total $E_{\rm MF}$, with $\overline{g} = (g_{11}+g_{22})/2$. For the current system, the critical magnetic field for $\widetilde{\delta g} = 0$ (and also $\delta g= 0$) is $B_c = 349.978$~G, which corresponds to a critical interspecies scattering length $a^c_{12} = -63.1 a_0$. As shown in Fig.~\ref{fig1}(a) (lower panel), for each value of $\widetilde{\delta g} < 0$, the double BEC will undergo a transition from gas phase to droplet phase as the atom numbers are increased. With our atom numbers around $10^4$ for both species, the theory predicts an observation window for the droplet phase for $\widetilde{\delta g}$ from $-0.061$ to $-0.189$ (349.910 G to 349.780 G). For $\widetilde{\delta g}$ from 0 to $-0.061$, droplet formation is still possible but atom numbers much larger than currently available are needed.
+
 \subsection{Experiment method and time sequence}
+
+
+%imaging method
+In the first experiment, we study the Na-Rb quantum droplet in free space 
+by releasing the sample from the optical trap. We probe the system during the time of flight (TOF), as depicted in the inset of Fig.~\ref{fig1}(a).
+To probe the atoms in situ at each TOF, we implement a two-species high-field detection protocol which consists of a partial optical pumping process followed by standard absorption imaging on the cycling transitions~\cite{Jia2020}.
+This partial imaging method is necessary as the droplets have very high optical depth and are difficult to detect directly~\cite{ramanathan2012partial,semeghini2018self}. Both the partial optical pumping and the absorption imaging are calibrated using standard methods~\cite{reinaudi2007strong,hueck2017calibrating}. The measured resolutions ($1/\sqrt{e}$ half Gaussian widths) of our imaging system are $0.6~\mu$m and $0.8~\mu$m for $^{23}$Na at 589 nm and $^{87}$Rb at 780 nm, respectively, which are just enough to resolve the droplet. 
+To maintain the imaging resolutions, we mount the objective and the probe 
+light optics on high-precision vertical translational stages to keep the optical axis of the imaging system always aligned with the droplet.
+
+%experiment method and time sequence
+While shutting down the optical trap provides a direct way of probing the droplet in free space, the non-adiabatic nature of the process can cause problems.
+Due to the confinement, the in-trap sample is smaller in size than the free-space droplet in its ground state, while the total energy of the system is much larger. In the worst scenario, the energy of the initial state upon release from the trap is larger then the energy barrier of the
+expansion and a stable droplet can never be formed~\cite{SM}. To mitigate this problem, the crossed optical dipole trap is configured in a nearly spherical shape with measured trap oscillation frequencies of 78 Hz (86 Hz) for $^{87}$Rb ($^{23}$Na). This is in accordance with the understanding that a quantum droplet with isotropic short-range interactions should be spherical in free space. In addition, a carefully designed magnetic field control sequence is used to improve the mode matching~\cite{SM}. These steps allow us to observe droplet formation reliably for $\widetilde{\delta g}$ from $-0.094$ to $-0.189$. However, for $\widetilde{\delta g}$ from $-0.061$ to $-0.094$, due to the smaller binding energy, droplets can be observed only by a more sophisticated mode-matching method, aided by fast magnetic field quenching at the instant of releasing the samples from the trap~\cite{SM}. For this method to work, the starting magnetic field must be selected carefully so that the size of the in-trap sample matches that of the free-space droplet at the end of the magnetic field quenching.
+
 
 % time sequence
 \begin{figure}[hb]
@@ -566,11 +628,50 @@ Do Dimension-Reduction, we have
 \label{Droplet_time-sequence}
 \end{figure}
 
-\subsection{Imaging method for dense sample}
+image scheme 可以在sec里找到
+
+
 \subsection{observing non-expansion signal}
 
-\section{Characterization of liquid-gas phase transition}
-\subsection{magnetic field gradient shifts critical number}
+Figure~\ref{fig1}(b) shows a side-by-side comparison of the $^{23}$Na and $^{87}$Rb clouds in the gas phase and the droplet phase following the TOF.
+The signature self-bound behavior of the droplet can be observed clearly by comparing its dramatically different TOF expansion with that in the gas phase.
+For $\widetilde{\delta g}=-0.119$ (349.849 G), where the droplet phase is expected, the sizes of both clouds stay nearly the same during the TOF.
+For $\widetilde{\delta g}=+0.344$ (350.451 G), by contrast, the system remains in the gas phase, and the sizes increase steadily with TOF.
+
+% fitting by Gaussian and double-Gaussian
+To extract quantitative information, we fit the images with 2D Gaussian functions.
+In the droplet, the size should be the same for the two species; their densities and thus numbers should follow the ratio $N_{2}/N_{1} 
+= \sqrt{g_{11}/g_{22}}=1.51$~\cite{petrov2015}. When this ratio is not maintained, the droplet part shows up as a dense central peak, and the excess atoms of one species appear as a much larger-sized and expanding gaseous background surrounding the droplet [inset of Fig.~\ref{fig1}(c)].
+For this kind of ``bimodal'' distribution, the droplet parameters are extracted with a double 2D Gaussian fitting. Fig.~\ref{fig1}(c) shows the starkly different expansion behaviors in the droplet and the gas phases obtained from the images in Fig.~\ref{fig1}(b).
+
+%% add figure2 here
+\begin{figure}[htb]
+\begin{center}
+\includegraphics [width =0.95 \linewidth]{fig2.pdf}
+\end{center}
+\caption{Evolution of the Na-Rb droplet in free space. (a), (b), and (c) show the size, atom numbers, and the $^{87}$Rb to $^{23}$Na number ratio at $\widetilde{\delta g} = -0.116$ (349.852 G) following the TOF. The droplet is created by directly releasing the sample from the trap. The vertical bar marks the approximate time of the liquid-to-gas phase transition. (d), (e), and 
+(f) show the evolution for the droplet created with the additional magnetic field quenching for $\widetilde{\delta g} = -0.089$ (349.880 G). The 
+red dashed lines in (c) and (f) mark the theoretical number ratio $N_2/N_1=1.51$.  }  \label{fig2}
+\end{figure}
+%% add figure2 here
+
+
+%Explanation of Fig#2
+%droplet formation
+For the droplets formed by direct trap release from $\widetilde{\delta g} = -0.094$ to $-0.189$, we observe two distinctively different dynamics in the evolution of the $^{23}$Na and $^{87}$Rb samples during the TOF. As an example, Fig.~\ref{fig2}(a), (b) and (c) show the sizes, atom numbers, and number ratio of the droplet sample for $\widetilde{\delta g}=-0.116$ (349.852~G).
+During the first 10 ms, the $^{23}$Na and $^{87}$Rb sizes increase very little, while atom losses are observed for both species.
+Bimodal distributions are observed from 0 ms to 5 ms as the initial number ratio is far from 1.51. After 5 ms expansion, the gaseous atoms surrounding the droplet are already too dilute to be detected. 
+
+%droplet to the gas phase transition
+After about 10 ms, the sample sizes start to increase while the atom numbers stay nearly constant.
+This is consistent with a phase transition from droplet to gas when the atom numbers are reduced to below the critical values [see Fig.~\ref{fig1}(a)]. We fit the size evolution empirically with $\sigma(t>t_0)=\sqrt{\sigma_0^2+v^2(t-t_0)^2}$ and $\sigma(t<t_0)=\sigma_0$, and obtain a lifetime in the droplet phase of about $t_0 = 7$ ms. Here $v$ is the expansion velocity of the gas-phase sample. Similarly, as illustrated in Fig.~\ref{fig2}(b), the critical atom numbers for the phase transition can be obtained by fitting the $^{23}$Na and $^{87}$Rb number evolution data with an 
+exponential decay function with the critical number as the offset.
+
+For several values of $\widetilde{\delta g}$ between $-0.061$ and $-0.094$, we have created longer-lived droplets by the magnetic field quenching method. As shown in Fig.~\ref{fig2}(d), (e) and (f), during the accessible TOF, the droplet size stays nearly the same although number losses are still observed. After 10 ms, the number ratio becomes close to 1.51 and the number loss slows down significantly. As the lifetime is longer than the usable TOF 
+of 18 ms, we have not been able to measure the real lifetime and the critical numbers in this range of $\widetilde{\delta g}$. More detailed investigations, e.g., by levitating the droplet, are warranted in the near future.
+
+
+\subsection{Characterization of liquid-gas phase transition}
 
 An important technical issue for observing the free-space droplet is the spatial varying magnetic field experienced by the droplet during the TOF. 
 Due to the different magnetic dipole moments of $^{23}$Na ($\mu_{b1} = 1.084$ MHz/G) and $^{87}$Rb ($\mu_{b2} = 0.837$ MHz/G) near $B_0$, a moderate gradient and curvature may generate a differential force large enough to tear the droplet apart. With the pair of Feshbach coils only, the measured magnetic field curvature near 347 G is 1.4 G/cm$^2$ and the averaged magnetic field gradient is about 0.6 G/cm. Experimentally, we observe the $^{23}$Na and $^{87}$Rb atomic clouds separating from each other following the TOF. To mitigate this problem, we placed another coil, with its current dynamically controlled following the TOF, on top of the Feshbach coil.
@@ -600,9 +701,32 @@ Figure~\ref{fig3} shows the critical $^{23}$Na and $^{87}$Rb atom numbers for $\
 Although the range of $\widetilde{\delta g}$ is small, a four-fold change in the measured critical numbers is observed. 
 The critical numbers calculated using coupled eGPEs with the LHY term included (dashed curves) show large discrepancies with the measurements. The agreement is greatly improved by also including the small post-compensation residual magnetic field gradient in the eGPEs (solid curves); the additional term nearly doubles  the critical numbers. This can be understood from the different magnetic dipole moments and masses of $^{23}$Na and $^{87}$Rb, which cause their centers of mass to separate in a magnetic field gradient~\cite{SM}. This decreases the density overlap and lowers the attractive interspecies mean-field energy while leaving the intraspecies energy nearly intact. Effectively, this increases the critical numbers compared to the ideal case of zero gradient.
 
-\subsection{three-body loss}
+\subsection{magnetic field gradient shifts critical number}
+Figure~\ref{fig3} shows the critical $^{23}$Na and $^{87}$Rb atom numbers for $\widetilde{\delta g}$ from $-0.094$ to $-0.189$.
+Although the range of $\widetilde{\delta g}$ is small, a four-fold change in the measured critical numbers is observed. 
+\zc{\sout{The critical numbers calculated using coupled eGPEs with the LHY term included (dashed curves) show large discrepancies with the measurements. The agreement is greatly improved by also including the small post-compensation residual magnetic field gradient in the eGPEs (solid curves); the additional term nearly doubles the critical numbers. This can be understood from the different magnetic dipole moments and masses of $^{23}$Na and $^{87}$Rb, which cause their centers of mass to separate in a magnetic field gradient~\cite{SM}. This decreases the density overlap and lowers the attractive interspecies mean-field energy while leaving the intraspecies energy nearly intact. Effectively, this increases the critical numbers compared to the ideal case of zero gradient.} The critical numbers calculated using coupled eGPEs with the LHY term included (solid curves) matches the measurements very well. }
+
+
+%% add figure3 here
+\begin{figure}[htb]
+\begin{center}
+\includegraphics [width =0.85 \linewidth]{fig3.pdf}
+\end{center}
+\caption{Critical atom numbers for the liquid-to-gas phase transition as a function of $\widetilde{\delta g}$. The solid lines
+are calculated from coupled eGPEs with the residual magnetic field gradient included. \zc{\sout{The dashed lines represent the calculation without considering the gradient for comparison.}} The color codes are purple for $^{87}$Rb and yellow for $^{23}$Na. }
+\label{fig3}
+\end{figure}
+%% add figure3 here
+
+% about loss
+A major cause of the atom losses is three-body recombination as a result of the high number densities in the droplet~\cite{cabrera2018quantum,semeghini2018self,DErrico2019,SM}. For droplets with $\widetilde{\delta g}$ from $-0.094$ to $-0.189$, another possible loss mechanism is self-evaporation due to the imperfect matching between in-trap and free-space modes~\cite{Ferioli2020}. The short lifetimes in this region are the combined result of these loss mechanisms. In contrast, the droplet at $\widetilde{\delta g} = -0.089$ [see Fig.~\ref{fig2}(d), (e), and (f)] has relatively lower number densities and is formed with nearly optimal mode matching, and is thus longer lived. Nevertheless, for both cases, the stabilized number ratios after 10 ms TOF are very close to 1.51 despite the different creation procedures and the large initial number mismatches [Fig.~\ref{fig2}(c) and (f)].
+%\textcolor{red}{Can we say anything about the density? Is the long-lived droplet a low density one?}
 
 \section{Lee-Huang-Yang gas}
+\label{sec:LHY_gas}
+
+We now turn to the gas-phase double BEC and release the sample directly from the trap (without the additional magnetic field quenching) for $\widetilde{\delta g}$ from +0.344 to $-0.094$. To characterize the LHY effect, we measure the release energy $E_{\rm rel}=E_{\rm kin}+E_{\rm int}$ from the TOF expansion~\cite{Holland1997,Mewes1996,SM}. Here $E_\text{\rm kin}$ is the quantum pressure and $E_{\rm int}=E_{\rm MF}+E_{\rm LHY}$ is the total interaction energy. When $E_{\rm MF}$ is tuned to zero, $E_{\rm LHY}$ becomes the only interaction term in $E_{\rm rel}$. For negative $E_{\rm MF}$, the fact that the sample expands rather than collapses is also a direct manifestation of the LHY effect.
+
 \subsection{Expansion of gas phase sample and Release energy}
 %introduce the LHY gas, explain the difference between liquid droplet and LHY gas
 In the previous sections, we describe a liquid phase droplet sample made of $^{23}\rm Na$--$^{87}\rm Rb$ BEC mixture. 
@@ -642,11 +766,13 @@ Compared with the gas phase mixture released from the trap, the $E_{\rm rel}$ he
 This behavior can be qualitatively understood from the change of the total energy of the droplet ($E_\text{tot}$) during the phase transition. For large enough atom numbers, $E_{\rm tot}$ has a negative minimum, and the system is in the droplet phase. 
 Following the number loss, $E_{\rm tot}$ increases gradually. The droplet becomes meta-stable when $E_{\rm tot}$ is above zero, and the system eventually enters the gas phase when the energy minimum disappears. The measured $E_{\rm rel}$ here reflects $E_\text{tot}$ at the phase transition point which also includes contributions from $E_{\rm LHY}$, $E_{\rm MF}$, and $E_{\rm kin}$.
 %
-For more negative $\widetilde{\delta g}$, the critical atom numbers at the phase transition point are smaller, but the sample size $\propto |\widetilde{\delta g}|^{-3/2}$ shrinks much steeper. As result, the increase of the positive $E_{\rm LHY}$ and $E_{\rm kin}$ terms are faster than the decrease of the negative $E_{\rm MF}$ term. $E_{\rm tot}$ is thus positive and the measured $E_{\rm rel}$ also follows the same trend and increases for more negative $\widetilde{\delta g}$. We note that without $E_{\rm LHY}$, the magnitude of $E_{\rm MF}$ is larger than $E_{\rm kin}$ and the system will collapse. This picture is confirmed by the variational calculation as depicted by the red dashed curve in Fig.~\ref{fig4}. A more detailed discussion can be found in supplementary material~\cite{SM}.       
+For more negative $\widetilde{\delta g}$, the critical atom numbers at the phase transition point are smaller, but the sample size $\propto |\widetilde{\delta g}|^{-3/2}$ shrinks much steeper. As result, the increase of the positive $E_{\rm LHY}$ and $E_{\rm kin}$ terms are faster than the decrease of the negative $E_{\rm MF}$ term. $E_{\rm tot}$ is thus positive and the measured $E_{\rm rel}$ also follows the same trend and increases for more negative $\widetilde{\delta g}$. We note that without $E_{\rm LHY}$, the magnitude of $E_{\rm MF}$ is larger than $E_{\rm kin}$ and the system will collapse. This picture is confirmed by the variational calculation as depicted by the red dashed curve in Fig.~\ref{fig4}. A more detailed discussion can be found in supplementary material~\cite{SM}.   
 
 \subsection{LHY effect for gas-phase condensate mixture}
 
 \section{Mode matching when producing droplet sample}
+\label{sec:mode_match}
+
 \subsection{In-trap vs. free-space sample}
 
 During the release of the double BEC sample from the optical trap, the trap energy suddenly is removed suddenly but the size of the sample has no time to adapt to the new value. As shown in Fig.~\ref{figS1}, in general the in-trap size is smaller than the size of the ground-state free-space droplet at the energy minimum. The sample size will thus start to expand after released from the trap and its total energy (per particle) $E_{\rm tot} = E_{\rm kin} + E_{\rm int}$ will also start to evolve following the red curves. For the cases with very small $|\widetilde{\delta g}|$ [Fig.~\ref{figS1}(a)], $E_{\rm tot}$ is higher than the energy barrier at the right hand side. In this case, the sample will just keep expanding after crossing the maximum point and never forms the droplet.
@@ -681,9 +807,8 @@ better mode matching can be achieved by finding a $\widetilde{\delta g}$ value w
 s longer than the available observation time. For case (c) with $\widetilde{\delta g} = -0.110$, the liquid-to-gas phase transition is observed after about 7 ms. This short lifetime is probably limited by the atom numbers since at this $\widetilde{\delta g}$, the critical atom numbers are much larger.
 
 
-
-
 \subsection{producing weak bound droplet by quenching B-field}
 
 
 \section{producing Feshbach molecule from droplet}
+\label{sec:droplet_molecule}
