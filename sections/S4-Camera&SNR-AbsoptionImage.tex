@@ -1,0 +1,76 @@
+\chapter{Camera comparison and absorption image SNR analysis}
+
+\section{Absorption SNR analysis}
+
+When doing absorption image, we typically take three images, noted as:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item \(C_{\text{in}}(x,y)\) as input light distribution on the atom
+    \item \(C_{\text{out}}(x,y)\) as output(after absorption) light
+    \item \(C_{\text{bg}}(x,y)\) as the background
+\end{itemize}
+formula of OD is
+\begin{equation}
+\text{OD}(x,y)=n_{\text{col}}(x,y)\sigma _0^*=\text{Log}\left[\frac{C_{\text{in}}(x,y)-C_{\text{bg}}(x,y)}{C_{\text{out}}(x,y)-C_{\text{bg}}(x,y)}\right]+\frac{C_{\text{in}}(x,y)-C_{\text{out}}(x,y)}{C_{\text{sat}}^{\text{eff}}}
+\end{equation}
+where
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item \(C(x,y)=I(x,y)\times \frac{A_{\text{pix}}}{M^2}\times \frac{\lambda }{h c}\times T\times \text{QE}\times \tau \times \frac{1}{\text{ADC}}\)
+    \item \(I(x,y)\) is the intensity distribution of light on atom
+    \item \(A_{\text{pix}}\) is the pixel size of camera, \(\frac{A_{\text{pix}}}{M^2}\) is the real pixel size with counting magnification of image system.
+    \item $\lambda $ is the probe light wavelength
+    \item T is the transmission rate of the image system
+    \item QE is the quantum efficiency of the camera
+    \item ADC is the ADC conversion efficiency of the camera
+    \item $\tau $ is the exposure time
+\end{itemize}
+
+The Noise is
+\begin{equation}
+\begin{split}
+\sigma _{\text{OD}}^2&=\left(\frac{\partial \text{OD}}{\partial C_{\text{in}}}\right){}^2\sigma _{C_{\text{in}}}^2+\left(\frac{\partial \text{OD}}{\partial C_{\text{out}}}\right){}^2\sigma _{C_{\text{out}}}^2+\left(\frac{\partial \text{OD}}{\partial C_{\text{bg}}}\right){}^2\sigma _{C_{\text{bg}}}^2\\
+&=\left(\frac{1}{C_{\text{sat}}^{\text{eff}}}+\frac{1}{C_{\text{in}}-C_{\text{bg}}}\right){}^2\sigma _{C_{\text{in}}}^2+\left(\frac{1}{C_{\text{sat}}^{\text{eff}}}+\frac{1}{C_{\text{out}}-C_{\text{bg}}}\right){}^2\sigma_{C_{\text{out}}}^2\\
+&+\left(\frac{1}{C_{\text{in}}-C_{\text{bg}}}-\frac{1}{C_{\text{out}}-C_{\text{bg}}}\right){}^2\sigma _{C_{\text{bg}}}^2
+\end{split}
+\end{equation}
+
+Then, The Signal to Noise ratio is
+\begin{equation}
+\begin{split}
+\text{SNR}&=\frac{\text{Log}\left[\frac{C_{\text{in}}-C_{\text{bg}}}{C_{\text{out}}-C_{\text{bg}}}\right]+\frac{C_{\text{in}}-C_{\text{out}}}{C_{\text{sat}}^{\text{eff}}}}{\sqrt{\alpha^2+\beta^2+\gamma^2}}\\
+\alpha^2&=\left(\frac{1}{C_{\text{sat}}^{\text{eff}}}+\frac{1}{C_{\text{in}}-C_{\text{bg}}}\right){}^2\sigma_{C_{\text{in}}}^2\\
+\beta^2&=\left(\frac{1}{C_{\text{sat}}^{\text{eff}}}+\frac{1}{C_{\text{out}}-C_{\text{bg}}}\right){}^2\sigma _{C_{\text{out}}}^2\\
+\gamma^2&=\left(\frac{1}{C_{\text{in}}-C_{\text{bg}}}-\frac{1}{C_{\text{out}}-C_{\text{bg}}}\right){}^2\sigma
+_{C_{\text{bg}}}^2
+\end{split}
+\end{equation}
+
+Put noise formula into the above SNR, we have
+
+\begin{equation}
+\begin{split}
+\text{SNR}&=\frac{\text{Log}\left[\frac{C_{\text{in}}-C_{\text{bg}}}{C_{\text{out}}-C_{\text{bg}}}\right]+\frac{C_{\text{in}}-C_{\text{out}}}{C_{\text{sat}}^{\text{eff}}}}{\sqrt{X^2+Y^2+Z^2+W^2}}\\
+X^2&=\left[\left(\frac{1}{C_{\text{sat}}^{\text{eff}}}+\frac{1}{C_{\text{in}}-C_{\text{bg}}}\right){}^2+\left(\frac{1}{C_{\text{sat}}^{\text{eff}}}+\frac{1}{C_{\text{out}}-C_{\text{bg}}}\right){}^2\right.\\
+&\left.+\left(\frac{1}{C_{\text{in}}-C_{\text{bg}}}-\frac{1}{C_{\text{out}}-C_{\text{bg}}}\right){}^2\right]\sigma_{\text{readout}}^2\\
+Y^2&=\left(\frac{1}{C_{\text{sat}}^{\text{eff}}}+\frac{1}{C_{\text{in}}-C_{\text{bg}}}\right){}^2\sigma _{\text{in}-\text{signal}}^2\\
+Z^2&=\left(\frac{1}{C_{\text{sat}}^{\text{eff}}}+\frac{1}{C_{\text{out}}-C_{\text{bg}}}\right){}^2\sigma_{\text{out}-\text{signal}}^2\\
+W^2&=\left(\frac{1}{C_{\text{in}}-C_{\text{bg}}}-\frac{1}{C_{\text{out}}-C_{\text{bg}}}\right){}^2\sigma _{\text{bg}-\text{signal}}^2
+\end{split}
+\end{equation}
+
+\begin{table}[hbt]
+\caption[Cameras parameter table]{Camera parameter table}
+\label{camera_test}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+                                                                               & PCO-Pixelfly & GS3-U3-15S5M-C & BFS-PGE-31S4 & PCO-sCOS \\ \hline
+Wavelength(nm)                                                                 & 589/780      & 589/780        & 589/780      & 589/780  \\ \hline
+QE(\%) on datasheet                                                            & 58/25        & 72/35          & 70/30        & 61/35    \\ \hline
+QE(\%) measured                                                                & -/22.0       & 56.6/-         & 47.2/27.0    &          \\ \hline
+\begin{tabular}[c]{@{}l@{}}Readout noise(e)\\ on datasheet\end{tabular}        & 6            & 8.31           & 2.29         & 1.1      \\ \hline
+\begin{tabular}[c]{@{}l@{}}Readout noise(e)\\ measured\end{tabular}            &              &                & 0.53         &          \\ \hline
+\begin{tabular}[c]{@{}l@{}}Dark noise rate\\ on datasheet\end{tabular}         & 1 e/s        &                &              & 0.8 e/s  \\ \hline
+\begin{tabular}[c]{@{}l@{}}Dark noise rate\\ measured\end{tabular}             &              &                & 0.59 e/s     &          \\ \hline
+\begin{tabular}[c]{@{}l@{}}A/D conversion(e/count)\\ on datasheet\end{tabular} & 1            & tunable        & tunable      & 0.46     \\ \hline
+\begin{tabular}[c]{@{}l@{}}A/D conversion(e/count)\\ measured\end{tabular}     &              &                & 1/0.53       &          \\ \hline
+\end{tabular}
+\end{table}

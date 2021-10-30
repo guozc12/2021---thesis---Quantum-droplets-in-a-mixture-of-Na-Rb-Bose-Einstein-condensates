@@ -6,9 +6,20 @@
 \setlength{\epigraphwidth}{11cm}
 \epigraph{Historians may re-examine the mistakes of the past in the hope of providing warning for the future, but at the same time caution their readers to preserve what is of value. \cite{HuangRay19811ayo}}{--- Ray Huang\\ \textit{1587, a Year of No Significance (1981)}}
 
-In section \ref{sec:intro-overview}, I will review my research journey in these two years, trying to retrieve a storyline of our struggling instead of only the perfect developed ending.
+% section introduction (done 2021-10-25 14:00:50)
+Section \ref{conclu} summarize what we have done: 1. Detect the quantum droplet made of hetero-nuclear BEC mixture. 2. Characterize the LHY correction by studying the gaseous LHY gas sample. 3. Re-calibration of the 347.64 G Na-Rb Feshbach resonance due to requirement from droplet experiment. In Sec. \ref{sec:intro-overview}, I review my research journey in these two years, trying to retrieve a storyline of our struggling instead of only the developed results and ending. Finally comes the outlooks (Sec. \ref{sec:outlooks}), where I try to describe the ongoing research direction in this field.
 
 \section{Conclusion}
+\label{conclu}
+
+% Conclusion #1 (done 2021-10-25 13:49:01)
+In this thesis, we build the hetero-nuclear quantum droplet made of Na and Rb BEC mixtures. We experimentally study the new phase of matter and investigate the LHY correction, which is vital for liquid droplet formation. With Na-Rb Feshbach resonance at 347.64 G, the interspecies interaction can be manipulated while remaining the intraspecies interaction. We observe the stabilization and formation of the quantum droplet by detecting the smoking-gun self-binding behaviour, i.e. maintaining a finite volume even without any confinement. Our method is free-falling the mixture BEC sample and making an in-situ image at a high magnetic field, directly imaging the sample's density profile. Furthermore, we experimentally study the phase transition diagram of the quantum liquid droplet to a gaseous sample, which provides a quantitative characterization of the LHY effect. 
+
+% Conclusion #2 (done 2021-10-25 13:55:25)
+To characterize the LHY correction further, we study the gaseous sample by measuring the expansion behaviour and thus its release energy. This release energy can reveal quantum pressure and interaction energy (including MF and LHY energy) in the original sample. By tuning the MF energy to zero, we can extract the information of LHY energy which provides another way to characterize this pure quantum effect. By carefully modelling the expansion process, we explain the abnormal expansion velocity of the gaseous sample near-zero mean-field energy region as a complementary study to the liquid phase.
+
+% conclusion #3 (done 2021-10-25 13:56:37)
+Because of quantum droplets' sensitivity to the inter-particle interactions, we need an accurate map of the scattering length as a function of the magnetic field. Therefore, we measured the binding energy accurately by dissociating the Na-Rb Feshbach molecules. Then, fitting by the coupled-channel method, we obtained a highly accurate molecular potential curve. Finally, we achieved a refined map of the scattering length to the magnetic field. This calibration lay a solid foundation for further researches about the mixture of Na and Rb.
 
 \section{Thesis Overview}
 \label{sec:intro-overview}
@@ -80,7 +91,7 @@ In July 2018, We first chose the non-cycling transition with \(90\%\) probabilit
 \end{figure}
 
 % found magnetic field gradient (done 2021年8月17日12:22:02)
-Thanks to images for both species, we discover the magnetic gradient affecting the droplet sample. As shown in Fig. \ref{gradient_compensation}, the gradient applies on Na and Rb generate different forces due to different mass and dipole. The mixture sample tends to be torn apart. So, for observing a better droplet signal without the effect of a gradient, we compensate the gradient with another single-coil (right panel of Fig. \ref{gradient_compensation}). By measuring the accelerations of both Rb and Na, we can choose the best compensation point. After solving this problem, we obtain the non-expansion signal of the droplet clearly, as shown in Fig. \ref{first_signal_both}. We use an imbalanced number case; the Na number is much larger than Rb. A clear, bright spot shows up at the centre of the Na BEC, which shows the smoking-gun signal for the droplet.
+Thanks to images for both species, we discover the magnetic gradient affecting the droplet sample. As shown in Fig. \ref{Apparatus_gradient-compen}, the gradient applies on Na and Rb generate different forces due to different mass and dipole. The mixture sample tends to be torn apart. So, for observing a better droplet signal without the effect of a gradient, we compensate the gradient with another single-coil (right panel of Fig. \ref{Apparatus_gradient-compen}). By measuring the accelerations of both Rb and Na, we can choose the best compensation point. After solving this problem, we obtain the non-expansion signal of the droplet clearly, as shown in Fig. \ref{first_signal_both}. We use an imbalanced number case; the Na number is much larger than Rb. A clear, bright spot shows up at the centre of the Na BEC, which shows the smoking-gun signal for the droplet.
 
 % first signal for both case (done 2021年8月16日11:42:23)
 \begin{figure}[htbp]
@@ -100,8 +111,23 @@ In June of 2019, after finishing all the technical problems, we started to take 
 % some comments (done 2021年8月17日13:02:27)
 I summarize the journey of studying quantum droplets as follows: first, the goal of this study is passive since we did not figure out what we want to study at the very beginning. A clear goal is vital to guide and push the following movement, such as technique upgrading or numerical simulation. Second, the review work done at the first phase is not broad enough. We only focus on the already existing experimental works and theories. Actually, finding the connection between other fields is essential and could guide the following working direction. Third, my attitude to the \textit{numbers} is not serious that caused using of the unverified parameters. This pulled our leg for a long time and finally causing the degrading of this work. In all, it is a good lesson to not only my research career but also to my daily life, from the attitude to details to the way of thinking and doing.
 
-
 \section{Outlooks}
+\label{sec:outlooks}
+
+% Problem of research now
+The biggest difficulty and problem of our experiment is that it is impossible to obtain a sample with a sufficient and stable lifespan. Because the experiment uses the ToF method, if the atomic group flies too far, both the gradient of the magnetic field and the resolution of the imaging will be further affected, thereby limiting the detection time. The improved scheme can refer to the Italian paper and adopt the method of light well levitation. It should be noted that the trap effect of levitation needs to be evaluated, so as to avoid the unwanted effect of additional traps. Another problem is the excessively high three-body loss rate. Because the density of the droplet is generally much higher than the gaseous BEC, about one to two orders of magnitude. Therefore, the three-body loss rate is higher by $10^2$ to $10^3$. For such a serious loss, it can only be achieved by preparing a droplet with a weaker bond to reduce the density of its equilibrium state. The negative effect of this is that the requirements for the number of atoms are correspondingly increased. Our new device uses 2D-MOT to increase the atomic number of Na, which may have the opportunity to prepare quantum droplets with more atomic numbers.
+
+% low dimension as new direction
+On the existing experimental devices, the experiments we may explore mainly include the study of low-dimensional quanutm droplets. Refer to petrov and other papers, for 2D or 1D systems, it is relatively easier to implement droplets, which stems from the fact that the quantum fluctuation of low-dimensional systems is more important than the MF part. For example, the formation conditions of 2D droplets will be more relaxed than 3D. $\delta g$ does not need to be less than 0, it can also form a droplet phase. In addition, 2D is more abundant, and there are many interesting research content waiting to be discovered.
+
+% theory problems and possible solutions
+From the theoretical point of view, Petrov's theory \cite{petrov2015} has a loophole, which was discussed by \cite{Hu2020, Hu2020a}. As we present in Chap. \ref{Chap:theory}, the integral of the low-momentum imaginary region of the excitation spectrum is ill. This may hide a more profound physics. The problem can be severe when we tune $\delta g$ to be even negative, finally deviating from the weak attractive MF condition. Then, we must quest the microscope formation mechanism of the quantum droplet. One theory proposes the Bose pairing mechanism, which imitates the BCS theory providing a new field of pair of Boson. For a low dimension system, the Bose-pairing can form naturally. However, for the 3D case, the bound state formation is subtle. How to design an experiment to verify these new theories is essential. For example, for the theory of Bose pairing, it may be possible to use brag spectroscopy to detect the excitation of the pair to verify.
+
+% experiment outlooks #1
+In addition, starting from the already formed droplet, we can also consider its improvement or inspiration for other experiments. For example, droplet leads to a very good overlap of Na Rb. Considering this, we try to use this as a starting point to improve the formation rate of Feshbach molecule. Our experiments show that this effect is not very obvious. In addition to the limitations of experimental methods, theoretically it may be related to a multi-body system such as sample itself is condensate. Then this system can be used as a good platform to detect the transition from few to many bodies.
+
+% closing
+In short, quantum droplet is a small branch that studies many-body physics. Its significance is to raise the status of LHY correction to a dominant position, not just a correction. Compared with the measurement of other previous experiments, this has a very extraordinary significance. Then, for such a new phase, dig out more characteristics, so that it can become a very meaningful platform for in-depth study of pure quantum effect such as LHY or above LHY. The unique cleanness and easy control of the cold atom experimental system will bring excellent solutions for the study of many-body physics and further quantum simulations.
 
 \chapterend
 

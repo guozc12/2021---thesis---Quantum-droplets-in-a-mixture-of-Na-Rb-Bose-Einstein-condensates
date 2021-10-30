@@ -70,10 +70,10 @@ As described in \cite{LiLintao2021}, we build an optical trap with magic wavelen
 
 \subsection{Producing Na-Rb Feshbach molecules}
 % motivation (done 2021-8-26 18:49:35)
-In our laboratory, the original intention of producing Feshbach molecules is to make the ground state molecule of NaRb further. After successfully making the ground state molecule \cite{guo2016}, the mission of this machine becomes the study of heteronuclear mixture BEC. The core ingredient of research on this set-up consequently involves adjusting inter-particle interaction through the Feshbach resonance. Many interesting physics problems can be studied, such as Effimov state, polaron, spinor. Then the essential parameter is the FR parameter, i.e. how the scattering length of the inter-species changes with the magnetic field. The detailed calibration and calculation will be demonstrated in Chap. \ref{Chap_Feshbach}. We note that the scattering properties near resonance will be most affected by the shallowest bound state, so the precision measurement of the bound state will give accurate scattering properties in turn. Therefore, we need to synthesize FR molecules and study their properties.
+In our laboratory, the original intention of producing Feshbach molecules is to make the ground state molecule of NaRb further. After successfully making the ground state molecule \cite{PhysRevLett.116.205303}, the mission of this machine becomes the study of heteronuclear mixture BEC. The core ingredient of research on this set-up consequently involves adjusting inter-particle interaction through the Feshbach resonance. Many interesting physics problems can be studied, such as Effimov state, polaron, spinor. Then the essential parameter is the FR parameter, i.e. how the scattering length of the inter-species changes with the magnetic field. The detailed calibration and calculation will be demonstrated in Chap. \ref{Chap_Feshbach}. We note that the scattering properties near resonance will be most affected by the shallowest bound state, so the precision measurement of the bound state will give accurate scattering properties in turn. Therefore, we need to synthesize FR molecules and study their properties.
 
 % method (done 2021-8-27 10:40:51)
-Our experiment starts from an optically trapped ultracold mixture of $^{23}$Na and $^{87}$Rb atoms, both in their lowest hyperfine state $\ket{F = 1, m_F = 1}$~\cite{wang2013observation,wang2015formation,jia2020}. Magnetoassociation starts from an initial magnetic field of 350 G, just above the FR at $B_0 = 347.64$ G. The magnetic field is ramped down across the resonance to form FMs, and then to 335.6 G. At this field, the FMs have a nearly zero magnetic dipole moment; this allows us to remove the residual atoms with a short and strong magnetic field gradient without losing molecules. Afterwards, the magnetic field is ramped up to a range of target values below $B_0$ for further experiments. Following this procedure, we can routinely obtain a pure sample of \NaRb~FMs with a typical temperature of 300 nK and a trap lifetime of more than 30 ms. This short lifetime is due to near-resonance photon scattering by the 947 nm optical trap light~\cite{Guo2017,jia2020}, which is provided by a home-built diode laser system. In another experiment on \NaRb, in which a single-frequency 1064 nm laser is used as the optical trap light, FM lifetimes greater than 100 ms have been observed~\cite{Wang2019,guo2021leehuangyang}. Nevertheless, the current lifetime is more than enough for the present work, as we need only 10 ms for magnetic field stabilization and less than 1 ms for dissociation.
+Our experiment starts from an optically trapped ultracold mixture of $^{23}$Na and $^{87}$Rb atoms, both in their lowest hyperfine state $\ket{F = 1, m_F = 1}$~\cite{wang2013observation,wang2015formation,jia2020}. Magnetoassociation starts from an initial magnetic field of 350 G, just above the FR at $B_0 = 347.64$ G. The magnetic field is ramped down across the resonance to form FMs, and then to 335.6 G. At this field, the FMs have a nearly zero magnetic dipole moment; this allows us to remove the residual atoms with a short and strong magnetic field gradient without losing molecules. Afterwards, the magnetic field is ramped up to a range of target values below $B_0$ for further experiments. Following this procedure, we can routinely obtain a pure sample of $^{23}$Na$^{87}$Rb FMs with a typical temperature of 300 nK and a trap lifetime of more than 30 ms. This short lifetime is due to near-resonance photon scattering by the 947 nm optical trap light~\cite{Guo2017,jia2020}, which is provided by a home-built diode laser system. In another experiment on $^{23}$Na$^{87}$Rb, in which a single-frequency 1064 nm laser is used as the optical trap light, FM lifetimes greater than 100 ms have been observed~\cite{Wang2019,guo2021leehuangyang}. Nevertheless, the current lifetime is more than enough for the present work, as we need only 10 ms for magnetic field stabilization and less than 1 ms for dissociation.
 
 \section{Image system upgrades}
 \label{sec:image}
@@ -174,7 +174,7 @@ In the previous subsection \ref{subsec:high_mag_absop_image}, in order to perfor
 \end{equation}
 In above formula, $\sigma_{eff}$ represents the effective cross-section of atoms, which is related to probe detuning, intensity and other parameters such as polarization. By separating intensity and detuning, we have
 \begin{equation}
-\sigma_{eff}(\delta,I,others)=\sigma^*(others)\frac{1}{(1+(\frac{2\delta}{\Gamma})^2)+\frac{I}{I^*_{sat}(others)}}
+\sigma_{eff}(\delta,I,others)=\frac{\sigma^*(others)}{(1+(\frac{2\delta}{\Gamma})^2)+\frac{I}{I^*_{sat}(others)}}
 \end{equation}
 Probe light transmits along the $z$ direction and has a distribution in $x$-$y$ plane. $n(x,y,z)$ is density distribution of a bulk sample. When we do absorption image, we actually probe the column density
 \begin{equation}
@@ -390,8 +390,6 @@ As we mentioned in the section about Feshbach resonance, by tuning the magnetic 
 \label{Apparatus_coil_holder}
 \end{figure}
 
-\subsection{Fast-B coil design and driver}
-
 % What is fast coil and how to build one. (done 2021-9-16 22:41:19)
 So, with the above request, we need to build another coil that can generate a small but fast magnetic field. The limitation is the coil's inductance, so we reduce its turns to as few as possible. However, with fewer tunes, the magnetic field can generate a less magnetic field. So we need to make a trade-off here. Finally, we choose a diameter 60 mm coil pair with six turns for each one. Also, to generate a larger magnetic field, we put it as close as possible to the cell. The set-up with the main Feshbach coil is shown in Fig. \ref{Apparatus_coils}. To adapt our previous large coil, we designed a holder made of polyvinyl as shown in \ref{Apparatus_coil_holder}. Moreover, the holder winding with the fast coil is inserted into the 2-inch optical path to avoid blocking the MOT beam.
 
@@ -428,77 +426,52 @@ Number of turns         & 70             & 6                     \\ \hline
 \label{tab:coils}
 \end{table}
 
-% coupling of fast coil and main coil
-As explained in \cite{cumby2012exploring}, we need to consider the coupling of the fast coil, the main coil and the environment. Since, these coupling will cause oscillation and jiggle when quenching the current in the fast coil. As modeled by the lump elements, as shown in Fig. \ref{Apparatus_coils}. The Fast coil are simulated as a inductance driven by a current source. fast coil has mutual inductance with main coil and the environment. The main coil is viewed a RLC circuit and the environment only as a RL circuit. With this lump circuit simulation, we can qualitatively figure out however these three things coupled to each other. However, more detailed parameter can only be achieved by measure the response of the system. So, we tested the fast coil by quenching its current. As shown in Fig. \ref{} (a), we test 
-
-% add test figure here
-
-
-\subsection{Dynamic compensation for induced and eddy current}
+% coupling of fast coil and main coil (done 2021-10-28 17:19:01)
+As explained in \cite{cumby2012exploring}, we need to consider the coupling of the fast coil, the main coil and the environment. Since, these coupling will cause oscillation and jiggle when quenching the current in the fast coil. As modeled by the lump elements, as shown in Fig. \ref{Apparatus_coils}. The Fast coil are simulated as a inductance driven by a current source. fast coil has mutual inductance with main coil and the environment. The main coil is viewed a RLC circuit and the environment only as a RL circuit. With this lump circuit simulation, we can qualitatively figure out however these three things coupled to each other. However, more detailed parameter can only be achieved by measure the response of the system. By adding a quenching signal, we can get the response of the whole system. Then, we can do feed-forward to compensate the overshooting or jiggles since the speed of fast coil is about 1000 times faster than the Main coil and the environment.
 
 % Why we need dynamic compensation
-There are two reasons for us to do the dynamic compensations, first is the coupling of fast coil and main coil and the environment will cause a jigger when we quench the current of the fast coil. To avoid this jigger, we feedforward setting the current to compensate this overshoting. Second is for droplet experiment: because the magnetic field generated by main Feshbach coil has gradient, when we do ToF, the magnetic field at atom position changes with time. So, to keep the magnetic field on atom unchanges with ToF, we need this dynamic compensation. For the first case, the compensation need very fast so we use the fast coil. For the second one, it is a relatively slow changing process. So we only use the shim coil to do the compensation. 
-
-
-
+There are two reasons for us to do the dynamic compensations, first is the coupling of the fast coil and main coil, and the environment will cause a jigger when we quench the current of the fast coil. To avoid this jigger, we feed-forward set the current to compensate for this overshooting. The second is for the droplet experiment: because the magnetic field generated by the main Feshbach coil has a gradient, when we do ToF, the magnetic field at atom position changes with time. So, to keep the magnetic field on atoms unchanged with ToF, we need this dynamic compensation. For the first case, the compensation needs very fast, so we use the fast coil. For the second one, it is a relatively slow-changing process. So we only use the shim coil to do the compensation. 
 
 \section{Other Technical Issues}
 \subsection{Magnetic field gradient compensation}
 \label{subsec:gradientcompen}
-%Why we need to compensate the B-field gradient (done 2021-9-24 17:34:04)
-As mentioned before, we use a pair of Feshbach coils to generate a large bias magnetic field to control the Feshbach resonance. However,  the imperfection of the coil, such as asymmetry of coils and imperfection of distance between up-down Helmholtz coils, renders a gradient and curvature of the magnetic field. This effect can be easily detected by the free-falling of atoms in the high magnetic field. If one finds that the atom's acceleration deviates from gravity acceleration, there must be a gradient. Another evidence is the MW (RF) spectroscopy for an elongated sample that could detect the horizontal gradient. As shown in Fig. \ref{Apparatus_Tof-grad}, we free-fall Rb or Na under a high magnetic field. The acceleration is shown to be different from gravity; thus, this effect could affect a lot when doing experiments with the free-falling method in our set-up.
 
-% add free falling atom under high magnetic field
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics [width = \linewidth]{Apparatus_Tof-grad.pdf}
-\end{center}
-\caption[]{}
-\label{Apparatus_Tof-grad}
-\end{figure}
+%Why we need to compensate the B-field gradient (done 2021-9-24 17:34:04)
+As mentioned before, we use a pair of Feshbach coils to generate a large bias magnetic field to control the Feshbach resonance. However,  the imperfection of the coil, such as asymmetry of coils and imperfection of distance between up-down Helmholtz coils, renders a gradient and curvature of the magnetic field. This effect can be easily detected by the free-falling of atoms in the high magnetic field. If one finds that the atom's acceleration deviates from gravity acceleration, there must be a gradient. Another evidence is the MW (RF) spectroscopy for an elongated sample that could detect the horizontal gradient. When we free-falling Rb or Na under a high magnetic field, if the acceleration becomes different from gravity, we can use it as an indicator of magnetic field gradient.
 
 % What is our gradient looks like? (done 2021-9-17 22:37:43)
-Before talking about cancelling this gradient, we first measure it. The method is simple, following the MW transition calibration method, we apply the MW pulse coupling the $\ket{1,-1}$ and $\ket{2,0}$ state. To get the spatial distribution of the magnetic field, we first let the atom free-fall, then apply the MW pulse at different ToF. Even though the gradient affects the atom's position by adding an extra acceleration, considering the small effect related to gravity, this can be neglected. Then, we get the magnetic spatial distribution as shown in Fig.\ref{Apparatus_mag-field}. Not only exists the gradient but also the the curvature of the magnetic field because the spatial changing B-field is definitely more than linear. By a simple quadratic curve fitting, we get the curvature of about 1xxx \(G/cm^2\) and an average gradient of about xx G/cm. One thing that needs to be noticed here is that we measured only the magnetic field gradient in the vertical direction, which is our main contribution. As we can see in the horizontal direction, the acceleration is even much lower than that in the vertical direction, which infer that this gradient should come mainly from the wrong distance of the Helmholtz coil.
+Before talking about cancelling this gradient, we first measure it. The method is simple, following the MW transition calibration method, we apply the MW pulse coupling the $\ket{1,-1}$ and $\ket{2,0}$ state. To get the spatial distribution of the magnetic field, we first let the atom free-fall, then apply the MW pulse at different ToF. Even though the gradient affects the atom's position by adding an extra acceleration, considering the small effect related to gravity, this can be neglected. Not only exists the gradient but also the the curvature of the magnetic field because the spatial changing B-field is definitely more than linear. By a simple quadratic curve fitting, we get the curvature of about $2.47 \times 10^3$ G/cm$^2$ and an average gradient of about xx G/cm. One thing that needs to be noticed here is that we measured only the magnetic field gradient in the vertical direction, which is our main contribution. As we can see in the horizontal direction, the acceleration is even much lower than that in the vertical direction, which infer that this gradient should come mainly from the wrong distance of the Helmholtz coil.
 
-% add magnetic field spatial distribution
-\begin{figure}[htbp]
+% gradient compensation method
+\begin{figure}[htb]
 \begin{center}
-\includegraphics [width = \linewidth]{Apparatus_mag-field.pdf}
+\includegraphics [width = 0.7 \linewidth]{Apparatus_gradient-compen.pdf}
 \end{center}
-\caption[]{}
-\label{Apparatus_mag-field}
+\caption[Method of compensating the magnetic field gradient]{$\alpha$) B-field curvature and gradient affects free falling of atoms. $\beta$) Using only UP shim coil to compensate gradient.}
+\label{Apparatus_gradient-compen}
 \end{figure}
 
 % How to compensate the gradient and curvature (done 2021-9-17 23:42:44)
 It is hard to totally compensate the curvature because it will need to entirely recover the Helmholtz condition, which requires a much larger magnetic field to be added to the existing system. So, to solve the problem we meet, we degenerate to compensate the average gradient to zero inside the interesting ToF we care. So, we can add another magnetic gradient in the vertical direction and adjust its current to find the best compensation point. We use one of the up-down shim coil (e.g. up coil) as a preliminary test. As shown in Fig. \ref{Apparatus_gradient-compen}, we can generate an inverse direction gradient opposite to the main coil. 
 
-% gradient compensation method
-\begin{figure}[htbp]
+% add find compensation point method (done 2021-10-28 18:17:22)
+\begin{figure}[htb]
 \begin{center}
-\includegraphics [width = \linewidth]{Apparatus_gradient-compen.pdf}
+\includegraphics [width = 0.7  \linewidth]{Apparatus_compen_method.pdf}
 \end{center}
-\caption[]{}
-\label{Apparatus_gradient-compen}
-\end{figure}
-
-% find the best compensation point (done 2021-9-17 23:54:51)
-We change the current of the shim coil and test the acceleration of the atom to find the compensation point. As the dipole moment of Na and Rb is quite different, we can also find the intersect point of them, which represents zero average gradient compensation point, as shown in Fig. \ref{Apparatus_compen_method}. Finally, we tune the shim coil to the current at the intersection. We measure the magnetic field with the MW spectroscopy method and compare the result with the previous non-compensation one, as shown in Fig. \ref{Apparatus_mag_before_after}. It is evident that the mean gradient is reduced significantly; however, the curvature is still there. The compensated gradient and culture are about xxx \(G/cm^2\) and \(xxx G/cm\), which should be enough to observe BEC mixture free-falling.
-
-% add find compensation point method
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics [width = \linewidth]{Apparatus_compen_method.pdf}
-\end{center}
-\caption[]{}
+\caption[Method of searching the compensation point]{By searching the cross point of Na and Rb sharing the same acceleration, we find the compensation point.}
 \label{Apparatus_compen_method}
 \end{figure}
 
+% find the best compensation point (done 2021-9-17 23:54:51)
+We change the current of the shim coil and test the acceleration of the atom to find the compensation point. As the dipole moment of Na and Rb is quite different, we can also find the intersect point of them, which represents zero average gradient compensation point, as shown in Fig. \ref{Apparatus_compen_method}. Finally, we tune the shim coil to the current at the intersection. We measure the magnetic field with the MW spectroscopy method and compare the result with the previous non-compensation one, as shown in Fig. \ref{Apparatus_mag_before_after}. It is evident that the mean gradient is reduced significantly; however, the curvature is still there. The compensated gradient on average (we take the 10 ms ToF as an average position) are about 0.11 G/cm, which should be enough to observe BEC mixture free-falling.
+
 % before and after compensation measurement
-\begin{figure}[htbp]
+\begin{figure}[htb]
 \begin{center}
-\includegraphics [width = \linewidth]{Apparatus_mag_before_after.pdf}
+\includegraphics [width = 0.7 \linewidth]{Apparatus_mag_before_after.pdf}
 \end{center}
-\caption[]{}
+\caption[Magnetic field spatial distribution at vertical direction after compensation]{Shows the magnetic field spatial distribution at vertical direction after compensation. It still remains gradient and curvature, however much smaller than the one before compensation. We fit it with a quadratic function to get the local gradient and curvature for compensation later.}
 \label{Apparatus_mag_before_after}
 \end{figure}
 
@@ -516,76 +489,74 @@ A commercial antenna is typically designed to work well in the far-field region.
 \begin{center}
 \includegraphics [width =0.5 \linewidth]{Apparatus-EM_field_antenna.pdf}
 \end{center}
-\caption[Electromagnetic field of a dipole antenna]{Electromagnetic field of a dipole antenna from \href{https://www.everythingrf.com/community/what-is-the-difference-between-a-monopole-and-dipole-antenna}{\textit{\textbf{here}}}. The near-field and far-field distribution are quite different as described in text.}  
+\caption[Electromagnetic field of a dipole antenna]{Electromagnetic field of a dipole antenna (image from \href{https://www.everythingrf.com/community/what-is-the-difference-between-a-monopole-and-dipole-antenna}{Everythingrf Website}). The near-field and far-field distribution are quite different as described in text.}  
 \label{antenna_EM}
 \end{figure}
 
 % what previous one done, and what's the problem of it (done 2021-9-22 01:22:59)
 Previously, we used a horn antenna for Rb MW transition at 6.8GHz. The distance between horn and atom is about 10-15 cm. The problem to put the antenna closer to the atom is its colossal size which could block the optical path, and its metallic body could disturb the strong magnetic field of a large Feshbach coil, causing a gradient on the atom. So the nearest position we can put is about 10 cm away from the atom, and the Rabi frequency of Rb $\ket{1,1}$ to $\ket{2,2}$ transition at 350 G (7.5 GHz) is less than 1 kHz with a 40 W power amplifier. The correspondents \(\pi/2\) pulse duration is about 250 $\mu$s which is too long for most of our experiments, such as high magnetic field image or too weak for dissociating the FR molecule. Thus, we need to upgrade it to enhance the Rabi frequency.
 
-% full-loop antenna: 示意图 和 电磁场分布
+% full-loop antenna (done 2021-10-29 12:47:53)
 \begin{figure}[htb]
 \begin{center}
-\includegraphics [width =0.5 \linewidth]{Apparatus-.pdf}
+\includegraphics [width =0.5 \linewidth]{Apparatus_full_antenna.pdf}
 \end{center}
-\caption[]{}  
+\caption[Full loop antenna and Q-section for impedance matching]{Full loop antenna and Q-section for impedance matching. The parameter of the loop is set to be one wavelength of the emitting MW. The 75-ohm Q-section is for impedance matching.}  
 \label{Apparatus_full_antenna}
 \end{figure}
 
-% How to improve? what is full-wave loop antenna?
-So, a naive solution is to put the antenna as close to the cell as possible and try to shrink its size smaller and thinner. Therefore, the loop antenna will be a proper choice. A loop antenna is just a simple loop connected to the signal generator. However, for our case with frequencies at 2.6 GHz and 7.5 GHz, The wavelength is around several cm to tens of cm. This is comparable to our coil size, which could introduce a severe problem with impedance matching. A standard solution is making the perimeter of the loop antenna just a full wavelength, which is called the full-wave loop antenna as shown in Fig. \ref{Apparatus_full_antenna}. When the scale of the antenna is closed to wavelength, the distribution of radiation becomes quite different to those small-loop antennas. This can be explained by a simplified picture, as shown in Fig. \ref{Apparatus_full_antenna}. At the joint place, and directly opposite current changes with the largest amplitude, and there placed two nodes at the quarter wavelength place to the joint. However, the current almost has the same phase on the whole coil for a small loop antenna. Therefore, they have different patterns shown in Fig. \ref{Apparatus_antenna_full_small}.
+% How to improve? what is full-wave loop antenna? (done 2021-10-29 12:55:03)
+So, a naive solution is to put the antenna as close to the cell as possible and try to shrink its size smaller and thinner. Therefore, the loop antenna will be a proper choice. A loop antenna is just a simple loop connected to the signal generator. However, for our case with frequencies at 2.6 GHz and 7.5 GHz, The wavelength is around several cm to tens of cm. This is comparable to our coil size, which could introduce a severe problem with impedance matching. A standard solution is making the perimeter of the loop antenna just a full wavelength, which is called the full-wave loop antenna as shown in Fig. \ref{Apparatus_full_antenna}. When the scale of the antenna is closed to wavelength, the distribution of radiation becomes quite different to those small-loop antennas. This can be explained by a simplified picture, as shown in Fig. \ref{Apparatus_full_antenna}. At the joint place, and directly opposite current changes with the largest amplitude, and there placed two nodes at the quarter wavelength place to the joint. However, the current almost has the same phase on the whole coil for a small loop antenna. Therefore, they have different radiation patterns.
 
-% full-loop and small-loop antenna
-\begin{figure}[htb]
-\begin{center}
-\includegraphics [width =0.5 \linewidth]{Apparatus-.pdf}
-\end{center}
-\caption[]{}  
-\label{Apparatus_antenna_full_small}
-\end{figure}
-
-% How the antenna works?
-According to the near-field quasi-static EM field theory, we can write down the EM field as following:
-\begin{equation}
-    E...
-\end{equation}
-Then, we can plot the radiation power as function of distance to the center of the loop coil, as shown in Figure. The maximum radiation appears at \(\lambda/4\) away from the plane of coil. And actually, the power at the center of coil is zero, which is in opposite to the case of a small-loop coil. For our case with f=2.6GHz, the wavelength is about 12 cm and we place the coil 3 cm away from atom to achieve the largest power. For the 7.5 Ghz case, we use paramter about 4 cm coil loop, however we cannot put the coil 1 cm away from the atom since the cell has a size of 2cm, so 综合考虑optical path and power, we put the tiny coil at the side of cell with a 45 degree angle and distance to atom about 3 cm. 
+% How the antenna works? (done 2021-10-29 13:00:50)
+According to the near-field quasi-static EM field theory, the maximum radiation appears at \(\lambda/4\) away from the coil plane. Furthermore, the power at the centre of the coil is zero, which is different from the case of a small-loop coil. For our case with $f=2.6$GHz, the wavelength is about 12 cm. So, we place the coil 3 cm away from the atom to achieve the largest power. For the 7.5 GHz case for Rb MW in a high magnetic field, we set the perimeter of the loop to 4 cm. However, we cannot put the coil 1 cm away from the atom due to the distance limitation. Finally, by making the trade-off between the optical paths and MW power, we set the tiny coil at the side of the cell with a 45-degree angle and distance to atom about 3 cm. 
 
 % Set-up and impedance matching (done 2021-9-22 02:35:26)
-After preparing the coil, we set up the standard MW power amplifier circuit for it. For the 2.6 GHz one, we use \href{}{} from Taobao, and for the 7.5 GHz one, we use the product from the company. Before the amplifier, we add a switch controlled by a TTL signal, and the signal generator is an SG386. The critical point to increase the efficiency from power amplifier to the coil, i.e. \(\eta_{trans}\), we need carefully consider the impedance matching from the transmission wire to the loop coil. As shown in Fig. \ref{Apparatus_full_impedance}, we demonstrate several full-wave loop antennas with different shapes. They have different impedance; the ideal one is rectangular with an aspect ratio of 1:2, with 50 Ohm impedance. However, for our case with a round shape, we have the coil with 133 Ohm. Our transmission line and power amplifier are all 50 Ohm, so we need to match impedance. We use a balloon, i.e. a 75 Ohm transition line, to enhance the transmission rate. As shown in Fig. \ref{Apparatus_full_antenna}, the signal can be reflected at the boundary of two lines with different impedance. Boundaries of 50-to-75 and 75-to-133 offer two reflection waves. If we choose a proper length of the 75 Ohm line, we can cancel the reflection thanks to their superposition. 
+After preparing the coil, we set up the standard MW power amplifier circuit for it. Before the amplifier, we add a switch controlled by a TTL signal, and the signal generator is an SG-386. The critical point to increase the efficiency from power amplifier to the coil, i.e. \(\eta_{trans}\), we need carefully consider the impedance matching from the transmission wire to the loop coil. As shown in Fig. \ref{Apparatus_full_impedance}, we demonstrate several full-wave loop antennas with different shapes. They have different impedance; the ideal one is rectangular with an aspect ratio of 1:2, with 50 Ohm impedance. However, for our case with a round shape, we have the coil with 133 Ohm. Our transmission line and power amplifier are all 50 Ohm, so we need to match impedance. We use a balloon, i.e. a 75 Ohm transition line, to enhance the transmission rate. As shown in Fig. \ref{Apparatus_full_antenna}, the signal can be reflected at the boundary of two lines with different impedance. Boundaries of 50-to-75 and 75-to-133 offer two reflection waves. If we choose a proper length of the 75 Ohm line, we can cancel the reflection thanks to their superposition. 
 
-% different shape and impedance
+% different shape and impedance (done 2021-10-29 13:12:09)
 \begin{figure}[htb]
 \begin{center}
-\includegraphics [width =0.5 \linewidth]{Apparatus-.pdf}
+\includegraphics [width =0.8 \linewidth]{Apparatus_full_impedance.pdf}
 \end{center}
-\caption[]{}  
+\caption[Impedance of full-wave loop antenna with different shapes]{(image from \href{https://pa0fri.home.xs4all.nl/Ant/Quad/quadeng.htm}{pa0fri.home}) Impedance of full-wave loop antenna with different shapes. In our experiment, we use the round-shape to matching the optical path of MOT beam. In experiment in LH24C, the 1:2 rectangular is better since there is no need to do the impedance matching.}  
 \label{Apparatus_full_impedance}
-\end{figure}
-
-% test the SWR by directional coupler
-\begin{figure}[htb]
-\begin{center}
-\includegraphics [width =0.7 \linewidth]{Apparatus-measure_SWR.pdf}
-\end{center}
-\caption{}
-\label{SWR_measure_method}
 \end{figure}
 
 % Test of the coil (done 2021-9-22 02:43:53)
 Even though we know how long the q-section line should be, we still need to do the offline test for its performance because the length of several cm is too short to allow uncertainties from the imperfection of the coil's shape and impedance. These incomplete can cause the phase of reflection wave shifting and decline the effect of impedance matching. Therefore, we build a series of coils with different lengths of its q-section and measure its return loss rate by a directional coupler. As shown in Fig. \ref{SWR_measure_method}, we send the signal into the output port of a coupler, and the reflecting wave from the antenna (connecting on the input port of the coupler) will be coupled a small portion into the coupled port and detected by an analyser spectrum. By calculating the reflecting power and injection power, we plot the return loss rate as a function of the length of the q-section line in Fig. \ref{antenna_return_loss}. We find the period does coincident with the half of wavelength. There is a shift that could be attributed to the imperfection of the q-section line. By fitting with a sine function, we extract the period, shift and so on. Finally, We can now build the coil with the lowest return loss for covering our usage frequency.
 
-% return loss measurement
+% test the SWR by directional coupler (done 2021-10-29 13:06:48)
 \begin{figure}[htb]
 \begin{center}
-\includegraphics [width =0.7 \linewidth]{Apparatus-loop_antenna_return_loss.pdf}
+\includegraphics [width =0.7 \linewidth]{Apparatus-measure_SWR.pdf}
 \end{center}
-\caption[]{}  
-\label{antenna_return_loss}
+\caption[Test method of the return loss of the antenna]{Test the return loss of the antenna by a directional coupler. Noticed that the input signal is sent from the Output port of the coupler.}
+\label{SWR_measure_method}
 \end{figure}
 
 % Online test (need more modification)
 Finally, we put the coil onto the atom cell. First, we test the transmission rate of the coil online to make sure the impedance matching works well since the offline test with an environment open; however; however, the online environment is full of different metals around the coil, which could change the boundary condition and shift the impedance of the coil. So, we use the same method to test the transmission rate of the coil, as shown in Figure. The bandwidth is about xxx MHz. Then, we test the Atomic Rabi frequency to measure the final performance of the coil. We apply the MW pulse for Na at 350 G and get the Rabi frequency at different freq or detuning?. As shown in Figure, we test the saturation power and get a Rabi maximum of about 100kHz(check the number). This could allow us to make a pi pulse within 10 us which is enough for most cases such as optical pumping in the high field and MW spectroscopy.
 
+% return loss measurement
+\begin{figure}[htb]
+\begin{center}
+\includegraphics [width =0.95 \linewidth]{Apparatus-loop-antenna_retrun_loss.pdf}
+\end{center}
+\caption[Test of the return loss by changing the lengths of the Q-sections]{Test the return loss the full-wave loop antenna by changing the length of the Q-section line. Right side shows the band width test which provides a bandwidth of 67 MHz. }  
+\label{antenna_return_loss}
+\end{figure}
+
 % about 6.8 7.5Ghz coil (done 2021-9-22 11:43:16)
 After confirming that the 2.6 GHz coil does work, we built the 7.5 GHz coil, which could also increase the Rabi freq for Rb at high field. This one is similar to the Na coil with a parameter of 4 cm, which is relatively too small even to put it onto the science cell because it will block some part of the MOT beam. So, we choose to sacrifice power by arranging the coil on one edge of the cell, which increases the distance between the coil and atoms to about 3 cm. The best working distance for the 7.5 GHz coil is \(\lambda/4\), i.e. 1 cm, so for 3 cm distance, we get a power of about 1/3 compared to the maximum one. In order to pump atoms to the target state within tens $\mu$s, the required Rabi frequency needs about 10 kHz. Our online test shows a Rabi frequency of 10 kHz, allowing a 50 $\pi$-pulse for fast removing Rb atom from Feshbach molecules. Thanks to this new antenna, we can remove the horn antenna since the coil still works for 6.8 GHz with a transition rate of about \(10\%\), even its impedance matching point is 7.5 GHz. For typical MW evaporation, very little power is enough. Finally, removing the horn antenna leaves us much more space for future building optics layout.
+
+% Rabi (done 2021-10-29 13:15:45)
+\begin{figure}[htb]
+\begin{center}
+\includegraphics [width =0.7 \linewidth]{antenna_rabi.pdf}
+\end{center}
+\caption[Test Rabi oscillation of Na $\ket{1,1}$ to $\ket{2,2}$ under 350 Gauss magnetic field]{Test Rabi oscillation of Na $\ket{1,1}$ to $\ket{2,2}$ under 350 Gauss magnetic field. We can achieve a Rabi frequency of 50 kHz, which enable us pump atom to the target cycling transition within 10 $\mu$s.}  
+\label{antenna_rabi}
+\end{figure}
+
+\chapterend
