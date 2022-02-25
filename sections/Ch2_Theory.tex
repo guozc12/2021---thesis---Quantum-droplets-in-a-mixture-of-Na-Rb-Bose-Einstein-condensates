@@ -9,7 +9,7 @@
 % goal of this chapter and structure of this chapter (done 2021-10-27 01:04:34)
 This chapter mainly introduces the theory of the quantum droplet. Before that, we first briefly review the quantum scattering theory as the basis for theory of BEC and droplet. Also the scattering theory serves as basis for understanding the couple channel calculation in Chap. \ref{Chap_Feshbach}, where we fit the binding energy of the Feshbach molecule to calibrate Na-Rb molecular potential. We note here that the scattering properties play an essential role in understanding the behaviour of an ultracold sample. The second part describes the microscopic theory for two-species BEC and analytically derives its LHY correction. Then, we demonstrate the theory of droplets made of the dual-species BEC. Latter in the Chap. \ref{Chap_droplet}, we will implement both variational calculation and GPE simulation for comparing to the experiment.
 
-\section{Quantum scattering: a short reminder}
+\section{Quantum scattering: a short introduction}
 \label{sec:quan_scat}
 
 % introduction of this section quantum scattering (done 2021-10-24 16:59:12)
@@ -134,7 +134,7 @@ There are three keywords for this special system: short-range interaction, dilut
 %Pseudo-potential (done 2021-10-27 16:51:21)
 As we can use $a_s$ representing scattering process, we can write down a pseudo-potential, which gives the same effect as the original one. This procedure first done by \textit{Fermi} as following
 \begin{equation}
-V(r)=g \delta (r)\partial _r\cdot r=\frac{4\pi\hbar^2a_S}{m}\delta (r)\partial _r\cdot r
+V(r)=g \delta (r)\partial _r\cdot r=\frac{4\pi\hbar^2a_s}{m}\delta (r)\partial _r\cdot r
 \end{equation}
 which is a contact potential only affect two atoms when they have same $r$. The last term $\partial _r\cdot r$ eliminates wave function's divergence at $r\to 0$, due to it has form of $\psi \to 1-\left.a_S\right/r$. if we write the potential as
 \begin{equation}
@@ -146,7 +146,7 @@ g_R=g+g \Sigma ^* g_R
 \end{equation}
 where $g_R$ represent normalized interaction strength, and $\Sigma^*$ represent the proper self-energy of system, i.e.
 \begin{equation}
-g_R=\frac{4\pi  \hbar ^2a_S}{m}\left(1+\frac{g_R}{V}\sum _{k=0}^{\infty } \frac{1}{\hbar ^2\left.k^2\right/m}\right)
+g_R=\frac{4\pi  \hbar ^2a_s}{m}\left(1+\frac{g_R}{V}\sum _{k=0}^{\infty } \frac{1}{\hbar ^2\left.k^2\right/m}\right)
 \end{equation}
 by just take the second order correction (loop correction), we get
 \begin{equation}
@@ -155,7 +155,7 @@ g_R=g\left(1+\frac{g}{V}\sum _{k=0}^{\infty } \frac{1}{\hbar ^2\left.k^2\right/m
 \end{equation}
 The second term is actually diverge, which represents high energy scattering. This term will only be used when we need to sum over some term with all high energy collision process. In most time, we can just take $g$ as
 \begin{equation}
-g=\frac{4\pi  \hbar ^2a_S}{m}
+g=\frac{4\pi  \hbar ^2a_s}{m}
 \end{equation}
 
 % Hamiltonian (done 2021-10-27 16:51:55)
@@ -210,30 +210,30 @@ H_{\text{pseudo}}\simeq \frac{g N^2}{2V}-\frac{1}{2}\sum _{k\neq 0} \left(\epsil
 E_k=\sqrt{\epsilon _k\left(\epsilon _k+\frac{2 g N}{V}\right)}=\sqrt{\frac{\hbar ^2k^2}{2m}\left(\frac{\hbar ^2k^2}{2m}+\frac{2 g N}{V}\right)}
 \end{split}
 \end{equation}
-The gap-less linear low energy excited dissipation relation gives the super fluid property, as shown in Fig. \ref{dissipation_relation_repulsive}. when $k$ get larger, it turn back to classical particle. 
+The gap-less linear low energy excited dispersion relation gives the super fluid property, as shown in Fig. \ref{dispersion_relation_repulsive}. when $k$ get larger, it turn back to classical particle. 
 
-% dissipation_relation_repulsive (done 2021-10-24 22:51:17)
+% dispersion_relation_repulsive (done 2021-10-24 22:51:17)
 \begin{figure}[htb]
 \begin{center}
 \includegraphics [width = 0.8 \linewidth]{Note for review_gr1.eps}
 \end{center}
-\caption[This plot shows the dissipation relationship for attractive Bose system.]{This plot shows the dissipation relation ship for quasi-particle in the Bose-condensation. When k is small, it looks like a phonon, however, when k goes large it back to a particle-like quasi-particle.}
-\label{dissipation_relation_repulsive}
+\caption[This plot shows the dispersion relationship for attractive Bose system.]{This plot shows the dispersion relation ship for quasi-particle in the Bose-condensation. When k is small, it looks like a phonon, however, when k goes large it back to a particle-like quasi-particle.}
+\label{dispersion_relation_repulsive}
 \end{figure}
 
 % Negative interaction (done 2021-10-28 10:59:25)
-Now, let's consider what happens when $g<0$, i.e. attractive potential between atoms. The excitation spectrum will have no low-energy excitation part, since the low-energy excitation indicates the density wave and this will cause positive feedback to increase the density of the sample, which renders the so-called collapsing of BEC. However, the high-energy excitation is still there as shown in Fig. \ref{dissipation_relation_attrac} We will argue weather this single species BEC with negative interaction can form the quantum droplet in the next subsection. 
+Now, let's consider what happens when $g<0$, i.e. attractive potential between atoms. The excitation spectrum will have no low-energy excitation part, since the low-energy excitation indicates the density wave and this will cause positive feedback to increase the density of the sample, which renders the so-called collapsing of BEC. However, the high-energy excitation is still there as shown in Fig. \ref{dispersion_relation_attrac} We will argue weather this single species BEC with negative interaction can form the quantum droplet in the next subsection. 
 
-% dissipation_relation_attrac (done 2021-10-24 22:51:17)
+% dispersion_relation_attrac (done 2021-10-24 22:51:17)
 \begin{figure}[htb]
 \begin{center}
 \includegraphics [width = 0.8 \linewidth]{Note for review_gr2.eps}
 \end{center}
-\caption[This plot shows the dissipation relationship for attractive Bose system.]{This plot shows the dissipation relationship for attractive Bose system, i.e. $g<0$.}
-\label{dissipation_relation_attrac}
+\caption[This plot shows the dispersion relationship for attractive Bose system.]{This plot shows the dispersion relationship for attractive Bose system, i.e. $g<0$.}
+\label{dispersion_relation_attrac}
 \end{figure}
 
-\subsection{Ground state and LHY correction}
+\subsection{Ground state and the LHY correction}
 % ground state (done 2021-10-28 11:03:23)
 Now let us consider the ground state energy of this system. Directly take the lowest energy level from eq. \ref{Hamil_psuedo_dia}, we have
 \begin{equation}
@@ -269,11 +269,11 @@ E_{\text{GS}}^R=\frac{gN^2}{2V}&-\frac{1}{2}\sum_{k\neq0}\left(\frac{\hbar ^2k^2
 \end{equation}
 Directly do the summation, we get the famous LHY correction
 \begin{equation}
-\frac{E_{\text{GS}}^R}{V}=\frac{g n^2}{2}\left(1+\frac{128}{15\pi ^{1/2}} \left(n a^3\right)^{1/2}\right)
+\frac{E_{\text{GS}}^R}{V}=\frac{g n^2}{2}\left(1+\frac{128}{15\pi ^{1/2}} \left(n a_s^3\right)^{1/2}\right)
 \end{equation}
-where $a=\left|a_S\right|$. For positive interaction strength $g>0$, we can find the LHY correction is a tiny \textit{correction} when density is low, with an order of $na^3$. This has been experimentally verified in strong interacting Bose System \cite{Navon2011}. What we are interested is the case with negative interaction strength, i.e. $g<0$.The ground state energy of this case shows that there is a local minimum for a specific density. Noted that actually for $g<0$ the ground state energy formalism is ill-defined, since one cannot do the summation to get the LHY correction unless rule out the imaginary part of the low-energy excitation section. Moreover, considering the density of the local minimum, we will find that it is at the level of $na^3 \approx 1$, which actually entering the strong interaction regime.
+For positive interaction strength $g>0$, we can find the LHY correction is a tiny \textit{correction} when density is low, with an order of $n a_s^3$. This has been experimentally verified in strong interacting Bose System \cite{Navon2011}. What we are interested is the case with negative interaction strength, i.e. $g<0$.The ground state energy of this case shows that there is a local minimum for a specific density. Noted that actually for $g<0$ the ground state energy formalism is ill-defined, since one cannot do the summation to get the LHY correction unless rule out the imaginary part of the low-energy excitation section. Moreover, considering the density of the local minimum, we will find that it is at the level of $n a_s^3 \approx 1$, which actually entering the strong interaction regime.
 
-\subsection{Quantum Depletion and Mechanism of LHY Droplet}
+\subsection{Quantum Depletion}
 % quantum depletion (done 2021-10-28 11:24:02)
 Now, Let us consider a ground state of BEC at zero temperature, how many particles will not stay at $k=0$ state? The answer is that directly summing all non-zero k state in the ground state. as following
 \begin{equation}
@@ -282,11 +282,11 @@ n_{\text{dp}}=\frac{1}{V}\sum _{k\neq 0} v_k^2=\frac{1}{3\pi ^2}\left(\frac{m c}
 where $v_k$ is parameter in Bogoliubov transformation, $c =\sqrt{\frac{g n}{2m}}$ is the first sound speed in BEC, and $\xi =\frac{\hbar }{\sqrt{2m g n}}$ is healing length.
 The fraction of depleted particle is
 \begin{equation}
-\frac{n_{\text{dp}}}{n}=\frac{8}{3\sqrt{\pi }}\sqrt{n a_S^3}
+\frac{n_{\text{dp}}}{n}=\frac{8}{3\sqrt{\pi }}\sqrt{n a_s^3}
 \end{equation}
-we can directly read that with increasing of $n a_S^3$, more particles are kicked out of the condensate. Meanwhile, these particles will contribute an additional energy to ground state energy, i.e. the LHY correction we mentioned before.
+we can directly read that with increasing of $n a_s^3$, more particles are kicked out of the condensate. Meanwhile, these particles will contribute an additional energy to ground state energy, i.e. the LHY correction we mentioned before.
 
-\subsection{Mean-field theory of Double BEC}
+\subsection{Mean-field theory of the Double BEC}
 
 % introduce to double BEC case (done 2021-10-28 11:36:36)
 With a brief review in several previous subsections, we found that: if there is only one species, since the LHY energy is always much smaller than MF energy, unless we increase the density or interaction strength to a strong interaction regime, the pure quantum effect always remains as a tiny correction. Therefore, only if there are some methods to maintain the LHY correction and reduce the MF energy by other effects (such as dipolar interaction or another species) can we make the MF energy scale approximate to the LHY correction. Finally, we have the opportunity to demonstrate this pure quantum effect. As Petrov mentioned in the seminal work \cite{petrov2015}: if we consider a two-species BEC sample with intra-species interaction in both positive while adjusting inter-species interaction negative enough to make almost total MF be zero, the LHY correction, since it is derived from quantum depletion, can maintain at the $g_{ii} n_i^3$ level and the MF energy can be an arbitrary proxy to zero, which form the opportunity to observe LHY correction directly. In other words, LHY correction can still exist even MF energy equals 0. In this way, it is possible to form an ultra-dilute quantum droplet since the interaction is still weak and density is actually remaining in the typical gaseous BEC level.
@@ -420,7 +420,7 @@ n_+=\frac{n_1\sqrt{g_{11}}-n_2\sqrt{g_{22}}}{\sqrt{g_{11}+g_{22}}}, n_-=\frac{n_
 \end{equation}
 
 % about density (done 2021-10-28 11:57:36)
-We can read from the above formula that MF energy is proportional to $\delta g n^2$, so it provides an attractive energy when $\delta g<0$. This term tends to increase the density of the sample, because increasing density brings lower energy (more negative). The LHY term is a positive ratio of $g_{ii}n^2.5$. Because its index is higher than MF's $n^2$, the sample tends to reduce its density in high-density region. These two terms compete and finally provide a balanced density, as shown in Fig. \ref{density-delta_g}. The density is 0 when $\delta g=0$, indicating that the self-bound state can only form starting from this point. When $\delta g$ is negative, the density of the system tends to increase rapidly with $\delta g$. This offers a window for experiment research. Considering that the density of the BEC sample we usually prepare is about $10^{12}$ to $10^{13}$ $cm^{-3}$. Based on this information, we can choose the appropriate inter-species interaction (actually choose the magnetic field, as we use the Feshbach resonance between two species) to prepare the quantum droplet. We put the detailed content in Chap.\ref{Chap_droplet}.
+We can read from the above formula that MF energy is proportional to $\delta g \times n^2$, so it provides an attractive energy when $\delta g<0$. This term tends to increase the density of the sample, because increasing density brings lower energy (more negative). The LHY term is a positive ratio of $g_{ii}n^{2.5}$. Because its index is higher than MF one with $n^2$, the sample tends to reduce its density in high-density region. These two terms compete and finally provide a balanced density, as shown in Fig. \ref{density-delta_g}. The density is 0 when $\delta g=0$, indicating that the self-bound state can only form starting from this point. When $\delta g$ is negative, the density of the system tends to increase rapidly with $\delta g$. This droplet density is the order parameter indicating the gas-liquid phase transition. From the experimental aspect, this offers a window for experiment research. Considering that the density of the BEC sample we usually prepare is about $10^{12}$ to $10^{13}$ $cm^{-3}$. Based on this information, we can choose the appropriate inter-species interaction (actually choose the magnetic field, as we use the Feshbach resonance between two species) to prepare the quantum droplet. We put the detailed content in Chap.\ref{Chap_droplet}.
 
 % density-delta_g (done 2021-10-28 14:00:07)
 \begin{figure}[htb]
